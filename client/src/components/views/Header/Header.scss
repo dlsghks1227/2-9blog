@@ -1,0 +1,17 @@
+#header {
+    width: 1589px / 1920px * 100%;
+    float: right;
+    p {
+        text-align: center;
+        font-size: 180%;
+        color: rgba(0, 0, 0, 0.56);
+        position: relative;
+        top: 5px;
+        font-weight: bold;
+    }
+    
+    hr {
+        width: 1650px / 1920px * 100%;
+        margin: 0 auto;
+    }
+}
