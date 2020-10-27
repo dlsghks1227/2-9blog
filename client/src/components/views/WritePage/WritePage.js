@@ -1,9 +1,12 @@
-import React from 'react'
+import React from 'react';
+import Nav from '../Nav/Nav';
+import Header from '../Header/Header';
 
 function WritePage() {
     return (
         <div>
-            글 작성 페이지 입니다.
+            <Nav/>
+            <Header />
         </div>
     )
 }
