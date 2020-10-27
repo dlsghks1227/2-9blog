@@ -97,3 +97,87 @@ html, body {
     display: none; 
 }
 
+.signup {
+    font-size: 120%;
+    color: #555555;
+    text-align: center;
+    cursor: pointer;
+    margin: 20%;
+    hr {
+        width: 70%;
+        position: relative;
+        bottom: 10px;
+    }
+    span {
+        font-size: 80%;
+        float: right;
+        color: #555555;
+    }
+}
+
+.signin {
+    font-size: 120%;
+    color: #555555;
+    text-align: center;
+    cursor: pointer;
+    margin: 30% 20% 30% 26.2%;
+    hr {
+        width: 60%;
+        position: relative;
+        bottom: 10px;
+
+    }
+    span {
+        font-size: 80%;
+        float: right;
+        color: #555555;
+    }
+}
+
+form {
+    label {
+        margin: 0 0 3% 15%;
+        font-size: 120%;
+    }
+
+    .signup-input {
+        width: 70%;
+        height: 35px;
+        margin: 0 10% 0 15%;
+    }
+    p {
+        color: #555555;
+        font-size: 90%;
+        margin: 5% 0% 5% 15%;
+    }
+    .signup-submit {
+        width: 25%;
+        height: 40px;
+        background-color: #9085DA;
+        border-radius: 10px;
+        border: 0 solid;
+        color: white;
+        margin: 5% 0 5% 38%;
+    }
+}
+
+form {
+    .signin-input {
+        width: 70%;
+        height: 35px;
+        margin: 0 10% 0 15%;
+    }
+    label {
+        margin: 0 0 3% 15%;
+        font-size: 120%;
+    }
+    .signin-submit {
+        width: 25%;
+        height: 40px;
+        background-color: #9085DA;
+        border-radius: 10px;
+        border: 0 solid;
+        color: white;
+        margin: 5% 0 5% 38%;
+    }
+}

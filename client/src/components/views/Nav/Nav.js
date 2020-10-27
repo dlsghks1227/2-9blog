@@ -17,9 +17,8 @@ function Nav() {
     const onSignUpSubmit = data => console.log(data);
     const onSignInSubmit = data => console.log(data);
 
-    const login = true;
+    const login = false;
  
-
     const [noticeShow, setNoticeShow] = useState(false);
 
     const handleNoticeClose = () => setNoticeShow(false);
@@ -114,15 +113,19 @@ function Nav() {
                     </Modal.Header>
                     <Modal.Body>
                         <form onSubmit={handleSubmit(onSignUpSubmit)}>
-                            <input name="id" ref={register({ required: true, maxLength: 10 })} />
-                            {errors.id && "id를 입력해 주세요."}
-                            <input name="password" ref={register({ required: true, pattern: /^[A-Za-z]+$/i })} />
-                            {errors.password && "비밀번호를 입력해 주세요."}
-                            <input name="passwordConfirm" ref={register({ required: true, pattern: /^[A-Za-z]+$/i })} />
-                            {errors.passwordConfirm && "비밀번호 확인을 입력해 주세요."}
-                            <input name="nickname" ref={register({ required: true, pattern: /^[A-Za-z]+$/i, maxLength: 6 })} />
-                            {errors.nickname && "닉네임을 입력해 주세요."}
-                            <input type="submit" />
+                            <label>아이디</label>
+                            <input className="signup-input" name="id" ref={register({ required: true, maxLength: 10 })} />
+                            <p>{errors.id && "아이디를 입력해 주세요."}</p>
+                            <label>비밀번호</label>
+                            <input className="signup-input" name="password" ref={register({ required: true, pattern: /^[A-Za-z]+$/i })} />
+                            <p>{errors.password && "비밀번호를 입력해 주세요."}</p>
+                            <label>비밀번호 확인</label>
+                            <input className="signup-input" name="passwordConfirm" ref={register({ required: true, pattern: /^[A-Za-z]+$/i })} />
+                            <p>{errors.passwordConfirm && "비밀번호 확인을 입력해 주세요."}</p>
+                            <label>닉네임</label>
+                            <input className="signup-input" name="nickname" ref={register({ required: true, pattern: /^[A-Za-z]+$/i, maxLength: 6 })} />
+                            <p>{errors.nickname && "닉네임을 입력해 주세요."}</p>
+                            <button className="signup-submit" type="submit">회원가입</button>
                         </form>
                     </Modal.Body>
                 </Modal>
@@ -132,17 +135,20 @@ function Nav() {
                     </Modal.Header>
                     <Modal.Body>
                         <form onSubmit={handleSubmit(onSignInSubmit)}>
-                            <input name="id" ref={register({ required: true, maxLength: 10 })} />
-                            {errors.id && "필수입니다."}
-                            <input name="password" ref={register({ pattern: /^[A-Za-z]+$/i })} />
-                            <input type="submit" />
+                            <label>아이디</label>
+                            <input name="id" className="signin-input" ref={register({ required: true, maxLength: 10 })} />
+                            <p>{errors.id && "아이디를 입력해 주세요."}</p>
+                            <label>비밀번호</label>
+                            <input name="password" className="signin-input" ref={register({ required: true})} />
+                            <p>{errors.password && "비밀번호를 입력해 주세요."}</p>
+                            <button className="signin-submit" onClick={handleSignInClose} type="submit">로그인</button>
                         </form>
                     </Modal.Body>
                 </Modal>
                 <div className="nav-inner">
                     <div className="profile">
-                        <p onClick={handleSignUpShow}>회원가입</p>
-                        <p onClick={handleSignInShow}>로그인</p>
+                        <p className="signup" onClick={handleSignUpShow}>회원가입<hr></hr><span>하러가기</span></p>
+                        <p className="signin" onClick={handleSignInShow}>로그인<hr></hr><span>하러가기</span></p>
                     </div>
                     <hr className="inner-line"></hr>
                     <ul className="notice-list">
