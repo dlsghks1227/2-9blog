@@ -1,3 +1,4 @@
+
 html, body {
     margin: 0;
     height: 100%;
@@ -30,10 +31,11 @@ html, body {
     position: relative;
     margin: 10% 0% 10% 0%;
     .profile-image {
-        width: 80%;
+        width: 70%;
         position: relative;
         top: 8%;
-        left: 10%;
+        left: 15%;
+        border-radius: 80%;
     }
     .user-name {
         font-size: 170%;
@@ -97,87 +99,34 @@ html, body {
     display: none; 
 }
 
-.signup {
-    font-size: 120%;
-    color: #555555;
-    text-align: center;
-    cursor: pointer;
-    margin: 20%;
-    hr {
-        width: 70%;
-        position: relative;
-        bottom: 10px;
-    }
-    span {
-        font-size: 80%;
-        float: right;
-        color: #555555;
+.start-google {
+    border-style: none;
+    background-color: white;
+    width: 90%;
+    height: 50px;
+    font-size: 92%;
+    position: relative;
+    left: 5%;
+    border-radius: 5px;
+
+    img {
+        width: 13%;
+        margin: 0px 8px 2px 0px;
     }
 }
 
-.signin {
-    font-size: 120%;
-    color: #555555;
-    text-align: center;
-    cursor: pointer;
-    margin: 30% 20% 30% 26.2%;
-    hr {
-        width: 60%;
-        position: relative;
-        bottom: 10px;
-
-    }
-    span {
-        font-size: 80%;
-        float: right;
-        color: #555555;
-    }
-}
-
-form {
-    label {
-        margin: 0 0 3% 15%;
-        font-size: 120%;
-    }
-
-    .signup-input {
-        width: 70%;
-        height: 35px;
-        margin: 0 10% 0 15%;
-    }
+.logout {
+    position: relative;
+    top: 10%;
     p {
+        text-align: center;
         color: #555555;
-        font-size: 90%;
-        margin: 5% 0% 5% 15%;
+        cursor: pointer;
     }
-    .signup-submit {
-        width: 25%;
-        height: 40px;
-        background-color: #9085DA;
-        border-radius: 10px;
-        border: 0 solid;
-        color: white;
-        margin: 5% 0 5% 38%;
-    }
-}
-
-form {
-    .signin-input {
-        width: 70%;
-        height: 35px;
-        margin: 0 10% 0 15%;
-    }
-    label {
-        margin: 0 0 3% 15%;
-        font-size: 120%;
-    }
-    .signin-submit {
-        width: 25%;
-        height: 40px;
-        background-color: #9085DA;
-        border-radius: 10px;
-        border: 0 solid;
-        color: white;
-        margin: 5% 0 5% 38%;
+    hr {
+        margin: 0 auto;
+        width: 30%;
+        position: relative;
+        bottom: 10px;
     }
 }
