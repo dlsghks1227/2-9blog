@@ -1,0 +1,8 @@
+.WriteContainer {
+    width: 1580px / 1920px * 100%;
+    float: right;
+}
+
+.ck-editor__editable:not(.ck-editor__nested-editable) {
+    min-height: 400px;
+}
