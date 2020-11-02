@@ -6,3 +6,51 @@
 .ck-editor__editable:not(.ck-editor__nested-editable) {
     min-height: 400px;
 }
+
+.ck.ck-editor {
+    margin-top: 60px;
+    :focus {
+        width: 99%;
+    }
+}
+
+.ck.ck-editor__main>.ck-editor__editable:not(.ck-focused) {
+    width: 99%;
+    
+}
+
+.ck.ck-reset_all, .ck.ck-reset_all * {
+    width: 99.8%;
+}
+
+
+.title-input {
+    border: none; 
+    background: transparent;
+    width: 95%;
+    height: 75px;
+    font-size: 40px;
+    margin: 20px 0px 0px 20px;
+    :focus {
+        outline: none;
+        
+    }
+}
+
+.submit-button {
+    border: none; 
+    background: transparent;
+    font-size: 170%;
+    margin: 30px;
+    float: right;
+}
+
+.dropdown {
+    float: right;
+    margin: 30px 20px 20px 20px;
+    background: transparent;
+    border-color: #555555;
+    width: 7%;
+    height: 40px;
+    text-align: center;
+}

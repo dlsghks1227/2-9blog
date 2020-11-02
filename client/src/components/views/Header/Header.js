@@ -1,10 +1,11 @@
 import React from 'react'
 import './Header.scss'
+import { NavLink } from "react-router-dom";
 
 function Header() {
     return (
         <header id="header">
-            <p>blog</p>
+            <NavLink className="blog-link" exact to="/"><p>blog</p></NavLink>
             <hr></hr>
         </header>
     )

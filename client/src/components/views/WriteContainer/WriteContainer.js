@@ -79,55 +79,86 @@ const installedPlugins = [
 ];
 
 function WriteContainer() {
+  const [title, setTitle] = useState("");
+  const [body, setBody] = useState({});
 
-  const onChangeText = (event, editor) => {
-    const data = editor.getData();
-    console.log( { event, editor, data } );
+  const titleChangeHandler = (e) => {
+    setTitle(e.target.value);
+  };
+
+  console.log(body);
+
+  const writeSubmitHandler = (e) => {
+    // firestore 데이터 추가
+    console.log("submit")
+    e.preventDefault();
   }
+
+  const bodyChangeHandler = (event, editor) => {
+    const data = editor.getData();
+    console.log({ event, editor, data });
+    setBody(body);
+  };
 
   return (
     <div className="WriteContainer">
-      <CKEditor
-        editor={ClassicEditor}
-        config={{
-          plugins: [...installedPlugins],
-          toolbar: [
-            "exportPdf",
-            "|",
-            "heading",
-            "|",
-            "fontFamily",
-            "fontSize",
-            "fontColor",
-            "alignment",
-            "|",
-            "bold",
-            "italic",
-            "strikethrough",
-            "underline",
-            "specialCharacters",
-            "horizontalLine",
-            "|",
-            "bulletedList",
-            "numberedList",
-            "|",
-            "indent",
-            "outdent",
-            "|",
-            "link",
-            "blockQuote",
-            "CKFinder",
-            "imageUpload",
-            "insertTable",
-            "mediaEmbed",
-            "|",
-            "undo",
-            "redo",
-          ],
-        }}
-        data=""
-        onChange={onChangeText}
-      />
+      <form onSubmit={writeSubmitHandler}>
+
+        <input placeholder="제목" className="title-input" type="text" value={title} onChange={titleChangeHandler} />
+        <select className="dropdown">
+          <option selected value="React">React</option>
+          <option>Node.js</option>
+        </select >
+        <select className="dropdown">
+          <option selected value="Redux">Redux</option>
+          <option>Router</option>
+        </select>
+        <hr></hr>
+        <CKEditor
+          editor={ClassicEditor}
+          config={{
+            plugins: [...installedPlugins],
+            toolbar: [
+              "exportPdf",
+              "|",
+              "heading",
+              "|",
+              "fontFamily",
+              "fontSize",
+              "fontColor",
+              "alignment",
+              "|",
+              "bold",
+              "italic",
+              "strikethrough",
+              "underline",
+              "specialCharacters",
+              "horizontalLine",
+              "|",
+              "bulletedList",
+              "numberedList",
+              "|",
+              "indent",
+              "outdent",
+              "|",
+              "link",
+              "blockQuote",
+              "CKFinder",
+              "imageUpload",
+              "insertTable",
+              "mediaEmbed",
+              "|",
+              "undo",
+              "redo",
+            ],
+          }}
+          data=""
+          onChange={bodyChangeHandler}
+        />
+        <button className="submit-button" type="submit">글 작성하기
+        <hr></hr>
+        </button>
+      </form>
     </div>
   )
 }

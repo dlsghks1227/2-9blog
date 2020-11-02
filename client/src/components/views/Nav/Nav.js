@@ -4,7 +4,7 @@ import './Nav.scss';
 import profileImage from './profile-image.png';
 import googleIcon from './google-icon.png';
 import { authService, firebaseInstance } from 'fbase';
-
+import { NavLink } from "react-router-dom";
 function Nav() {
     // const [nickname, setNickname] = useState({});\
 
@@ -94,7 +94,7 @@ function Nav() {
                         <img className="profile-image" src={userPhoto} alt="프로필 기본 이미지"></img>
                         <p className="user-name">{userName}</p>
                         <div className="write-infomation">
-                            <a className="wirte-btn" href="#">작성하기<hr></hr></a>
+                            <NavLink className="wirte-btn" exact to="/write">작성하기<hr></hr></NavLink>
                             <a className="infomation-btn" href="#">내 정보<hr></hr></a>
                         </div>
                     </div>

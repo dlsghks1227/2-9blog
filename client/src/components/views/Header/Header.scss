@@ -8,10 +8,15 @@
         position: relative;
         top: 5px;
         font-weight: bold;
+       
     }
     
     hr {
         width: 1650px / 1920px * 100%;
         margin: 0 auto;
     }
+}
+
+.blog-link {
+    text-decoration: none !important;
 }
