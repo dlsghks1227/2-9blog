@@ -39,6 +39,7 @@ import TextTransformation from "@ckeditor/ckeditor5-typing/src/texttransformatio
 import Underline from "@ckeditor/ckeditor5-basic-styles/src/underline.js";
 
 import './WriteContainer.scss'
+import { db } from '../../../fbase';
 
 const installedPlugins = [
   Alignment,
@@ -86,18 +87,20 @@ function WriteContainer() {
     setTitle(e.target.value);
   };
 
-  console.log(body);
-
   const writeSubmitHandler = (e) => {
-    // firestore 데이터 추가
-    console.log("submit")
+    db.collection("notice").doc("React").collection("written").add({title, body})
+      .then(function () {
+        console.log("Document successfully written!");
+      })
+      .catch(function (error) {
+        console.error("Error writing document: ", error);
+      });
     e.preventDefault();
   }
 
   const bodyChangeHandler = (event, editor) => {
     const data = editor.getData();
-    console.log({ event, editor, data });
-    setBody(body);
+    setBody(data);
   };
 
   return (
