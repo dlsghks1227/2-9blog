@@ -87,8 +87,13 @@ function WriteContainer() {
     setTitle(e.target.value);
   };
 
+  const bodyChangeHandler = (event, editor) => {
+    const data = editor.getData();
+    setBody(data);
+  };
+
   const writeSubmitHandler = (e) => {
-    db.collection("notice").doc("React").collection("written").add({title, body})
+    db.collection("notice").doc("React").set({ title, body })
       .then(function () {
         console.log("Document successfully written!");
       })
@@ -96,74 +101,73 @@ function WriteContainer() {
         console.error("Error writing document: ", error);
       });
     e.preventDefault();
-  }
-
-  const bodyChangeHandler = (event, editor) => {
-    const data = editor.getData();
-    setBody(data);
   };
 
-  return (
-    <div className="WriteContainer">
-      <form onSubmit={writeSubmitHandler}>
+return (
+  <div className="WriteContainer">
+    <form onSubmit={writeSubmitHandler}>
 
-        <input placeholder="제목" className="title-input" type="text" value={title} onChange={titleChangeHandler} />
-        <select className="dropdown">
-          <option selected value="React">React</option>
-          <option>Node.js</option>
-        </select >
-        <select className="dropdown">
-          <option selected value="Redux">Redux</option>
-          <option>Router</option>
-        </select>
+      <input placeholder="제목" className="title-input" type="text" value={title} onChange={titleChangeHandler} />
+      <ul>
+        <li selected value="React">React</li>
+        <li>Node.js</li>
+        <input type="text"/>
+        <button>전송</button>
+      </ul >
+      <ul>
+        <li selected value="React">React</li>
+        <li>Node.js</li>
+        <input type="text" />
+        <button>전송</button>
+      </ul >
+      <hr></hr>
+      <CKEditor
+        editor={ClassicEditor}
+        config={{
+          plugins: [...installedPlugins],
+          toolbar: [
+            "exportPdf",
+            "|",
+            "heading",
+            "|",
+            "fontFamily",
+            "fontSize",
+            "fontColor",
+            "alignment",
+            "|",
+            "bold",
+            "italic",
+            "strikethrough",
+            "underline",
+            "specialCharacters",
+            "horizontalLine",
+            "|",
+            "bulletedList",
+            "numberedList",
+            "|",
+            "indent",
+            "outdent",
+            "|",
+            "link",
+            "blockQuote",
+            "CKFinder",
+            "imageUpload",
+            "insertTable",
+            "mediaEmbed",
+            "|",
+            "undo",
+            "redo",
+          ],
+        }}
+        data=""
+        onChange={bodyChangeHandler}
+      />
+      <button className="submit-button" type="submit">글 작성하기
         <hr></hr>
-        <CKEditor
-          editor={ClassicEditor}
-          config={{
-            plugins: [...installedPlugins],
-            toolbar: [
-              "exportPdf",
-              "|",
-              "heading",
-              "|",
-              "fontFamily",
-              "fontSize",
-              "fontColor",
-              "alignment",
-              "|",
-              "bold",
-              "italic",
-              "strikethrough",
-              "underline",
-              "specialCharacters",
-              "horizontalLine",
-              "|",
-              "bulletedList",
-              "numberedList",
-              "|",
-              "indent",
-              "outdent",
-              "|",
-              "link",
-              "blockQuote",
-              "CKFinder",
-              "imageUpload",
-              "insertTable",
-              "mediaEmbed",
-              "|",
-              "undo",
-              "redo",
-            ],
-          }}
-          data=""
-          onChange={bodyChangeHandler}
-        />
-        <button className="submit-button" type="submit">글 작성하기
-        <hr></hr>
-        </button>
-      </form>
-    </div>
-  )
+      </button>
+    </form>
+  </div>
+)
 }
 
 export default WriteContainer

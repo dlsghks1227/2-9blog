@@ -7,8 +7,10 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import LandingPage from "./components/views/LandingPage/LandingPage"
-import WritePage from "./components/views/WritePage/WritePage"
+import LandingPage from "./components/views/LandingPage/LandingPage";
+import WritePage from "./components/views/WritePage/WritePage";
+import PostPage from './components/views/PostPage/PostPage';
+
 
 import './App.scss';
 
@@ -36,6 +38,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/write" component={WritePage} />
+          <Route exact path="/post" component={PostPage} />
         </Switch>
       </div>
     </Router>

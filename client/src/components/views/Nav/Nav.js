@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import ReactDOM from 'react-dom';
 import { Modal, Button } from 'react-bootstrap';
 import './Nav.scss';
-import profileImage from './profile-image.png';
 import googleIcon from './google-icon.png';
 import { authService, firebaseInstance } from 'fbase';
 import { NavLink } from "react-router-dom";
+
+import { db } from '../../../fbase';
+
 function Nav() {
     // const [nickname, setNickname] = useState({});\
+
 
     const user = authService.currentUser;
 
@@ -14,6 +18,8 @@ function Nav() {
     const [password, setPassword] = React.useState("");
     const [newAccount, setNewAccount] = React.useState(true);
     const [error, setError] = React.useState("");
+    const [notice, setNotice] = useState("");
+    const [showNotice, setShowNotice] = useState([]);
 
     const onChange = (event) => {
         const { target: { name, value } } = event;
@@ -62,34 +68,46 @@ function Nav() {
 
     if (user != null) {
         user.providerData.forEach(function (profile) {
-          userPhoto = profile.photoURL
-          userName = profile.displayName;
+            userPhoto = profile.photoURL
+            userName = profile.displayName;
         });
-      }
+    }
 
-    const [noticeShow, setNoticeShow] = useState(false);
 
-    const handleNoticeClose = () => setNoticeShow(false);
-    const handleNoticeShow = () => setNoticeShow(true);
+    const noticeChangeHandler = (e) => {
+        setNotice(e.target.value);
+    };
 
+    const noticeSubmitHandler = (e) => {
+        db.collection("notice").doc(notice).set({})
+            .then(function () {
+                console.log("Document successfully written!");
+            })
+            .catch(function (error) {
+                console.error("Error writing document: ", error);
+            });
+        e.preventDefault();
+    };
+
+
+    let noticeArr = [];
+
+    db.collection("notice").onSnapshot((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            noticeArr.unshift(doc.id);
+            let showNoticeArr = noticeArr.map((notice, index) => (<li key={index}>{notice}</li>));
+            setShowNotice(showNoticeArr)
+        })
+    })
 
     if (user) {
         return (
             <div className="nav">
-                <Modal show={noticeShow} onHide={handleNoticeClose} centered>
-                    <Modal.Header closeButton>
-                        <Modal.Title>게시판 추가 및 변경</Modal.Title>
-                    </Modal.Header>
-
-                    <Modal.Body>
-
-                    </Modal.Body>
-
-                    <Modal.Footer>
-
-                    </Modal.Footer>
-                </Modal>
                 <div className="nav-inner">
+                <form onSubmit={noticeSubmitHandler}>
+                        <input type="text" onChange={noticeChangeHandler} />
+                        <button type="submit">전송</button>
+                    </form>
                     <div className="profile">
                         <img className="profile-image" src={userPhoto} alt="프로필 기본 이미지"></img>
                         <p className="user-name">{userName}</p>
@@ -99,31 +117,11 @@ function Nav() {
                         </div>
                     </div>
                     <hr className="inner-line"></hr>
-                    <ul className="notice-list">
-                        <li>React
-                        <ul>
-                                <li>
-                                    react
-                            </li>
-                                <li>
-                                    redux
-                            </li>
-                                <li>
-                                    router
-                            </li>
-                            </ul>
-                        </li>
-                        <li>Node.js
-                        <ul>
-                                <li>
-                                    express
-                            </li>
-                            </ul>
-                        </li>
+                    <ul className="notice-list">{showNotice}
                     </ul>
                     <hr className="inner-line"></hr>
                     <div className="notice-add-delete">
-                        <p className="add-fix" onClick={handleNoticeShow}>추가 및 변경</p>
+                        <p className="add-fix">추가 및 변경</p>
                         <hr></hr>
                     </div>
                     <div className="logout">
@@ -139,39 +137,20 @@ function Nav() {
                 <div className="nav-inner">
                     <div className="profile">
                         <div>
-                            <button onClick={onSocialClick} name="google" className="start-google"><img src={googleIcon} alt="구글 아이콘"/>Google 계정으로 시작</button>
+                            <button onClick={onSocialClick} name="google" className="start-google"><img src={googleIcon} alt="구글 아이콘" />Google 계정으로 시작</button>
                         </div>
 
                     </div>
                     <hr className="inner-line"></hr>
                     <ul className="notice-list">
-                        <li>React
-                        <ul>
-                                <li>
-                                    react
-                            </li>
-                                <li>
-                                    redux
-                            </li>
-                                <li>
-                                    router
-                            </li>
-                            </ul>
-                        </li>
-                        <li>Node.js
-                        <ul>
-                                <li>
-                                    express
-                            </li>
-                            </ul>
-                        </li>
+                       {showNotice}
                     </ul>
                     <hr className="inner-line"></hr>
                 </div>
             </div>
         )
-    }
 
+    }
 }
 
 export default Nav
