@@ -5,7 +5,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
 import LandingPage from "./components/views/LandingPage/LandingPage";
 import WritePage from "./components/views/WritePage/WritePage";
@@ -39,6 +38,7 @@ function App() {
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/write" component={WritePage} />
           <Route exact path="/post" component={PostPage} />
+          <Route path="/post/:doc" component={PostPage} />
         </Switch>
       </div>
     </Router>

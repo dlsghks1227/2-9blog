@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import { db } from '../../../fbase';
 import './PostContainer.scss';
 
-const docRef = db.collection("notice").doc("React");
+const docRef = db.collection("notice").doc("written").collection("React").doc("d259p3ONutczP5N0glmU");
 
 
 function PostContainer() {
     let [bodyPost, setBodyPost] = useState("")
     let [titlePost, setTitlePost] = useState("")
 
-    let getDoc = docRef.get()
+    docRef.get()
         .then(doc => {
             if (!doc.exists) {
                 console.log('No such document!');
@@ -18,6 +18,7 @@ function PostContainer() {
                 const title = doc.data().title;
                 setBodyPost(body);
                 setTitlePost(title);
+                console.log(body, title)
             }
         })
         .catch(err => {
