@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
-import { Modal, Button } from 'react-bootstrap';
+import React, { useState } from 'react';
 import './Nav.scss';
 import googleIcon from './google-icon.png';
 import { authService, firebaseInstance } from 'fbase';
 import { NavLink } from "react-router-dom";
-
-import { db } from '../../../fbase';
+import NoticeForm from '../Nav/NoticeForm/NoticeForm';
+import NoticeShow from '../Nav/NoticeShow/NoticeShow';
 
 function Nav() {
     // const [nickname, setNickname] = useState({});\
@@ -14,38 +12,35 @@ function Nav() {
 
     const user = authService.currentUser;
 
-    const [email, setEmail] = React.useState("");
-    const [password, setPassword] = React.useState("");
-    const [newAccount, setNewAccount] = React.useState(true);
-    const [error, setError] = React.useState("");
-    const [notice, setNotice] = useState("");
-    const [showNotice, setShowNotice] = useState([]);
+    // const [newAccount, setNewAccount] = React.useState(true);
+    // const [error, setError] = React.useState("");
+  
 
-    const onChange = (event) => {
-        const { target: { name, value } } = event;
-        if (name === "email") {
-            setEmail(value)
-        } else if (name == "password") {
-            setPassword(value)
-        }
-    };
+    // const onChange = (event) => {
+    //     const { target: { name, value } } = event;
+    //     if (name === "email") {
+    //         setEmail(value)
+    //     } else if (name == "password") {
+    //         setPassword(value)
+    //     }
+    // };
 
-    const onSubmit = async (event) => {
-        event.preventDefault();
-        try {
-            let data;
-            if (newAccount) {
-                data = await authService.createUserWithEmailAndPassword(email, password)
-            } else {
-                data = await authService.signInWithEmailAndPassword(email, password)
-            }
-            console.log(data);
-        } catch (error) {
-            setError(error.message);
-        }
-    };
+    // const onSubmit = async (event) => {
+    //     event.preventDefault();
+    //     try {
+    //         let data;
+    //         if (newAccount) {
+    //             data = await authService.createUserWithEmailAndPassword(email, password)
+    //         } else {
+    //             data = await authService.signInWithEmailAndPassword(email, password)
+    //         }
+    //         console.log(data);
+    //     } catch (error) {
+    //         setError(error.message);
+    //     }
+    // };
 
-    const toggleAccount = () => setNewAccount((prev) => !prev);
+    // const toggleAccount = () => setNewAccount((prev) => !prev);
 
     const onSocialClick = async (event) => {
         const { target: { name } } = event;
@@ -74,40 +69,16 @@ function Nav() {
     }
 
 
-    const noticeChangeHandler = (e) => {
-        setNotice(e.target.value);
-    };
+ 
+    
 
-    const noticeSubmitHandler = (e) => {
-        db.collection("notice").doc(notice).set({})
-            .then(function () {
-                console.log("Document successfully written!");
-            })
-            .catch(function (error) {
-                console.error("Error writing document: ", error);
-            });
-        e.preventDefault();
-    };
-
-
-    let noticeArr = [];
-
-    db.collection("notice").onSnapshot((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-            noticeArr.unshift(doc.id);
-            let showNoticeArr = noticeArr.map((notice, index) => (<li key={index}>{notice}</li>));
-            setShowNotice(showNoticeArr)
-        })
-    })
+   
 
     if (user) {
         return (
             <div className="nav">
                 <div className="nav-inner">
-                <form onSubmit={noticeSubmitHandler}>
-                        <input type="text" onChange={noticeChangeHandler} />
-                        <button type="submit">전송</button>
-                    </form>
+                    <NoticeForm />
                     <div className="profile">
                         <img className="profile-image" src={userPhoto} alt="프로필 기본 이미지"></img>
                         <p className="user-name">{userName}</p>
@@ -117,8 +88,7 @@ function Nav() {
                         </div>
                     </div>
                     <hr className="inner-line"></hr>
-                    <ul className="notice-list">{showNotice}
-                    </ul>
+                    <NoticeShow />
                     <hr className="inner-line"></hr>
                     <div className="notice-add-delete">
                         <p className="add-fix">추가 및 변경</p>
@@ -142,9 +112,7 @@ function Nav() {
 
                     </div>
                     <hr className="inner-line"></hr>
-                    <ul className="notice-list">
-                       {showNotice}
-                    </ul>
+                   <NoticeShow />
                     <hr className="inner-line"></hr>
                 </div>
             </div>

@@ -82,6 +82,7 @@ const installedPlugins = [
 function WriteContainer() {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState({});
+  const [noticeSelect, setNoticeSelect] = useState("")
 
   const titleChangeHandler = (e) => {
     setTitle(e.target.value);
@@ -92,8 +93,13 @@ function WriteContainer() {
     setBody(data);
   };
 
+  const noticeSelectChange = (e) => {
+    setNoticeSelect(e.target.value);
+  };
+
   const writeSubmitHandler = (e) => {
-    db.collection("notice").doc("React").set({ title, body })
+    console.log("전송");
+    db.collection("notice").doc("written").collection("React").add({ title, body })
       .then(function () {
         console.log("Document successfully written!");
       })
@@ -103,71 +109,67 @@ function WriteContainer() {
     e.preventDefault();
   };
 
-return (
-  <div className="WriteContainer">
-    <form onSubmit={writeSubmitHandler}>
 
-      <input placeholder="제목" className="title-input" type="text" value={title} onChange={titleChangeHandler} />
-      <ul>
-        <li selected value="React">React</li>
-        <li>Node.js</li>
-        <input type="text"/>
-        <button>전송</button>
-      </ul >
-      <ul>
-        <li selected value="React">React</li>
-        <li>Node.js</li>
-        <input type="text" />
-        <button>전송</button>
-      </ul >
-      <hr></hr>
-      <CKEditor
-        editor={ClassicEditor}
-        config={{
-          plugins: [...installedPlugins],
-          toolbar: [
-            "exportPdf",
-            "|",
-            "heading",
-            "|",
-            "fontFamily",
-            "fontSize",
-            "fontColor",
-            "alignment",
-            "|",
-            "bold",
-            "italic",
-            "strikethrough",
-            "underline",
-            "specialCharacters",
-            "horizontalLine",
-            "|",
-            "bulletedList",
-            "numberedList",
-            "|",
-            "indent",
-            "outdent",
-            "|",
-            "link",
-            "blockQuote",
-            "CKFinder",
-            "imageUpload",
-            "insertTable",
-            "mediaEmbed",
-            "|",
-            "undo",
-            "redo",
-          ],
-        }}
-        data=""
-        onChange={bodyChangeHandler}
-      />
-      <button className="submit-button" type="submit">글 작성하기
+ 
+  return (
+    <div className="WriteContainer">
+      <form onSubmit={writeSubmitHandler}>
+
+        <input placeholder="제목" className="title-input" type="text" value={title} onChange={titleChangeHandler} />
+        <select value={noticeSelect} onChange={noticeSelectChange}>
+          <option value="grapefruit">Grapefruit</option>
+          <option value="lime">Lime</option>
+          <option value="coconut">Coconut</option>
+          <option value="mango">Mango</option>
+        </select>
         <hr></hr>
-      </button>
-    </form>
-  </div>
-)
+        <CKEditor
+          editor={ClassicEditor}
+          config={{
+            plugins: [...installedPlugins],
+            toolbar: [
+              "exportPdf",
+              "|",
+              "heading",
+              "|",
+              "fontFamily",
+              "fontSize",
+              "fontColor",
+              "alignment",
+              "|",
+              "bold",
+              "italic",
+              "strikethrough",
+              "underline",
+              "specialCharacters",
+              "horizontalLine",
+              "|",
+              "bulletedList",
+              "numberedList",
+              "|",
+              "indent",
+              "outdent",
+              "|",
+              "link",
+              "blockQuote",
+              "CKFinder",
+              "imageUpload",
+              "insertTable",
+              "mediaEmbed",
+              "|",
+              "undo",
+              "redo",
+            ],
+          }}
+          data=""
+          onChange={bodyChangeHandler}
+        />
+        <button className="submit-button" type="submit">글 작성하기
+        <hr></hr>
+        </button>
+      </form>
+    </div>
+  )
 }
 
 export default WriteContainer
