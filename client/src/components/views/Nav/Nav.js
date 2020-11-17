@@ -43,13 +43,17 @@ function Nav() {
     // const toggleAccount = () => setNewAccount((prev) => !prev);
 
     const onSocialClick = async (event) => {
-        const { target: { name } } = event;
-        let provider;
-        if (name === "google") {
-            provider = new firebaseInstance.auth.GoogleAuthProvider();
-        }
-        const data = await authService.signInWithPopup(provider);
-        console.log(data);
+        let response = await fetch('/user');
+        let json = await response.json();
+
+        console.log(json)
+        // const { target: { name } } = event;
+        // let provider;
+        // if (name === "google") {
+        //     provider = new firebaseInstance.auth.GoogleAuthProvider();
+        // }
+        // const data = await authService.signInWithPopup(provider);
+        // console.log(data);
     }
 
     // fetch('/nickname')
