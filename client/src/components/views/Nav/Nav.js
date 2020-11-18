@@ -3,8 +3,7 @@ import './Nav.scss';
 import googleIcon from './google-icon.png';
 import { authService, firebaseInstance } from 'fbase';
 import { NavLink } from "react-router-dom";
-import NoticeForm from '../Nav/NoticeForm/NoticeForm';
-import NoticeShow from '../Nav/NoticeShow/NoticeShow';
+
 
 function Nav() {
     // const [nickname, setNickname] = useState({});\
@@ -82,7 +81,6 @@ function Nav() {
         return (
             <div className="nav">
                 <div className="nav-inner">
-                    <NoticeForm />
                     <div className="profile">
                         <img className="profile-image" src={userPhoto} alt="프로필 기본 이미지"></img>
                         <p className="user-name">{userName}</p>
@@ -91,16 +89,11 @@ function Nav() {
                             <a className="infomation-btn" href="#">내 정보<hr></hr></a>
                         </div>
                     </div>
-                    <hr className="inner-line"></hr>
-                    <NoticeShow />
-                    <hr className="inner-line"></hr>
                     <div className="notice-add-delete">
                         <p className="add-fix">추가 및 변경</p>
-                        <hr></hr>
                     </div>
                     <div className="logout">
                         <p onClick={() => authService.signOut()}>로그아웃</p>
-                        <hr></hr>
                     </div>
                 </div>
             </div>
@@ -114,10 +107,7 @@ function Nav() {
                             <button onClick={onSocialClick} name="google" className="start-google"><img src={googleIcon} alt="구글 아이콘" />Google 계정으로 시작</button>
                         </div>
 
-                    </div>
-                    <hr className="inner-line"></hr>
-                   <NoticeShow />
-                    <hr className="inner-line"></hr>
+                    </div>        
                 </div>
             </div>
         )
