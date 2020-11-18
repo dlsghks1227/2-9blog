@@ -34,10 +34,11 @@
         margin: auto;
     }
     .graph-inner {
-        width: 834px;
+        width: 600px;
         margin: auto;
         img {
-            margin-top: 30px;
+            width: 600px;
+            margin-top: 80px;
         }
     }
     div {
@@ -77,6 +78,16 @@
             &:hover {
                 background-color: #555555;
                 color: white;
+                transition-property: background-color, color;
+                transition-duration: 1s;
+            }
+        }
+        .pointer {
+            background-color: #555555;
+            color: white;
+            &:hover {
+                background-color: white;
+                color: #555555;
                 transition-property: background-color, color;
                 transition-duration: 1s;
             }
@@ -121,8 +132,16 @@
             width: 350px;
             height: 80px;
             border: 0.3px solid #555555;
+            background-color: #555555;
             margin: auto;
+            color: white;
             border-radius: 10px;
+            &:hover {
+                background-color: white;
+                color: #555555;
+                transition-property: background-color, color;
+                transition-duration: 1s;
+            }
             p {
                 text-align: center;
                 font-size: 20px;
