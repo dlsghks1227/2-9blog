@@ -9,11 +9,14 @@
     overflow: hidden;
     width: 100%;
     margin: auto;
+    z-index: -999;
 }
 
 .photo {
     img {
         width: 100%;
+        z-index: -999;
+
     }
     p {
         position: relative;
@@ -58,7 +61,7 @@
         top: 50%;
         margin-top: -7px;
         border-radius: 5px;
-        z-index: 999;
+        z-index: 19;
 
     }
 }
@@ -86,7 +89,7 @@
         top: 50%;
         margin-top: -7px;
         border-radius: 5px;
-        z-index: 999;
+        z-index: 19;
 
     }
 }
