@@ -12,6 +12,8 @@
   "license": "ISC",
   "dependencies": {
     "express": "4.17.1",
-    "firebase": "^8.0.0"
+    "firebase": "^8.0.0",
+    "react-slick": "0.27.13",
+    "slick-carousel": "1.8.1"
   }
 }
