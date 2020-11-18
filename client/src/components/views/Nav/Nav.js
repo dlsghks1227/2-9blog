@@ -1,19 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './Nav.scss';
 import googleIcon from './google-icon.png';
 // import { authService } from 'fbase';
 import { NavLink } from "react-router-dom";
 
 
-function Nav() {
+function Nav(props) {
     // const [nickname, setNickname] = useState({});\
-
 
     // const user = authService.currentUser;
 
     // const [newAccount, setNewAccount] = React.useState(true);
     // const [error, setError] = React.useState("");
-  
+
 
     // const onChange = (event) => {
     //     const { target: { name, value } } = event;
@@ -40,6 +39,7 @@ function Nav() {
     // };
 
     // const toggleAccount = () => setNewAccount((prev) => !prev);
+
 
     const onSocialClick = async (event) => {
         let response = await fetch('/user');
@@ -71,7 +71,7 @@ function Nav() {
     //     });
     // }
 
-   
+
 
     // if (user) {
     //     return (
@@ -95,9 +95,18 @@ function Nav() {
     //         </div>
     //     )
     // } else {
+
+    const navRef = useRef();
+
+    useEffect(()=>{
+        props.navState == true ? navRef.current.style.display ="inline"
+              : navRef.current.style.display ="none"
+    },[props.navState])
+
+    //console.log(navRef)
     return (
         <div className="nav">
-            <div className="nav-inner">
+            <div className="nav-inner" ref={navRef}>
                 <div className="profile">
                     <div>
                         <button onClick={onSocialClick} name="google" className="start-google"><img src={googleIcon} alt="구글 아이콘" />Google 계정으로 시작</button>
