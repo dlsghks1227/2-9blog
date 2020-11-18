@@ -39,7 +39,7 @@ import TextTransformation from "@ckeditor/ckeditor5-typing/src/texttransformatio
 import Underline from "@ckeditor/ckeditor5-basic-styles/src/underline.js";
 
 import './WriteContainer.scss'
-import { db } from '../../../fbase';
+// import { db } from '../../../fbase';
 
 const installedPlugins = [
   Alignment,
@@ -99,13 +99,13 @@ function WriteContainer() {
 
   const writeSubmitHandler = (e) => {
     console.log("전송");
-    db.collection("notice").doc("written").collection("React").add({ title, body })
-      .then(function () {
-        console.log("Document successfully written!");
-      })
-      .catch(function (error) {
-        console.error("Error writing document: ", error);
-      });
+    // db.collection("notice").doc("written").collection("React").add({ title, body })
+    //   .then(function () {
+    //     console.log("Document successfully written!");
+    //   })
+    //   .catch(function (error) {
+    //     console.error("Error writing document: ", error);
+    //   });
     e.preventDefault();
   };
 

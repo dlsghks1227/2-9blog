@@ -1,6 +1,5 @@
 import React from 'react';
 
-import {authService} from "fbase";
 import {
   BrowserRouter as Router,
   Switch,
@@ -20,16 +19,16 @@ function App() {
   }
   const [init, setInit] = React.useState(false);
   const [isLoggedIn,setIsLoggedIn] = React.useState(false);
-  React.useEffect(()=>{
-    authService.onAuthStateChanged((user) => {
-      if(user){
-        setIsLoggedIn(true);
-      }else{
-        setIsLoggedIn(false);
-      }
-      setInit(true);
-    });
-  },[]);
+  // React.useEffect(()=>{
+  //   authService.onAuthStateChanged((user) => {
+  //     if(user){
+  //       setIsLoggedIn(true);
+  //     }else{
+  //       setIsLoggedIn(false);
+  //     }
+  //     setInit(true);
+  //   });
+  // },[]);
   return (
     <Router>
       {/* {init ? <AppRouter isLoggedIn={isLoggedIn}/>:"Init"} */}
