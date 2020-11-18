@@ -9,7 +9,7 @@ function Header() {
         <div className="header-inner">
             <FontAwesomeIcon icon={faBars} className="bars" />
             <header id="header">
-                <NavLink className="blog-link" exact to="/"><p>blog</p></NavLink>
+                <NavLink className="blog-link" exact to="/"><p>BLOG</p></NavLink>
             </header>
         </div>
     )
