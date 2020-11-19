@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -33,17 +34,53 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # 소셜로그인
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+
     'rest_framework',
     'blog',
 ]
 
 REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+
+    # DRF에서 제공하는 pagination 사용
+    # https://www.django-rest-framework.org/api-guide/pagination/#pagenumberpagination
+    'DEFAULT_PAGINATION_CLASS' : 'rest_framework.pagination.PageNumberPagination',
+
+    # pagination의 페이지 크기
+    'PAGE_SIZE': 20,
+
+    # 권한 설정
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
+        # 인증된 사용자에 대한 엑세스를 허용, 인증되지 않은 사용자는 엑세스 거부
+        'rest_framework.permissions.IsAuthenticated'
+    ],
+
+    # 인증 설정
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+
+        # 세션을 통한 인증 여부 체크, APIView를 통해 디퐅트 지정(우선순위 1)
+        'rest_framework.authentication.SessionAuthentication',
+
+        # basic 인증헤더를 통한 인증 여부 체크, APIView를 통해 디퐅트 지정(우선순위 2)
+        'rest_framework.authentication.BasicAuthentication',
+    ],
+
+    # Response 객체를 반환할 때 사용할 수 있는 기본 렌더러
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
     ]
 }
 
@@ -126,3 +163,28 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+AUTH_USER_MODEL = 'blog.User'
+
+# JWT_AUTH = {
+#     'JWT_ENCODE_HANDLER': 'rest_framework_jwt.utils.jwt_encode_handler',
+
+#     'JWT_DECODE_HANDLER': 'rest_framework_jwt.utils.jwt_decode_handler',
+
+#     'JWT_PAYLOAD_HANDLER': 'rest_framwork_jwt.utils.jwt_payload_handler',
+
+#     'JWT_PAYLOAD_GET_USER_ID_HANDLER': 'rest_framework_jwt.get_user_id_from_payload_handler',
+
+
+# }
+
+# Django all auth settings
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+SITE_ID = 1
+
+# 소셜 로그인 후 리다이렉션 위치
+LOGIN_REDIRECT_URL = '/'
