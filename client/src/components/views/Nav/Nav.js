@@ -3,6 +3,7 @@ import './Nav.scss';
 import googleIcon from './google-icon.png';
 // import { authService } from 'fbase';
 import { NavLink } from "react-router-dom";
+import { response } from 'express';
 
 
 function Nav(props) {
@@ -42,10 +43,21 @@ function Nav(props) {
 
 
     const onSocialClick = async (event) => {
-        let response = await fetch('/user');
-        let json = await response.json();
-
-        console.log(json)
+        fetch("users/login", {
+            method: "POST",
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: "admin@email.com",
+                password: "admin"
+            })
+        })
+        .then(response => response.json())
+        .then(response => {
+            console.log(response);
+        }
+        )
         // const { target: { name } } = event;
         // let provider;
         // if (name === "google") {

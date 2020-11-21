@@ -4,7 +4,6 @@ import './login.scss';
 function loginScreen() {
 
     const login_Clicked = () => {
-        alert("login");
     }
 
     return (

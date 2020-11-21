@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '^zxh5d2w@sn32@o61-%jbr!+ewc^g@uwx(ax2b6qb_pz9%@u4l'
+SECRET_KEY = 'e!4xdyc_@tckmocjj2u!hb6pjq0roed!!ojn&t=58y%ebfm#n0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -40,49 +40,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # 소셜로그인
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',
-
+    # Django Allauth는 사용자 등록 및 소셜 인증에 사용
+    # Django REST Auth는 회원가입, 로그인/로그아웃에 사용
     'rest_framework',
-    'blog',
+    'rest_framework.authtoken',
+    'rest_auth',
+    
+    'accounts',
 ]
-
-REST_FRAMEWORK = {
-    # Use Django's standard `django.contrib.auth` permissions,
-    # or allow read-only access for unauthenticated users.
-
-    # DRF에서 제공하는 pagination 사용
-    # https://www.django-rest-framework.org/api-guide/pagination/#pagenumberpagination
-    'DEFAULT_PAGINATION_CLASS' : 'rest_framework.pagination.PageNumberPagination',
-
-    # pagination의 페이지 크기
-    'PAGE_SIZE': 20,
-
-    # 권한 설정
-    'DEFAULT_PERMISSION_CLASSES': [
-        # 인증된 사용자에 대한 엑세스를 허용, 인증되지 않은 사용자는 엑세스 거부
-        'rest_framework.permissions.IsAuthenticated'
-    ],
-
-    # 인증 설정
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
-
-        # 세션을 통한 인증 여부 체크, APIView를 통해 디퐅트 지정(우선순위 1)
-        'rest_framework.authentication.SessionAuthentication',
-
-        # basic 인증헤더를 통한 인증 여부 체크, APIView를 통해 디퐅트 지정(우선순위 2)
-        'rest_framework.authentication.BasicAuthentication',
-    ],
-
-    # Response 객체를 반환할 때 사용할 수 있는 기본 렌더러
-    'DEFAULT_RENDERER_CLASSES': [
-        'rest_framework.renderers.JSONRenderer',
-    ]
-}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -164,27 +129,73 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-AUTH_USER_MODEL = 'blog.User'
+REST_FRAMEWORK = {
+    # DRF에서 제공하는 pagination 사용
+    # https://www.django-rest-framework.org/api-guide/pagination/#pagenumberpagination
+    'DEFAULT_PAGINATION_CLASS' : 'rest_framework.pagination.PageNumberPagination',
 
-# JWT_AUTH = {
-#     'JWT_ENCODE_HANDLER': 'rest_framework_jwt.utils.jwt_encode_handler',
+    # pagination의 페이지 크기
+    'PAGE_SIZE': 20,
 
-#     'JWT_DECODE_HANDLER': 'rest_framework_jwt.utils.jwt_decode_handler',
+    # 권한 설정
+    'DEFAULT_PERMISSION_CLASSES': [
+        # 인증된 사용자에 대한 엑세스를 허용, 인증되지 않은 사용자는 엑세스 거부
+        'rest_framework.permissions.IsAuthenticated'
+    ],
 
-#     'JWT_PAYLOAD_HANDLER': 'rest_framwork_jwt.utils.jwt_payload_handler',
+    # 인증 설정
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
 
-#     'JWT_PAYLOAD_GET_USER_ID_HANDLER': 'rest_framework_jwt.get_user_id_from_payload_handler',
+        # 세션을 통한 인증 여부 체크, APIView를 통해 디퐅트 지정(우선순위 1)
+        'rest_framework.authentication.SessionAuthentication',
 
+        # basic 인증헤더를 통한 인증 여부 체크, APIView를 통해 디퐅트 지정(우선순위 2)
+        'rest_framework.authentication.BasicAuthentication',
+    ],
 
-# }
+    # Response 객체를 반환할 때 사용할 수 있는 기본 렌더러
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+    ]
+}
 
-# Django all auth settings
-AUTHENTICATION_BACKENDS = (
-    'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend',
-)
+# https://jpadilla.github.io/django-rest-framework-jwt/
+# 주석 추가 예정
+JWT_AUTH = {
+    'JWT_ENCODE_HANDLER':
+    'rest_framework_jwt.utils.jwt_encode_handler',
 
-SITE_ID = 1
+    'JWT_DECODE_HANDLER':
+    'rest_framework_jwt.utils.jwt_decode_handler',
 
-# 소셜 로그인 후 리다이렉션 위치
-LOGIN_REDIRECT_URL = '/'
+    'JWT_PAYLOAD_HANDLER':
+    'rest_framework_jwt.utils.jwt_payload_handler',
+
+    'JWT_PAYLOAD_GET_USER_ID_HANDLER':
+    'rest_framework_jwt.utils.jwt_get_user_id_from_payload_handler',
+
+    'JWT_RESPONSE_PAYLOAD_HANDLER':
+    'rest_framework_jwt.utils.jwt_response_payload_handler',
+
+    'JWT_SECRET_KEY': SECRET_KEY,
+    'JWT_GET_USER_SECRET_KEY': None,
+    'JWT_PUBLIC_KEY': None,
+    'JWT_PRIVATE_KEY': None,
+    'JWT_ALGORITHM': 'HS256',
+    'JWT_VERIFY': True,
+    'JWT_VERIFY_EXPIRATION': True,
+    'JWT_LEEWAY': 0,
+    'JWT_EXPIRATION_DELTA': timedelta(seconds=30),
+    'JWT_AUDIENCE': None,
+    'JWT_ISSUER': None,
+
+    'JWT_ALLOW_REFRESH': False,
+    'JWT_REFRESH_EXPIRATION_DELTA': timedelta(days=30),
+
+    'JWT_AUTH_HEADER_PREFIX': 'JWT',
+    'JWT_AUTH_COOKIE': None,
+}
+
+# 유저 인증 모델 설정
+AUTH_USER_MODEL = 'accounts.User'

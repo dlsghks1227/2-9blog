@@ -1,1 +1,0 @@
-from blog.api.views.user import *
