@@ -3,8 +3,7 @@ import './Nav.scss';
 import googleIcon from './google-icon.png';
 // import { authService } from 'fbase';
 import { NavLink } from "react-router-dom";
-import { response } from 'express';
-
+// import { response } from 'express';
 
 function Nav(props) {
     // const [nickname, setNickname] = useState({});\
@@ -123,6 +122,7 @@ function Nav(props) {
                     <div>
                         <button onClick={onSocialClick} name="google" className="start-google"><img src={googleIcon} alt="구글 아이콘" />Google 계정으로 시작</button>
                     </div>
+                    <NavLink exact to="/mypage">마이페이지</NavLink>
 
                 </div>
             </div>

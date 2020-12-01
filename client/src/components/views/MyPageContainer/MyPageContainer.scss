@@ -1,5 +1,101 @@
 .mypage-section {
     width: 100%;
     margin: auto;
-    border: 1px solid gray
+    display: flex;
+    
+    .my-information {
+        width: 50%;
+       
+
+    }
+}
+
+.infomation-inner {
+    margin-bottom: 100px;
+    p {
+        font-size: 28px;
+        font-weight: lighter;
+        text-align: center;
+        margin: 20px 0px 20px 0px;
+        &:first-child {
+            font-size: 35px;
+        }
+    }
+    
+}
+
+.edit-information {
+    background-color: white;
+    border-radius: 10px;
+    border: none;
+    font-weight: lighter;
+    font-size: 15px;
+    cursor: pointer;
+    .edit-icon {
+        cursor: pointer;
+    }
+}
+
+.profileimg-inner {
+    margin-top: 100px;
+    margin-bottom: 70px; 
+    margin: auto;
+    width: 250px;
+    img {
+        width: 250px;
+    }
+}
+
+.mypage-title {
+    border-bottom: 0.3px solid #d5d5d5;
+    width: 120px;
+    margin: auto;
+    font-size: 35px;
+    font-weight: 100;
+}
+
+.my-write {
+    width: 50%;
+    border-left: 0.3px solid #d5d5d5;
+    margin-bottom: 50px;
+    div {
+        font-weight: 100;
+        font-size: 20px;
+        width: 350px;
+        margin: auto;
+        p {
+            border-bottom: 0.3px solid #d5d5d5;
+            margin-top: 35px;
+        }
+    }
+}
+
+.write-title {
+    width: 160px;
+}
+
+.image-edit {
+    float: right;
+}
+
+.profile-preview {
+    width: 250px;
+    height: 250px;
+    border-radius: 250px;
+}
+
+.edit-input {
+    display: none;
+}
+
+.name-input {
+    margin: auto;
+    width: 300px;
+    height: 50px;
+}
+
+.introduce-input {
+    margin: auto;
+    width: 300px;
+    height: 100px;
 }
