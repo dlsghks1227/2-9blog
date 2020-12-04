@@ -123,6 +123,7 @@ function Nav(props) {
                         <button onClick={onSocialClick} name="google" className="start-google"><img src={googleIcon} alt="구글 아이콘" />Google 계정으로 시작</button>
                     </div>
                     <NavLink exact to="/mypage">마이페이지</NavLink>
+                    <NavLink exact to="/study">스터디 모집</NavLink>
 
                 </div>
             </div>

@@ -1,0 +1,52 @@
+.study-title {
+    border-bottom: 0.3px solid #d5d5d5;
+    width: 200px;
+    margin: auto;
+    font-size: 35px;
+    font-weight: 100;
+}
+
+.study-article {
+    width: 50%;
+    margin: auto;
+    p {
+        margin: 30px;
+        font-size: 20px;
+        font-weight: 100;
+        border-bottom: 0.3px solid #d5d5d5;
+    }
+
+}
+
+.study-write {
+    border: none;
+    background: wheat;
+    width: 90px;
+    height: 35px;
+    float: right;
+    border-radius: 5px;
+    font-weight: 100;
+    margin-right: 10px;
+}
+
+.search-box {
+    width: 620px;
+    padding-top: 150px;
+    padding-bottom: 150px;
+    margin: auto;
+    .search-input {
+        width: 450px;
+        height: 35px;
+        margin: 20px;
+        border: 0.3px solid #d5d5d5;
+    }
+    .search-btn {
+        border: none;
+        background: wheat;
+        width: 70px;
+        height: 35px;
+        border-radius: 5px;
+        font-weight: 100;
+        margin-right: 10px;
+    }
+}

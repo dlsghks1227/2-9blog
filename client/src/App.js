@@ -11,6 +11,7 @@ import PostPage from './components/views/PostPage/PostPage';
 import MyPage from './components/views/MyPage/MyPage';
 
 import './App.scss';
+import StudyMeetingPage from 'components/views/StudyMeetingPage/StudyMeetingPage';
 
 function App() {
   const style = {
@@ -39,6 +40,7 @@ function App() {
           <Route exact path="/post" component={PostPage} />
           <Route exact path="/mypage" component={MyPage} />
           <Route path="/post/:doc" component={PostPage} />
+          <Route exact path="/study" component={StudyMeetingPage} />
         </Switch>
       </div>
     </Router>
