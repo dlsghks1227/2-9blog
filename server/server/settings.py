@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_auth',
     
-    'accounts',
+    'user.apps.UserConfig',
+    'post.apps.PostConfig',
 ]
 
 MIDDLEWARE = [
@@ -135,7 +136,7 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS' : 'rest_framework.pagination.PageNumberPagination',
 
     # pagination의 페이지 크기
-    'PAGE_SIZE': 20,
+    'PAGE_SIZE': 10,
 
     # 권한 설정
     'DEFAULT_PERMISSION_CLASSES': [
@@ -182,20 +183,23 @@ JWT_AUTH = {
     'JWT_GET_USER_SECRET_KEY': None,
     'JWT_PUBLIC_KEY': None,
     'JWT_PRIVATE_KEY': None,
-    'JWT_ALGORITHM': 'HS256',
-    'JWT_VERIFY': True,
+    'JWT_ALGORITHM': 'HS256',                           # JWT 암호화에 사용되는 알고리즘
+    'JWT_VERIFY': True,                             
     'JWT_VERIFY_EXPIRATION': True,
     'JWT_LEEWAY': 0,
-    'JWT_EXPIRATION_DELTA': timedelta(seconds=30),
+    'JWT_EXPIRATION_DELTA': timedelta(days=1),      # JWT Access Token 유효기간
     'JWT_AUDIENCE': None,
     'JWT_ISSUER': None,
 
-    'JWT_ALLOW_REFRESH': False,
-    'JWT_REFRESH_EXPIRATION_DELTA': timedelta(days=30),
+    'JWT_ALLOW_REFRESH': False,                         # JWT 토큰 재설정 여부
+    'JWT_REFRESH_EXPIRATION_DELTA': timedelta(days=30), # JWT Refresh Token 유효기간
 
     'JWT_AUTH_HEADER_PREFIX': 'JWT',
     'JWT_AUTH_COOKIE': None,
 }
 
 # 유저 인증 모델 설정
-AUTH_USER_MODEL = 'accounts.User'
+AUTH_USER_MODEL = 'user.User'
+
+# DRF에서 Token 발급 시 JWT를 기본으로 사용
+REST_USE_JWT = True
