@@ -126,6 +126,7 @@ function Nav(props) {
                         }
                     </div>
                     <NavLink exact to="/mypage">마이페이지</NavLink>
+                    <NavLink exact to="/study">스터디 모집</NavLink>
 
                 </div>
             </div>

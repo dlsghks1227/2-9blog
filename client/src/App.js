@@ -13,9 +13,15 @@ import LandingPage from "./components/views/LandingPage/LandingPage";
 import WritePage from "./components/views/WritePage/WritePage";
 import PostPage from './components/views/PostPage/PostPage';
 import MyPage from './components/views/MyPage/MyPage';
+import SetupAim from './components/views/AimPage/SetupAim';
+import Store from 'store/index'
 
 import LoginPage from './components/views/login/login'
 import './App.scss';
+import StudyMeetingPage from 'components/views/StudyMeetingPage/StudyMeetingPage';
+import StudyPostPage from './components/views/StudyPostPage/StudyPostPage';
+
+const {persistor, store} = Store();
 
 function App() {
   const style = {
@@ -46,6 +52,7 @@ function App() {
             <Route exact path="/login" component={LoginPage} />
             {/* <Route exact path="/mypage" component={MyPage} /> */}
             <Route path="/post/:doc" component={PostPage} />
+            <Route path="/study" component={StudyMeetingPage} />
             <AuthRoute exact path="/mypage" component={MyPage} />
           </Switch>
         </div>
