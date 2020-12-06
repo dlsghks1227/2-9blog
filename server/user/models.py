@@ -20,6 +20,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         help_text='EMAIL ID.'
     )
     username = models.CharField(
+        verbose_name='name',
         max_length=30,
     )
     is_staff = models.BooleanField(
@@ -41,7 +42,10 @@ class User(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'email'
     
     class Meta:
+        # 사용자가 읽기 쉬운 모델 객체의 이름 (단수형)
         verbose_name = 'user'
+
+        # 사용자가 읽기 쉬운 모델 객체의 이름 (복수형)
         verbose_name_plural = 'users'
     
     def __str__(self):

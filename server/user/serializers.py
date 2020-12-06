@@ -26,8 +26,8 @@ class UserCreateSerializer(serializers.Serializer):
             username=validated_data['username']
         )
         user.set_password(validated_data['password'])
-        
         user.save()
+
         return user
 
 class UserLoginSerializer(serializers.Serializer):

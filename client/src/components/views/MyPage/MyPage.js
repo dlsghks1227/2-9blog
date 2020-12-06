@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Nav from '../Nav/Nav'
 import Header from '../Header/Header';
-import MyPageContainer from '../MyPageContainer/MyPageContainer';
+import MyPageContainer from './MyPageContainer';
 import Footer from '../Footer/Footer';
 
 
