@@ -21,6 +21,27 @@
             font-size: 35px;
         }
     }
+    form {
+        display: none;
+        width: 450px;
+        margin: auto;
+        input {
+            display: block;
+        }
+        div {
+            width: 80px;
+            margin: auto;
+            button {
+                margin-top: 20px;
+                border: none;
+                background: wheat;
+                font-weight: 100;
+                border-radius: 5px;
+                height: 35px;
+                width: 90px;
+            }
+        }
+    }
     
 }
 
@@ -82,10 +103,6 @@
     width: 250px;
     height: 250px;
     border-radius: 250px;
-}
-
-.edit-input {
-    display: none;
 }
 
 .name-input {

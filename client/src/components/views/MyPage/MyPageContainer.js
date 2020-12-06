@@ -4,7 +4,7 @@ import profile from './profile.png';
 import { faEdit } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-function MyPageContainer() {
+function MyPageContainer({ myinfo, onChangeName, onChangeIntroduce }) {
     const [imageEdit, setImageEdit] = useState('');
     const [previewURL, setPreviewURL] = useState('');
 
@@ -20,12 +20,13 @@ function MyPageContainer() {
     }
 
     let profilePreview = null;
-    if(imageEdit !== ''){
+    if (imageEdit !== '') {
         profilePreview = <img className="profile-preview" src={previewURL} />
-    } else{
+    } else {
         profilePreview = <img src={profile} />
 
     }
+
 
     const [imageBtn, setImageBtn] = useState(false);
     const [nameBtn, setNameBtn] = useState(false);
@@ -34,7 +35,7 @@ function MyPageContainer() {
     const onImageClickHandler = () => {
         setImageBtn(!imageBtn);
     }
-    
+
     const onNameClickHandler = () => {
         setNameBtn(!nameBtn);
     }
@@ -43,16 +44,33 @@ function MyPageContainer() {
         setIntroduceBtn(!introduceBtn);
     }
 
-    const [name, setName] = useState("");
-    const [introduce, setIntroduce] = useState("");
+    const [nameInput, setNameInput] = useState("");
+    const [introInput, setIntroInput] = useState("");
 
     const nameChange = (e) => {
-        setName(e.target.value);
+        setNameInput(e.target.value);
     }
 
     const introduceChange = (e) => {
-        setIntroduce(e.target.value);
+        setIntroInput(e.target.value);
     }
+
+    const nameSubmit = (e) => {
+        e.preventDefault();
+        if (nameInput === "") {
+            alert("이름을 입력하세요")
+        } else {
+            onChangeName(nameInput);
+            setNameBtn(false);
+        }
+    }
+
+    const introSubmit = (e) => {
+        e.preventDefault();
+        onChangeIntroduce(introInput);
+        setIntroduceBtn(false);
+    }
+
 
     const imgRef = useRef();
     const nameRef = useRef();
@@ -60,11 +78,11 @@ function MyPageContainer() {
 
     useEffect(() => {
         imageBtn === true ? imgRef.current.style.display = "block"
-                    : imgRef.current.style.display = "none";
+            : imgRef.current.style.display = "none";
         nameBtn === true ? nameRef.current.style.display = "block"
-                    : nameRef.current.style.display = "none";
+            : nameRef.current.style.display = "none";
         introduceBtn === true ? introduceRef.current.style.display = "block"
-                    : introduceRef.current.style.display = "none";
+            : introduceRef.current.style.display = "none";
     }, [imageBtn, nameBtn, introduceBtn])
 
     return (
@@ -73,19 +91,25 @@ function MyPageContainer() {
                 <p className="mypage-title">내 정보</p>
                 <div className="profileimg-inner">
                     <button className="edit-information image-edit" onClick={onImageClickHandler}><FontAwesomeIcon className="edit-icon" icon={faEdit} /></button>
-                    <input type="file" ref={imgRef} className="edit-input image-input" onChange={onImageChangeHandler} />
+                    <input type="file" ref={imgRef} onChange={onImageChangeHandler} className="edit-input image-input" />
                     {profilePreview}
                 </div>
                 <div className="infomation-inner">
-                    <p>{name}
+                    <p>{myinfo.name}
                     <button className="edit-information" onClick={onNameClickHandler}><FontAwesomeIcon className="edit-icon" icon={faEdit} /></button>
-                    <input type="text" ref={nameRef} onChange={nameChange} className="edit-input name-input"/>
                     </p>
+                    <form onSubmit={nameSubmit} ref={nameRef}>
+                        <input type="text" value={nameInput}  onChange={nameChange} className="edit-input name-input" />
+                        <div><button type="submit">바꾸기</button></div>
+                    </form>
                     <p>abc123@defg.com</p>
-                    <p>{introduce}
-                    <button className="edit-information" onClick={onIntroduceClickHandler}><FontAwesomeIcon className="edit-icon" icon={faEdit} /></button>
-                    <input type="textarea" onChange={introduceChange} ref={introduceRef} className="edit-input introduce-input" />
+                    <p>{myinfo.intro}
+                        <button className="edit-information" onClick={onIntroduceClickHandler}><FontAwesomeIcon className="edit-icon" icon={faEdit} /></button>
                     </p>
+                    <form onSubmit={introSubmit} ref={introduceRef}>
+                        <input type="textarea" value={introInput} onChange={introduceChange}  className="edit-input introduce-input" />
+                        <div><button type="submit">바꾸기</button></div>
+                    </form>
                 </div>
             </article>
             <article className="my-write">

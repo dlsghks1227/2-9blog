@@ -53,7 +53,7 @@ function App() {
             {/* <Route exact path="/mypage" component={MyPage} /> */}
             <Route path="/post/:doc" component={PostPage} />
             <Route path="/study" component={StudyMeetingPage} />
-            <Route exact path="/mypage" component={MyPage} />
+            <AuthRoute exact path="/mypage" component={MyPage} />
           </Switch>
         </div>
       </Router>
