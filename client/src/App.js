@@ -9,7 +9,10 @@ import LandingPage from "./components/views/LandingPage/LandingPage";
 import WritePage from "./components/views/WritePage/WritePage";
 import PostPage from './components/views/PostPage/PostPage';
 import MyPage from './components/views/MyPage/MyPage';
-import SetupAim from './components/views/AimPage/SetupAim';
+import ListPage from './components/views/AimPage/pages/ListPage'
+import BoardPage from './components/views/AimPage/pages/BoardPage'
+import LoginPage from './components/views/login/login';
+import SignUpPage from './components/views/SignUp/SignUp';
 import Store from 'store/index'
 import './App.scss';
 
@@ -43,7 +46,10 @@ function App() {
           <Route exact path="/post" component={PostPage} />
           <Route exact path="/mypage" component={MyPage} />
           <Route path="/post/:doc" component={PostPage} />
-          <Route exact path="/aim" component ={SetupAim}/>
+          <Route exact path="/aim" component ={BoardPage}/>
+          <Route exact path="/login" component ={LoginPage}/>
+          <Route path="/signUp" component={SignUpPage}/>
+          <Route exact path="/board/:id" component={ListPage}/>
         </Switch>
       </div>
     </Router>
