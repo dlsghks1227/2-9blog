@@ -1,0 +1,39 @@
+
+//CreateCard 파일
+.CreateCard{
+    display: flex;
+    flex-direction: row;
+}
+
+.CreateCardWrapper{
+    position : relative;
+    padding : 5px;
+    box-sizing: border-box;
+}
+
+.CreateCard FontAwesomeIcon{
+    position: absolute;
+    right:10px;
+    top:50%;
+    margin-top: -10px;
+    width:20px;
+    height: 20px;
+    border-radius: 4px;
+    align-items :center;
+    justify-content:center;
+    cursor: pointer;
+    &:hover{
+        background-color: white
+    }
+}
+
+.CreateCard input{
+    width:100%;
+    box-sizing: border-box;
+    padding:10px;
+    font-size:14px;
+    outline: none;
+    border-radius :4px;
+    border : none;
+}
+

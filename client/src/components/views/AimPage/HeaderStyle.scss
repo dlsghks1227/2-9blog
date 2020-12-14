@@ -1,0 +1,42 @@
+
+
+// //    const HeaderStyle = styled.header`
+// //    height: 60px;
+// //    width: 100%;
+// //    background-color: #026aa7;
+// //    display: flex;
+// //    align-items: center;
+// //    justify-content: center;
+// `
+// // const LinkStyle = styled(Link)`
+// //    color: rgba(255,255,255,0.7);
+// //    font-weight: bold;
+// //    text-decoration: none;
+// //    font-size: 24px;
+// //    &:hover{
+// //        color: rgba(255,255,255);
+// //    }
+// //    span{
+// //        margin-left:10px;
+// //    }
+
+
+.HeaderStyle{
+    height : 60px;
+    width : 100%;
+    border-radius: 4px;
+    border-bottom: 1px solid plum;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.HeaderWrapper{
+    color: plum;
+    font-weight: bold;
+    font-size: 24px;
+ 
+    span{
+        margin-left:10px;
+    }
+}

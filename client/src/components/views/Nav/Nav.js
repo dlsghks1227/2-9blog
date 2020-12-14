@@ -3,7 +3,7 @@ import './Nav.scss';
 import googleIcon from './google-icon.png';
 // import { authService } from 'fbase';
 import { NavLink } from "react-router-dom";
-import { response } from 'express';
+//import { response } from 'express';
 
 
 function Nav(props) {
@@ -42,22 +42,22 @@ function Nav(props) {
     // const toggleAccount = () => setNewAccount((prev) => !prev);
 
 
-    const onSocialClick = async (event) => {
-        fetch("users/login", {
-            method: "POST",
-            headers: {
-                'Content-type': 'application/json'
-            },
-            body: JSON.stringify({
-                email: "admin@email.com",
-                password: "admin"
-            })
-        })
-        .then(response => response.json())
-        .then(response => {
-            console.log(response);
-        }
-        )
+    // const onSocialClick = async (event) => {
+    //     fetch("users/login", {
+    //         method: "POST",
+    //         headers: {
+    //             'Content-type': 'application/json'
+    //         },
+    //         body: JSON.stringify({
+    //             email: "admin@email.com",
+    //             password: "admin"
+    //         })
+    //     })
+    //     .then(response => response.json())
+    //     .then(response => {
+    //         console.log(response);
+    //     }
+    //     )}
         // const { target: { name } } = event;
         // let provider;
         // if (name === "google") {
@@ -65,7 +65,6 @@ function Nav(props) {
         // }
         // const data = await authService.signInWithPopup(provider);
         // console.log(data);
-    }
 
     // fetch('/nickname')
     // .then(res => res.json())
@@ -121,7 +120,7 @@ function Nav(props) {
             <div className="nav-inner" ref={navRef}>
                 <div className="profile">
                     <div>
-                        <button onClick={onSocialClick} name="google" className="start-google"><img src={googleIcon} alt="구글 아이콘" />Google 계정으로 시작</button>
+                        <button  name="google" className="start-google"><img src={googleIcon} alt="구글 아이콘" />Google 계정으로 시작</button>
                     </div>
 
                 </div>
@@ -132,4 +131,4 @@ function Nav(props) {
     //}
 }
 
-export default Nav
+export default Nav;
