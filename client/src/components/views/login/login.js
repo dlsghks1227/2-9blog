@@ -40,8 +40,8 @@ function LoginScreen() {
                     <input type="password" size="30" placeholder="패스워드를 입력해주세요"></input><br></br><br></br>
                 </div>
                 <div className="LoginButton">
-                    <button onClick={login_Clicked}>로그인</button><br></br>
-                    <button onClick={login_Clicked}>회원가입</button>
+                    <button onClick={handleSubmit}>로그인</button><br></br>
+                    <button onClick={handleSubmit}>회원가입</button>
                 </div>
             </div>
         </div>

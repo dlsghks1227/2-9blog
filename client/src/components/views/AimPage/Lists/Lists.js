@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ListCard from './CardComponent/ListCard';
 import CreateCard from './CardComponent/CreateCard';
 import { useParams } from 'react-router-dom';
-import { updateListsTitle } from 'store/reducer/Lists';
+import { updateListsTitle } from '../../../../store/reducer/lists';
 import { useSelector, useDispatch } from 'react-redux';
 import './CreateList.scss';
 

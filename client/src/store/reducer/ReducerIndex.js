@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 import board from './boards'
-import lists from './Lists';
+import lists from './lists';
 import card from './card';
 import myinfo from './myinfo';
 

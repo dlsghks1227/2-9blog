@@ -16,7 +16,7 @@ export const createLists = createAction(CREATE_LISTS, function prepare(title, bo
     }
 });
 
-export const updateListsTitle = createAction(UPDATE_LISTS_TITLE, function prepare(title) {
+export const updateListsTitle = createAction(UPDATE_LISTS_TITLE, function prepare(id,title) {
     return {
         payload: {
             id: id,

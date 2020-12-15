@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { createLists } from '../../../../store/reducer/Lists'
+import { createLists } from '../../../../store/reducer/lists'
 import './CreateList.scss'
 const CreateLists = () => {
 

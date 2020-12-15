@@ -19,7 +19,6 @@ import LoginPage from './components/views/login/login';
 import SignUpPage from './components/views/SignUp/SignUp';
 import Store from 'store/index'
 
-import LoginPage from './components/views/login/login'
 import './App.scss';
 import StudyMeetingPage from 'components/views/StudyMeetingPage/StudyMeetingPage';
 import StudyPostPage from './components/views/StudyPostPage/StudyPostPage';
@@ -58,7 +57,7 @@ function App() {
             <AuthRoute exact path="/mypage" component={MyPage} />
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/aim" component ={BoardPage}/>
-            <Route path="/signUp" component={SignUpPage}/>
+          <Route exact path="/signUp" component={SignUpPage}/>
           <Route exact path="/board/:id" component={ListPage}/>
           </Switch>
         </div>
