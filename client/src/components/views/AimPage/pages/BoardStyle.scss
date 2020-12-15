@@ -1,0 +1,39 @@
+
+.allBoard{
+    width : 15%;
+    background-color: rgb(203, 178, 243);
+    height : 30%;
+    margin : 10px;
+    border-radius: 5px;
+    color : #fff;
+    font-weight: 700;
+    transition : 0.2s;
+    &:hover{
+        transform: scale(1.05);
+    }
+}
+
+.BoardStyle{
+    top : 20px;
+    width:100%;
+    height : 75%;
+    position: relative;
+    overflow-y: auto;
+    display : flex;
+    flex-wrap : wrap;   
+    flex-direction: row;
+    justify-content: flex-start;
+    align-content: flex-start; 
+}
+
+.BoardPage{
+    width : 100%;
+    height : 100%;
+    display :flex;
+    flex : 0 0 20px;
+    flex-direction: column;
+}
+
+a{
+    color: white;
+}

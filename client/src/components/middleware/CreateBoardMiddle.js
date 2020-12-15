@@ -8,6 +8,6 @@ export const passActionAsync = (title) => async dispatch =>{
     
     console.log("액션",action);
     console.log("load", action.payload);
-    setTimeout(()=> dispatch({type : action}),1000);
+    setTimeout(()=> dispatch(action),1000);
 }
 //createBoard는 action을 받는다.

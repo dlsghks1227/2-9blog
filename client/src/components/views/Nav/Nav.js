@@ -8,6 +8,7 @@ import {
  } from "react-router-dom";
 // import { response } from 'express';
 
+
 import {
     useAuth,
 } from '../../../Auth/ProvideAuth';
@@ -48,6 +49,7 @@ function Nav(props) {
     // };
 
     // const toggleAccount = () => setNewAccount((prev) => !prev);
+
 
 
     const onSocialClick = async (event) => {
@@ -136,4 +138,4 @@ function Nav(props) {
     //}
 }
 
-export default Nav
+export default Nav;

@@ -32,17 +32,19 @@ function LoginScreen() {
     if (auth.isAuthenticated) return <Redirect to={from}/>
 
     return (
-        <div className="login_part">
-            <h1>login</h1>
-            <form onSubmit={handleSubmit}>
-                <input ref={userEmail} type="text" placeholder="이메일을 입력해주세요"></input><br></br>
-                <input ref={userPassword} type="password" placeholder="패스워드를 입력해주세요"></input><br></br><br></br>
-                <div className="login_btn">
-                    <button>login</button>
+        <div className="LoginPage">
+            <div className="LoginPart">
+                <h1 className="LoginTitle">Welcome</h1>
+                <div className="LoginInput">
+                    <input type="text" size="30" placeholder="아이디를 입력해주세요"></input><br></br>
+                    <input type="password" size="30" placeholder="패스워드를 입력해주세요"></input><br></br><br></br>
                 </div>
-            </form>
+                <div className="LoginButton">
+                    <button onClick={login_Clicked}>로그인</button><br></br>
+                    <button onClick={login_Clicked}>회원가입</button>
+                </div>
+            </div>
         </div>
-
     )
 }
 

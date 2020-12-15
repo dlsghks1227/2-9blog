@@ -1,12 +1,16 @@
-import React, { Fragment,useState } from 'react';
-import {Link} from 'react-router-dom';
+import React, { Fragment, useState } from 'react';
+import { Link } from 'react-router-dom';
+import './HeaderStyle.scss'
 
-function Header(){
-    return <header>
-        <Link to="/aim">
-        <span>목표 설정</span>
-        </Link>
+function Header() {
+
+    return (
+        <header className="HeaderStyle">
+            <div className="HeaderWrapper">
+                <span>목표 세우기 페이지</span>
+            </div>
     </header>
+    )
 }
 
 
