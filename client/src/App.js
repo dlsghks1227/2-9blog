@@ -5,6 +5,10 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
+
+import { ProvideAuth } from './Auth/ProvideAuth';
+import AuthRoute from './Auth/AuthRouter';
+
 import LandingPage from "./components/views/LandingPage/LandingPage";
 import WritePage from "./components/views/WritePage/WritePage";
 import PostPage from './components/views/PostPage/PostPage';
@@ -14,8 +18,11 @@ import BoardPage from './components/views/AimPage/pages/BoardPage'
 import LoginPage from './components/views/login/login';
 import SignUpPage from './components/views/SignUp/SignUp';
 import Store from 'store/index'
-import './App.scss';
 
+import LoginPage from './components/views/login/login'
+import './App.scss';
+import StudyMeetingPage from 'components/views/StudyMeetingPage/StudyMeetingPage';
+import StudyPostPage from './components/views/StudyPostPage/StudyPostPage';
 
 const {persistor, store} = Store();
 
@@ -25,7 +32,7 @@ function App() {
     width: "100%"
   }
   const [init, setInit] = React.useState(false);
-  const [isLoggedIn,setIsLoggedIn] = React.useState(false);
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   // React.useEffect(()=>{
   //   authService.onAuthStateChanged((user) => {
   //     if(user){
@@ -37,22 +44,26 @@ function App() {
   //   });
   // },[]);
   return (
-    <Router>
-      {/* {init ? <AppRouter isLoggedIn={isLoggedIn}/>:"Init"} */}
-      <div style={style}>
-        <Switch>
-          <Route exact path="/" component={LandingPage} />
-          <Route exact path="/write" component={WritePage} />
-          <Route exact path="/post" component={PostPage} />
-          <Route exact path="/mypage" component={MyPage} />
-          <Route path="/post/:doc" component={PostPage} />
+    <ProvideAuth>
+      <Router>
+        {/* {init ? <AppRouter isLoggedIn={isLoggedIn}/>:"Init"} */}
+        <div style={style}>
+          <Switch>
+            <Route exact path="/" component={LandingPage} />
+            <Route exact path="/write" component={WritePage} />
+            <Route exact path="/post" component={PostPage} />
+            {/* <Route exact path="/mypage" component={MyPage} /> */}
+            <Route path="/post/:doc" component={PostPage} />
+            <Route path="/study" component={StudyMeetingPage} />
+            <AuthRoute exact path="/mypage" component={MyPage} />
+          <Route exact path="/login" component={LoginPage} />
           <Route exact path="/aim" component ={BoardPage}/>
-          <Route exact path="/login" component ={LoginPage}/>
-          <Route path="/signUp" component={SignUpPage}/>
+            <Route path="/signUp" component={SignUpPage}/>
           <Route exact path="/board/:id" component={ListPage}/>
-        </Switch>
-      </div>
-    </Router>
+          </Switch>
+        </div>
+      </Router>
+    </ProvideAuth>
   );
 }
 

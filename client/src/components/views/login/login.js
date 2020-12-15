@@ -1,11 +1,35 @@
-import React, { Fragment } from 'react';
+import React, { useEffect, useRef } from 'react';
+import {
+    useLocation,
+    Redirect,
+    useHistory,
+} from 'react-router-dom';
 import './login.scss';
 
-function loginScreen() {
+import {
+    useAuth,
+} from '../../../Auth/ProvideAuth';
 
-    const login_Clicked = () => {
+function LoginScreen() {
+    const auth = useAuth();
+    const location = useLocation();
+    
+    const userEmail = useRef(null);
+    const userPassword = useRef(null);
 
+    useEffect(() => {
+    }, []);
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        auth.login({
+            email: userEmail.current.value,
+            password: userPassword.current.value
+        });
     }
+
+    const { from } = location.state || { from: { pathname: '/'}};
+    if (auth.isAuthenticated) return <Redirect to={from}/>
 
     return (
         <div className="LoginPage">
@@ -24,4 +48,4 @@ function loginScreen() {
     )
 }
 
-export default loginScreen
+export default LoginScreen

@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import Nav from '../Nav/Nav'
+import './StudyMeetingPage.scss';
+import StudyMeetingContainer from './StudyMeetingContainer';
 import Header from '../Header/Header';
-import MyPageContainer from './MyPageContainer';
+import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
-import MyPageState from './MyPageState';
 
-
-function MyPage() {
+function StudyMeetingPage() {
     const [isClicked, ClickOrNot] = useState(false);
     const navBtnClicked = ()=>{
         ClickOrNot(!isClicked);
@@ -16,10 +15,10 @@ function MyPage() {
         <div>
             <Header onClicked={navBtnClicked}/>
             <Nav navState={isClicked}/>
-            <MyPageState />
-            <Footer />
+           <StudyMeetingContainer /> 
+           <Footer />
         </div>
     )
 }
 
-export default MyPage
+export default StudyMeetingPage

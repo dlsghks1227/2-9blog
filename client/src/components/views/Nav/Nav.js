@@ -2,11 +2,20 @@ import React, { useState, useRef, useEffect } from 'react';
 import './Nav.scss';
 import googleIcon from './google-icon.png';
 // import { authService } from 'fbase';
-import { NavLink } from "react-router-dom";
-//import { response } from 'express';
+import { 
+    NavLink,
+    useHistory,
+ } from "react-router-dom";
+// import { response } from 'express';
 
+
+import {
+    useAuth,
+} from '../../../Auth/ProvideAuth';
 
 function Nav(props) {
+    const auth = useAuth();
+    const history = useHistory();
     // const [nickname, setNickname] = useState({});\
 
     // const user = authService.currentUser;
@@ -42,29 +51,18 @@ function Nav(props) {
     // const toggleAccount = () => setNewAccount((prev) => !prev);
 
 
-    // const onSocialClick = async (event) => {
-    //     fetch("users/login", {
-    //         method: "POST",
-    //         headers: {
-    //             'Content-type': 'application/json'
-    //         },
-    //         body: JSON.stringify({
-    //             email: "admin@email.com",
-    //             password: "admin"
-    //         })
-    //     })
-    //     .then(response => response.json())
-    //     .then(response => {
-    //         console.log(response);
-    //     }
-    //     )}
-        // const { target: { name } } = event;
-        // let provider;
-        // if (name === "google") {
-        //     provider = new firebaseInstance.auth.GoogleAuthProvider();
-        // }
-        // const data = await authService.signInWithPopup(provider);
-        // console.log(data);
+
+    const onSocialClick = async (event) => {
+    }
+
+    const onLogoutClick = () => {
+        auth.logout();
+        history.push('/'); 
+    }
+
+    const onLoginClick = () => {
+        history.push('/login');
+    }
 
     // fetch('/nickname')
     // .then(res => res.json())
@@ -120,8 +118,17 @@ function Nav(props) {
             <div className="nav-inner" ref={navRef}>
                 <div className="profile">
                     <div>
-                        <button  name="google" className="start-google"><img src={googleIcon} alt="구글 아이콘" />Google 계정으로 시작</button>
+                        <button onClick={onSocialClick} name="google" className="start-google"><img src={googleIcon} alt="구글 아이콘" />Google 계정으로 시작</button>
+                        {
+                            auth.isAuthenticated ? (
+                                <button onClick={onLogoutClick} name="logout">로그아웃</button>
+                            ) : (
+                                <button onClick={onLoginClick} name="login">로그인</button>
+                            )
+                        }
                     </div>
+                    <NavLink exact to="/mypage">마이페이지</NavLink>
+                    <NavLink exact to="/study">스터디 모집</NavLink>
 
                 </div>
             </div>
