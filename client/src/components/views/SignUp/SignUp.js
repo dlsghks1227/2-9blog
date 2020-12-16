@@ -1,9 +1,8 @@
 import React, { useState, useRef } from 'react';
 import './SignUp.scss';
 
-
 const confirmEmailForm = (email) => {
-    const emailRegex = /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;    
+    const emailRegex = /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/;    
     return emailRegex.test(email);
 }
 
@@ -14,32 +13,41 @@ const confirmPasswordForm = (password) => {
 
 const SignUp = () => {
 
-    const [emailFocus, setEmailFocus] = useState(null);
-    const [passwordFocus, setPasswordFocus] = useState(null);
+    const [emailBlur, setEmailBlured] = useState(null);
+    const [passwordBlur, setPasswordBlured] = useState(null);
+    const [nickNameBlur, setnickNameBlured] = useState(null);
 
     const emailRef = useRef();
     const pwRef = useRef();
+    const nickNameRef = useRef();
 
-
-    const EmailBlured = (event)=>{
+    const checkEmailBlured = (event)=>{
         event.preventDefault();
-        setEmailFocus(false);
+        setEmailBlured(true);
     }
 
-    const passwordBlured = (event)=>{
+    const checkpasswordBlured = (event)=>{
         event.preventDefault();
-        setPasswordFocus(false);
+        setPasswordBlured(true);
     }
 
-    if(emailFocus === false){
+    const checknickNameBlured = (event)=>{
+        event.preventDefault();
+        setnickNameBlured(true);
+    }
+
+
+    if(emailBlur === true){ //input Email을 벗어나면
         if(!confirmEmailForm(emailRef.current.value)){
             alert("이메일 형식에 맞지 않습니다.");
+            emailRef.current.focus();
         }
     }
 
-    if(passwordFocus === false){
+    if(passwordBlur=== true){ //input password을 벗어나면
         if(!confirmPasswordForm(pwRef.current.value)){
             alert("비밀번호는 최소 8자 이상이고, 영어와 숫자로 혼합한 형식이어야 합니다.");
+            pwRef.current.focus();
         }
     }
 
@@ -47,10 +55,8 @@ const SignUp = () => {
         const emailValue = emailRef.current.value;
         const passwordValue = pwRef.current.value;
 
-        if (emailValue === "" || passwordValue === "")
+        if (emailValue === "" || passwordValue === ""){
             alert("정보를 다 기입해주세요.");
-        else if(!emailFocus || !passwordFocus){
-            alert("아이디 혹은 비밀번호가 양식에 맞는 지 확인해주세요.");
         }
         else {
             fetch("http://localhost:8000", {
@@ -73,10 +79,12 @@ const SignUp = () => {
                     SignUp
             </h1>
                 <div className="signUpInput">
-                    <input ref={emailRef} type="text"
-                        placeholder="이메일을 입력해주세요." size="30" onBlur={EmailBlured}/><br></br>
+                    <input ref={emailRef} type="text" placeholder="이메일을 입력해주세요." size="30" 
+                        onBlur={checkEmailBlured}/><br></br>
+                    <input ref={nickNameRef} type="text" placeholder="닉네임을 입력해주세요." size="30" 
+                        onBlur={checknickNameBlured}/><br></br>
                     <input ref={pwRef} type="password" placeholder="사용하실 비밀번호를 입력해주세요." size="30" 
-                        onBlur={passwordBlured}/><br></br>
+                        onBlur={checkpasswordBlured}/><br></br>
                 </div>
                 <button onClick={confirmDataExist}>회원가입</button>
             </div>
