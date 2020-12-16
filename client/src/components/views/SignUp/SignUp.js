@@ -1,9 +1,21 @@
-import React, { useState, useRef } from 'react';
+import React, {
+    useState,
+    useRef,
+} from 'react';
+import {
+    useHistory,
+} from 'react-router-dom';
+import {
+    useDispatch,
+} from 'react-redux';
+import {
+    SignupUser,
+} from '../../../store/reducer/signup';
 import './SignUp.scss';
 
 
 const confirmEmailForm = (email) => {
-    const emailRegex = /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;    
+    const emailRegex = /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/;
     return emailRegex.test(email);
 }
 
@@ -13,6 +25,10 @@ const confirmPasswordForm = (password) => {
 }
 
 const SignUp = () => {
+    const dispatch = useDispatch();
+    const onSignupUser = (creds) => dispatch(SignupUser(creds));
+
+    const history = useHistory();
 
     const [emailFocus, setEmailFocus] = useState(null);
     const [passwordFocus, setPasswordFocus] = useState(null);
@@ -21,24 +37,24 @@ const SignUp = () => {
     const pwRef = useRef();
 
 
-    const EmailBlured = (event)=>{
+    const EmailBlured = (event) => {
         event.preventDefault();
         setEmailFocus(false);
     }
 
-    const passwordBlured = (event)=>{
+    const passwordBlured = (event) => {
         event.preventDefault();
         setPasswordFocus(false);
     }
 
-    if(emailFocus === false){
-        if(!confirmEmailForm(emailRef.current.value)){
+    if (emailFocus === false) {
+        if (!confirmEmailForm(emailRef.current.value)) {
             alert("이메일 형식에 맞지 않습니다.");
         }
     }
 
-    if(passwordFocus === false){
-        if(!confirmPasswordForm(pwRef.current.value)){
+    if (passwordFocus === false) {
+        if (!confirmPasswordForm(pwRef.current.value)) {
             alert("비밀번호는 최소 8자 이상이고, 영어와 숫자로 혼합한 형식이어야 합니다.");
         }
     }
@@ -49,20 +65,22 @@ const SignUp = () => {
 
         if (emailValue === "" || passwordValue === "")
             alert("정보를 다 기입해주세요.");
-        else if(!emailFocus || !passwordFocus){
-            alert("아이디 혹은 비밀번호가 양식에 맞는 지 확인해주세요.");
-        }
         else {
-            fetch("http://localhost:8000", {
-                method: "POST",
-                headers: {
-                    'Content-type': 'application/json'
-                },
-                body: JSON.stringify({
-                    email: emailValue,
-                    password: passwordValue
-                })
-            }).then(console.log);
+            onSignupUser({
+                email: emailValue,
+                username: emailValue,
+                password: passwordValue
+            })
+            .then(data => {
+                if (data.message === 'ok') {
+                    history.push('/login');
+                }
+                else
+                {
+                    throw new Error(data);
+                }
+            })
+            .catch(err => console.log(err));
         }
     }
 
@@ -74,9 +92,9 @@ const SignUp = () => {
             </h1>
                 <div className="signUpInput">
                     <input ref={emailRef} type="text"
-                        placeholder="이메일을 입력해주세요." size="30" onBlur={EmailBlured}/><br></br>
-                    <input ref={pwRef} type="password" placeholder="사용하실 비밀번호를 입력해주세요." size="30" 
-                        onBlur={passwordBlured}/><br></br>
+                        placeholder="이메일을 입력해주세요." size="30" onBlur={EmailBlured} /><br></br>
+                    <input ref={pwRef} type="password" placeholder="사용하실 비밀번호를 입력해주세요." size="30"
+                        onBlur={passwordBlured} /><br></br>
                 </div>
                 <button onClick={confirmDataExist}>회원가입</button>
             </div>

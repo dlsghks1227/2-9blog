@@ -78,12 +78,7 @@ const useProvideAuth = () => {
 }
 
 const ProvideAuth = ({ isAuthenticated, onLoginUser, onLogoutUser, children }) => {
-    const auth = useProvideAuth();
-    onLoginUser({
-        email: "admin@email.com",
-        password: "admin",
-    });
-    console.log(isAuthenticated);
+    const auth = { isAuthenticated, onLoginUser, onLogoutUser };
     return <authContext.Provider value={auth}>{children}</authContext.Provider>
 }
 
@@ -97,7 +92,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    onLoginUser: () => dispatch(loginUser()),
+    onLoginUser: (creds) => dispatch(loginUser(creds)),
     onLogoutUser: () => dispatch(logoutUser()),
 });
 

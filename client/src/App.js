@@ -6,7 +6,6 @@ import {
   Route,
 } from "react-router-dom";
 
-import ProvideAuth from './Auth/ProvideAuth';
 import AuthRoute from './Auth/AuthRouter';
 
 import LandingPage from "./components/views/LandingPage/LandingPage";
@@ -27,6 +26,7 @@ function App() {
     height: "100%",
     width: "100%"
   }
+  
   const [init, setInit] = React.useState(false);
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   // React.useEffect(()=>{
@@ -40,26 +40,24 @@ function App() {
   //   });
   // },[]);
   return (
-    <ProvideAuth>
-      <Router>
-        {/* {init ? <AppRouter isLoggedIn={isLoggedIn}/>:"Init"} */}
-        <div style={style}>
-          <Switch>
-            <Route exact path="/" component={LandingPage} />
-            <Route exact path="/write" component={WritePage} />
-            <Route exact path="/post" component={PostPage} />
-            {/* <Route exact path="/mypage" component={MyPage} /> */}
-            <Route path="/post/:doc" component={PostPage} />
-            <Route path="/study" component={StudyMeetingPage} />
-            <AuthRoute exact path="/mypage" component={MyPage} />
-            <Route exact path="/login" component={LoginPage} />
-            <Route exact path="/aim" component={BoardPage} />
-            <Route exact path="/signUp" component={SignUpPage} />
-            <Route exact path="/board/:id" component={ListPage} />
-          </Switch>
-        </div>
-      </Router>
-    </ProvideAuth>
+    <Router>
+      {/* {init ? <AppRouter isLoggedIn={isLoggedIn}/>:"Init"} */}
+      <div style={style}>
+        <Switch>
+          <Route exact path="/" component={LandingPage} />
+          <Route exact path="/write" component={WritePage} />
+          <Route exact path="/post" component={PostPage} />
+          {/* <Route exact path="/mypage" component={MyPage} /> */}
+          <Route path="/post/:doc" component={PostPage} />
+          <Route path="/study" component={StudyMeetingPage} />
+          <AuthRoute exact path="/mypage" component={MyPage} />
+          <Route exact path="/login" component={LoginPage} />
+          <Route exact path="/aim" component={BoardPage} />
+          <Route exact path="/signUp" component={SignUpPage} />
+          <Route exact path="/board/:id" component={ListPage} />
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
