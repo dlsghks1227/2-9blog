@@ -1,13 +1,11 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState } from 'react';
+import { connect } from 'react-redux'
+import { loginUser, logoutUser } from '../store/reducer/login';
 
 const authContext = createContext();
 
 const useProvideAuth = () => {
     const [isAuthenticated, setAuthenticated] = useState(false);
-
-    useEffect(() => {
-        validate();
-    }, [])
 
     const validate = async () => {
         if (isAuthenticated === true && localStorage.getItem('token') === null)
@@ -38,7 +36,7 @@ const useProvideAuth = () => {
         }
     }
 
-    const login = async ({email, password}) => {
+    const login = async ({ email, password }) => {
         const url = 'users/login/';
         const options = {
             method: 'POST',
@@ -60,8 +58,8 @@ const useProvideAuth = () => {
                 localStorage.setItem('token', data.token);
                 setAuthenticated(true);
             }
-            
-        } catch(err) {
+
+        } catch (err) {
             console.log(err);
         }
     }
@@ -79,11 +77,28 @@ const useProvideAuth = () => {
     }
 }
 
-export const ProvideAuth = ({ children }) => {
+const ProvideAuth = ({ isAuthenticated, onLoginUser, onLogoutUser, children }) => {
     const auth = useProvideAuth();
+    onLoginUser({
+        email: "admin@email.com",
+        password: "admin",
+    });
+    console.log(isAuthenticated);
     return <authContext.Provider value={auth}>{children}</authContext.Provider>
 }
 
 export const useAuth = () => {
     return useContext(authContext);
 }
+
+const mapStateToProps = state => ({
+    isAuthenticated: state.login.isAuthenticated,
+
+});
+
+const mapDispatchToProps = dispatch => ({
+    onLoginUser: () => dispatch(loginUser()),
+    onLogoutUser: () => dispatch(logoutUser()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProvideAuth);

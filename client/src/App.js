@@ -6,7 +6,7 @@ import {
   Route,
 } from "react-router-dom";
 
-import { ProvideAuth } from './Auth/ProvideAuth';
+import ProvideAuth from './Auth/ProvideAuth';
 import AuthRoute from './Auth/AuthRouter';
 
 import LandingPage from "./components/views/LandingPage/LandingPage";
@@ -17,13 +17,10 @@ import ListPage from './components/views/AimPage/pages/ListPage'
 import BoardPage from './components/views/AimPage/pages/BoardPage'
 import LoginPage from './components/views/login/login';
 import SignUpPage from './components/views/SignUp/SignUp';
-import Store from 'store/index'
 
 import './App.scss';
 import StudyMeetingPage from 'components/views/StudyMeetingPage/StudyMeetingPage';
 import StudyPostPage from './components/views/StudyPostPage/StudyPostPage';
-
-const {persistor, store} = Store();
 
 function App() {
   const style = {
@@ -55,10 +52,10 @@ function App() {
             <Route path="/post/:doc" component={PostPage} />
             <Route path="/study" component={StudyMeetingPage} />
             <AuthRoute exact path="/mypage" component={MyPage} />
-          <Route exact path="/login" component={LoginPage} />
-          <Route exact path="/aim" component ={BoardPage}/>
-          <Route exact path="/signUp" component={SignUpPage}/>
-          <Route exact path="/board/:id" component={ListPage}/>
+            <Route exact path="/login" component={LoginPage} />
+            <Route exact path="/aim" component={BoardPage} />
+            <Route exact path="/signUp" component={SignUpPage} />
+            <Route exact path="/board/:id" component={ListPage} />
           </Switch>
         </div>
       </Router>
