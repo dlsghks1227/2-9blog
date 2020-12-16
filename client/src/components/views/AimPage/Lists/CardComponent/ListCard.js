@@ -22,7 +22,6 @@ function ListCard({ card }) {
     }
   }
 
-
     console.log("ListCard :", card);
     return (
       <li>

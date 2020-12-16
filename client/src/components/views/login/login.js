@@ -13,7 +13,8 @@ import {
 function LoginScreen() {
     const auth = useAuth();
     const location = useLocation();
-    
+    const history = useHistory();
+
     const userEmail = useRef(null);
     const userPassword = useRef(null);
 
@@ -28,6 +29,11 @@ function LoginScreen() {
         });
     }
 
+    const requestSignUp = (event)=>{
+        event.preventDefault();
+        history.push('/signUp');
+    }
+
     const { from } = location.state || { from: { pathname: '/'}};
     if (auth.isAuthenticated) return <Redirect to={from}/>
 
@@ -36,12 +42,12 @@ function LoginScreen() {
             <div className="LoginPart">
                 <h1 className="LoginTitle">Welcome</h1>
                 <div className="LoginInput">
-                    <input type="text" size="30" placeholder="아이디를 입력해주세요"></input><br></br>
-                    <input type="password" size="30" placeholder="패스워드를 입력해주세요"></input><br></br><br></br>
+                    <input ref={userEmail} type="text" size="30" placeholder="이메일을 입력해주세요"></input><br></br>
+                    <input ref={userPassword} type="password" size="30" placeholder="패스워드를 입력해주세요"></input><br></br><br></br>
                 </div>
                 <div className="LoginButton">
                     <button onClick={handleSubmit}>로그인</button><br></br>
-                    <button onClick={handleSubmit}>회원가입</button>
+                    <button onClick={requestSignUp}>회원가입</button>
                 </div>
             </div>
         </div>
