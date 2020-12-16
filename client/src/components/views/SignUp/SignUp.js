@@ -1,36 +1,86 @@
-import React,{useState, useRef} from 'react';
+import React, { useState, useRef } from 'react';
+import './SignUp.scss';
 
 
-const SignUp = () => { //이걸 데이터베이스에 보내고
+const confirmEmailForm = (email) => {
+    const emailRegex = /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;    
+    return emailRegex.test(email);
+}
 
-    //값을 가져와서, 미들웨어에서 데이터베이스에 보낸다.
+const confirmPasswordForm = (password) => {
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    return passwordRegex.test(password);
+}
 
-    const [email, setEmail] = useState('');
-    const [userId, setUserId] = useState('');
-    const [usePw, setUserPw] = useState('');
-    
+const SignUp = () => {
+
+    const [emailFocus, setEmailFocus] = useState(null);
+    const [passwordFocus, setPasswordFocus] = useState(null);
+
     const emailRef = useRef();
-    const idRef = useRef();
     const pwRef = useRef();
-    
 
-    const confirmDataExist=()=>{
-        if(emailRef.current.value === "" || idRef.current.value === ""|| pwRef.current.value === "")        
+
+    const EmailBlured = (event)=>{
+        event.preventDefault();
+        setEmailFocus(false);
+    }
+
+    const passwordBlured = (event)=>{
+        event.preventDefault();
+        setPasswordFocus(false);
+    }
+
+    if(emailFocus === false){
+        if(!confirmEmailForm(emailRef.current.value)){
+            alert("이메일 형식에 맞지 않습니다.");
+        }
+    }
+
+    if(passwordFocus === false){
+        if(!confirmPasswordForm(pwRef.current.value)){
+            alert("비밀번호는 최소 8자 이상이고, 영어와 숫자로 혼합한 형식이어야 합니다.");
+        }
+    }
+
+    const confirmDataExist = () => {
+        const emailValue = emailRef.current.value;
+        const passwordValue = pwRef.current.value;
+
+        if (emailValue === "" || passwordValue === "")
             alert("정보를 다 기입해주세요.");
-        else{
-            
-
-        }    
+        else if(!emailFocus || !passwordFocus){
+            alert("아이디 혹은 비밀번호가 양식에 맞는 지 확인해주세요.");
+        }
+        else {
+            fetch("http://localhost:8000", {
+                method: "POST",
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: emailValue,
+                    password: passwordValue
+                })
+            }).then(console.log);
+        }
     }
 
     return (
         <div className="signUpPage">
-            <input type="text" placeholder="이메일을 입력해주세요." ref={emailRef} size="20"/><br></br>
-            <input type="text" placeholder="아이디를 입력해주세요." ref={idRef} size="20"/><br></br>
-            <input type="password" placeholder="사용하실 비밀번호를 입력해주세요." ref={pwRef} size="20"/>
-            <button onClick={confirmDataExist}>클릭</button>
+            <div className="signUpComponent">
+                <h1 className="signUpHeader">
+                    SignUp
+            </h1>
+                <div className="signUpInput">
+                    <input ref={emailRef} type="text"
+                        placeholder="이메일을 입력해주세요." size="30" onBlur={EmailBlured}/><br></br>
+                    <input ref={pwRef} type="password" placeholder="사용하실 비밀번호를 입력해주세요." size="30" 
+                        onBlur={passwordBlured}/><br></br>
+                </div>
+                <button onClick={confirmDataExist}>회원가입</button>
+            </div>
         </div>
-        //아마 이제 회원가입 부분에서 아이디를 보내고 토큰?을 생성하면 그걸 로그인 부분에서 체크를 해야할 것 같다.
     )
 }
 
