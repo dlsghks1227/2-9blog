@@ -55,7 +55,3 @@ def validateJWT(request):
         except KeyError as e:
             return Response({"message" : "fail"}, status=status.HTTP_409_CONFLICT)
         return Response({"message": "ok"}, status=status.HTTP_200_OK)
-        # token = request.META['HTTP_AUTHORIZATION']
-        # data = {'token' : token.split()[1]}
-        # validData = VerifyJSONWebTokenSerializer().validate(data)
-        # print(validData)

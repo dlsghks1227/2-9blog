@@ -6,6 +6,7 @@ import myinfo from './myinfo';
 import login from './login';
 import signup from './signup';
 import validate from './validate';
+import post from './post';
 
 //리듀서가 여러 개일 때 리듀서를 하나로 합치는 작업
 const rootReducer = combineReducers({
@@ -16,5 +17,6 @@ const rootReducer = combineReducers({
     login,
     signup,
     validate,
+    post,
 });
 export default rootReducer;
