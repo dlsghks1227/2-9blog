@@ -7,15 +7,27 @@ import {
     useHistory,
  } from "react-router-dom";
 // import { response } from 'express';
+import { 
+    useSelector,
+    useDispatch,
+ } from 'react-redux';
+ import {
+     logoutUser,
+ } from '../../../store/reducer/login';
+ import {
+    validateUser,
+} from '../../../store/reducer/validate';
 
-
-import {
-    useAuth,
-} from '../../../Auth/ProvideAuth';
 
 function Nav(props) {
-    const auth = useAuth();
+    const { isAuthenticated } = useSelector(state => ({
+        isAuthenticated: state.login.isAuthenticated,
+    }));
+    const dispatch = useDispatch();
+    const onLogoutUser = () => dispatch(logoutUser());
+    const onValidateUser = () => dispatch(validateUser());
     const history = useHistory();
+
     // const [nickname, setNickname] = useState({});\
 
     // const user = authService.currentUser;
@@ -49,14 +61,12 @@ function Nav(props) {
     // };
 
     // const toggleAccount = () => setNewAccount((prev) => !prev);
-
-
-
     const onSocialClick = async (event) => {
+        onValidateUser();
     }
 
     const onLogoutClick = () => {
-        auth.logout();
+        onLogoutUser();
         history.push('/'); 
     }
 
@@ -108,7 +118,7 @@ function Nav(props) {
     const navRef = useRef();
 
     useEffect(()=>{
-        props.navState == true ? navRef.current.style.display ="inline"
+        props.navState === true ? navRef.current.style.display ="inline"
               : navRef.current.style.display ="none"
     },[props.navState])
 
@@ -120,7 +130,7 @@ function Nav(props) {
                     <div>
                         <button onClick={onSocialClick} name="google" className="start-google"><img src={googleIcon} alt="구글 아이콘" />Google 계정으로 시작</button>
                         {
-                            auth.isAuthenticated ? (
+                            isAuthenticated ? (
                                 <button onClick={onLogoutClick} name="logout">로그아웃</button>
                             ) : (
                                 <button onClick={onLoginClick} name="login">로그인</button>
@@ -129,7 +139,6 @@ function Nav(props) {
                     </div>
                     <NavLink exact to="/mypage">마이페이지</NavLink>
                     <NavLink exact to="/study">스터디 모집</NavLink>
-
                 </div>
             </div>
         </div>
