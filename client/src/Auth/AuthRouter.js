@@ -1,18 +1,20 @@
 import React from 'react'
+import { useSelector } from 'react-redux';
 import {
     Route,
     Redirect,
 } from 'react-router-dom'
 
-import { useAuth } from './ProvideAuth';
-
 function AuthRoute({ component: Component, render, ...rest }) {
-    const auth = useAuth();
+    const { isAuthenticated } = useSelector(state => ({
+        isAuthenticated: state.login.isAuthenticated,
+    }));
+
     return (
         <Route
             {...rest}
             render={props =>
-                auth.isAuthenticated ? (
+                isAuthenticated ? (
                     render ? render(props) : <Component {...props}/>
                 ) : (
                     <Redirect to={{
