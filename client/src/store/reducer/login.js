@@ -48,36 +48,31 @@ const receiveLogout = () => ({
 
 // ----- 미들웨어? -----
 export function loginUser(creds) {
-    const url = 'users/login/';
-    const options = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            email: creds.email,
-            password: creds.password,
-        })
-    }
+    return async (dispatch) => {
+        const url = 'users/login/';
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email: creds.email,
+                password: creds.password,
+            })
+        }
 
-    return dispatch => {
         dispatch(requestLogin(creds));
 
-        return fetch(url, options)
-            .then(res => res.json().then(data => ({ res, data })))
-            .then(({ res, data }) => {
-                if (res.ok && res.status === 200 && data.message === "ok") {
-                    localStorage.setItem('token', data.token);
+        const res = await fetch(url, options);
+        const data = await res.json();
 
-                    dispatch(receiveLogin(data));
-                }
-                else
-                {
-                    dispatch(loginError(data.message));
-                    return Promise.reject(data);
-                }
-            })
-            .catch(err => console.log("Error: ", err));
+        if (res.ok && res.status === 200 && data.message === "ok") {
+            dispatch(receiveLogin(data));
+        } else {
+            dispatch(loginError(data.message));
+        }
+
+        return data;
     }
 }
 
@@ -124,7 +119,8 @@ export default function login(state = initialState, action) {
             return Object.assign({}, state, {
                 isFetching: false,
                 isAuthenticated: false,
-                token: "",
+                token: '',
+                email: '',
             });
         default:
             return state;
