@@ -21,7 +21,7 @@ const SignupError = msg => ({
 
 export function SignupUser(creds) {
     return async (dispatch) => {
-        const url = 'users/create/';
+        const url = '/users/create/';
         const options = {
             method: 'POST',
             headers: {

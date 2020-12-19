@@ -28,7 +28,7 @@ export function validateUser() {
             return { message: 'fail' };
         }
 
-        const url = 'users/validate/';
+        const url = '/users/validate/';
         const options = {
             method: 'POST',
             headers: {

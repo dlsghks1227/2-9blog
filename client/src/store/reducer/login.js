@@ -49,7 +49,7 @@ const receiveLogout = () => ({
 // ----- 미들웨어? -----
 export function loginUser(creds) {
     return async (dispatch) => {
-        const url = 'users/login/';
+        const url = '/users/login/';
         const options = {
             method: 'POST',
             headers: {

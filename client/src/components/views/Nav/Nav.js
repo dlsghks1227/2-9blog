@@ -2,21 +2,25 @@ import React, { useState, useRef, useEffect } from 'react';
 import './Nav.scss';
 import googleIcon from './google-icon.png';
 // import { authService } from 'fbase';
-import { 
+import {
     NavLink,
     useHistory,
- } from "react-router-dom";
+} from "react-router-dom";
 // import { response } from 'express';
-import { 
+import {
     useSelector,
     useDispatch,
- } from 'react-redux';
- import {
-     logoutUser,
- } from '../../../store/reducer/login';
- import {
+} from 'react-redux';
+import {
+    logoutUser,
+} from '../../../store/reducer/login';
+import {
     validateUser,
 } from '../../../store/reducer/validate';
+import {
+    getPost,
+} from '../../../store/reducer/post';
+
 
 
 function Nav(props) {
@@ -26,6 +30,7 @@ function Nav(props) {
     const dispatch = useDispatch();
     const onLogoutUser = () => dispatch(logoutUser());
     const onValidateUser = () => dispatch(validateUser());
+    const onGetPost = () => dispatch(getPost());
     const history = useHistory();
 
     // const [nickname, setNickname] = useState({});\
@@ -62,12 +67,13 @@ function Nav(props) {
 
     // const toggleAccount = () => setNewAccount((prev) => !prev);
     const onSocialClick = async (event) => {
-        onValidateUser();
+        const messge = await onGetPost();
+        console.log(messge);
     }
 
     const onLogoutClick = () => {
         onLogoutUser();
-        history.push('/'); 
+        history.push('/');
     }
 
     const onLoginClick = () => {
@@ -117,10 +123,10 @@ function Nav(props) {
 
     const navRef = useRef();
 
-    useEffect(()=>{
-        props.navState === true ? navRef.current.style.display ="inline"
-              : navRef.current.style.display ="none"
-    },[props.navState])
+    useEffect(() => {
+        props.navState === true ? navRef.current.style.display = "inline"
+            : navRef.current.style.display = "none"
+    }, [props.navState])
 
     //console.log(navRef)
     return (
@@ -133,8 +139,8 @@ function Nav(props) {
                             isAuthenticated ? (
                                 <button onClick={onLogoutClick} name="logout">로그아웃</button>
                             ) : (
-                                <button onClick={onLoginClick} name="login">로그인</button>
-                            )
+                                    <button onClick={onLoginClick} name="login">로그인</button>
+                                )
                         }
                     </div>
                     <NavLink exact to="/mypage">마이페이지</NavLink>

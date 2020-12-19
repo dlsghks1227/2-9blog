@@ -1,16 +1,21 @@
-from rest_framework import status, viewsets
-from rest_framework.response import Response
+from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
-from rest_framework.views import APIView
 
 from .serializers import PostSerializer
 from .models import Post
 
 class PostViewSet(viewsets.ModelViewSet):
+    """
+    목록, 생성, 검색, 수정, 삭제
+    `list`, `create`, `retrieve`, `update`, `destroy`
+    """
     queryset = Post.objects.all()
     serializer_class = PostSerializer
     # 인증이 없으면 Read 작업만 가능
     permission_classes = [IsAuthenticatedOrReadOnly]
+
+    def highlight(self, request, *args, **kwargs):
+        pass
 
     # def get(self, request):
     #     posts = Post.objects.all()
