@@ -58,8 +58,9 @@ class UserLoginSerializer(serializers.Serializer):
             'token': jwt_token
         }
 
-class UserValidateSerializer(serializers.Serializer):
-    email = serializers.CharField(max_length=64)
+class UserProfileSerializer(serializers.Serializer):
+    email = serializers.EmailField(max_length=64)
+    username = serializers.CharField(max_length=30)
+    photo = serializers.ImageField()
 
-    def validate(self, attrs):
-        return attrs
+    

@@ -98,7 +98,6 @@ function WriteContainer() {
   };
 
   const writeSubmitHandler = (e) => {
-    console.log("전송");
     // db.collection("notice").doc("written").collection("React").add({ title, body })
     //   .then(function () {
     //     console.log("Document successfully written!");
@@ -107,6 +106,7 @@ function WriteContainer() {
     //     console.error("Error writing document: ", error);
     //   });
     e.preventDefault();
+    console.log(e);
   };
 
 

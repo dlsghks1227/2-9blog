@@ -1,10 +1,10 @@
-from rest_framework import serializers, status
+from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework_jwt.serializers import VerifyJSONWebTokenSerializer
 
-from .serializers import UserCreateSerializer, UserLoginSerializer, UserValidateSerializer
+from .serializers import UserCreateSerializer, UserLoginSerializer, UserProfileSerializer
 from .models import User
 
 # IsAuthenticated 설정이 되어있기 때문에 인증이 필요없는 api이므로 permission설정을 따로 부여
@@ -55,3 +55,18 @@ def validateJWT(request):
         except KeyError as e:
             return Response({"message" : "fail"}, status=status.HTTP_409_CONFLICT)
         return Response({"message": "ok"}, status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def getUserProfile(request):
+    if request.method == 'GET':
+        queryset = User.objects.all()
+        username = request.query_params.get("username", None)
+        response = {}
+        if username is not None:
+            if queryset.filter(username=username).first() is not None:
+                queryset = queryset.filter(username=username)
+                response = UserProfileSerializer(queryset, many=True).data
+                return Response(response, status=status.HTTP_409_CONFLICT)
+        response = {"message" : "Invalid username"}
+        return Response(response, status=status.HTTP_409_CONFLICT)
