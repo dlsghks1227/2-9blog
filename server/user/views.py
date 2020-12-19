@@ -1,4 +1,4 @@
-from rest_framework import status
+from rest_framework import status, viewsets
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny, IsAuthenticated
@@ -56,17 +56,22 @@ def validateJWT(request):
             return Response({"message" : "fail"}, status=status.HTTP_409_CONFLICT)
         return Response({"message": "ok"}, status=status.HTTP_200_OK)
 
+class UserProfileViewSet(viewsets.ModelViewSet):
+    pass
+
+# 유저 정보 읽기 가능
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def getUserProfile(request):
     if request.method == 'GET':
-        queryset = User.objects.all()
         username = request.query_params.get("username", None)
-        response = {}
-        if username is not None:
-            if queryset.filter(username=username).first() is not None:
-                queryset = queryset.filter(username=username)
-                response = UserProfileSerializer(queryset, many=True).data
-                return Response(response, status=status.HTTP_409_CONFLICT)
-        response = {"message" : "Invalid username"}
-        return Response(response, status=status.HTTP_409_CONFLICT)
+        try:
+            user = User.objects.get(username=username)
+            serializers = UserProfileSerializer(user)
+            response = {
+                "message" : "ok",
+                "data" : serializers.data
+            }
+            return Response(response, status=status.HTTP_200_OK)
+        except User.DoesNotExist:
+            return Response({"message" : "Invalid username"}, status=status.HTTP_409_CONFLICT)

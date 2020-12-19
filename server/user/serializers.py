@@ -62,5 +62,4 @@ class UserProfileSerializer(serializers.Serializer):
     email = serializers.EmailField(max_length=64)
     username = serializers.CharField(max_length=30)
     photo = serializers.ImageField()
-
-    
+    introduce = serializers.CharField()
