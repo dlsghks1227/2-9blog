@@ -1,5 +1,8 @@
-from rest_framework import viewsets
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import generics, viewsets, filters
+from rest_framework .decorators import action
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.response import Response
 
 from .serializers import PostSerializer
 from .models import Post
@@ -13,9 +16,10 @@ class PostViewSet(viewsets.ModelViewSet):
     serializer_class = PostSerializer
     # 인증이 없으면 Read 작업만 가능
     permission_classes = [IsAuthenticatedOrReadOnly]
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['=username']
 
-    def highlight(self, request, *args, **kwargs):
-        pass
+
 
     # def get(self, request):
     #     posts = Post.objects.all()

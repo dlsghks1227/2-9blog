@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 from datetime import timedelta
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # 필터 사용
+    'django_filters',
 
     # Django Allauth는 사용자 등록 및 소셜 인증에 사용
     # Django REST Auth는 회원가입, 로그인/로그아웃에 사용
@@ -130,6 +133,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+MEDIA_URL = '/media/'
+# 업로드 파일 관리
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 REST_FRAMEWORK = {
     # DRF에서 제공하는 pagination 사용
     # https://www.django-rest-framework.org/api-guide/pagination/#pagenumberpagination
@@ -158,6 +165,10 @@ REST_FRAMEWORK = {
     # Response 객체를 반환할 때 사용할 수 있는 기본 렌더러
     'DEFAULT_RENDERER_CLASSES': [
         'rest_framework.renderers.JSONRenderer',
+    ],
+
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend',
     ]
 }
 

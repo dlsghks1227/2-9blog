@@ -29,12 +29,12 @@ function LoginScreen() {
     useEffect(() => {
     }, []);
 
-    const onLoginClick = (event) => {
+    const onLoginClick = async (event) => {
         event.preventDefault();
-        const test = onLoginUser({
+        const test = await onLoginUser({
             email: userEmail.current.value,
             password: userPassword.current.value,
-        })
+        });
     }
 
     const onSignUpClick = (event) => {

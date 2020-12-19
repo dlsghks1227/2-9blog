@@ -5,4 +5,5 @@ urlpatterns = [
     path('create/', views.createUser),
     path('login/', views.login),
     path('validate/', views.validateJWT),
+    path('profile/', views.getUserProfile),
 ]
