@@ -3,6 +3,7 @@ import { createAction, createReducer } from '@reduxjs/toolkit';
 import { v4 as uuid } from 'uuid';
 
 export const CREATE_BOARD = "todo/CREATE_BOARD";
+export const DELETE_BOARD = "todo/DELETE_BOARD";
 
 //define createBoard action 
 export const createBoard = createAction(CREATE_BOARD, function prepare(title) {
@@ -14,6 +15,14 @@ export const createBoard = createAction(CREATE_BOARD, function prepare(title) {
         }
     }
 });
+
+export const deleteBoard = createAction(DELETE_BOARD, function prepare(boardId){
+    return {
+        payload:{
+            boardId : boardId 
+        }
+    }
+})
 
 const actions = {
     createBoard
@@ -30,10 +39,13 @@ const initialState = {
 
 export default createReducer(initialState, {
     [CREATE_BOARD]: (state, action) => {
-        console.log("action", action)
-        console.log("state", state);
         return produce(state, draft => {
             draft.boards = [...state.boards, { id: action.payload.id, title: action.payload.title }];
+        })
+    },
+    [DELETE_BOARD]: (state, action) => {
+        return produce(state, draft => {
+            draft.boards = state.boards.filter((board)=> board.id !== action.payload.boardId);
         })
     }
 });

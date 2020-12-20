@@ -9,6 +9,6 @@ const rootReducer = combineReducers({
     board,
     lists,
     card,
-    myinfo
+    myinfo,
 });
 export default rootReducer;
