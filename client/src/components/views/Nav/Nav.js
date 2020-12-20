@@ -16,10 +16,7 @@ import {
 } from '../../../store/reducer/login';
 import {
     validateUser,
-} from '../../../store/reducer/validate';
-import {
-    getPost,
-} from '../../../store/reducer/post';
+} from '../../../store/reducer/api';
 
 
 
@@ -30,7 +27,6 @@ function Nav(props) {
     const dispatch = useDispatch();
     const onLogoutUser = () => dispatch(logoutUser());
     const onValidateUser = () => dispatch(validateUser());
-    const onGetPost = () => dispatch(getPost());
     const history = useHistory();
 
     // const [nickname, setNickname] = useState({});\
@@ -67,7 +63,7 @@ function Nav(props) {
 
     // const toggleAccount = () => setNewAccount((prev) => !prev);
     const onSocialClick = async (event) => {
-        const messge = await onGetPost();
+        const messge = await onValidateUser();
         console.log(messge);
     }
 

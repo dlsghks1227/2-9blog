@@ -12,6 +12,7 @@ import LandingPage from "./components/views/LandingPage/LandingPage";
 import WritePage from "./components/views/WritePage/WritePage";
 import PostPage from './components/views/PostPage/PostPage';
 import MyPage from './components/views/MyPage/MyPage';
+import UserPage from './components/views/UserPage/UserPage';
 import ListPage from './components/views/AimPage/pages/ListPage'
 import BoardPage from './components/views/AimPage/pages/BoardPage'
 import LoginPage from './components/views/login/login';
@@ -50,6 +51,7 @@ function App() {
           {/* <Route exact path="/mypage" component={MyPage} /> */}
           <Route path="/post/:doc" component={PostPage} />
           <Route path="/study" component={StudyMeetingPage} />
+          <Route path="/users/:username" component={UserPage} />
           <AuthRoute exact path="/mypage" component={MyPage} />
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/aim" component={BoardPage} />
