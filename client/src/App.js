@@ -33,6 +33,7 @@ import StudyPostPage from './components/views/StudyPostPage/StudyPostPage';
 
 import Header from './components/views/Header/Header'
 import './components/views/Container/Container.scss';
+import Footer from 'components/views/Footer/Footer';
 
 function App() {
   const style = {
@@ -52,9 +53,8 @@ function App() {
   return (
     <Router>
       <Header />
-      <Container fluid>
-        <Row style={{height:'5rem'}}/>
-        <Row style={{height: '10rem'}}>
+      <Container style={{ minHeight: '100%' }} fluid>
+        <Row>
           <Col>
             <Switch>
               <Route exact path="/" component={LandingPage} />
@@ -74,6 +74,7 @@ function App() {
         </Row>
         {/* {init ? <AppRouter isLoggedIn={isLoggedIn}/>:"Init"} */}
       </Container>
+      <Footer />
     </Router>
   );
 }

@@ -37,6 +37,7 @@ function Header(props) {
     const history = useHistory();
 
     const onSearchClick = () => {
+        onLogoutUser();
     }
 
     return (
@@ -54,19 +55,18 @@ function Header(props) {
                     <Button onClick={() => onSearchClick()}>Submit</Button>
                 </Modal.Footer>
             </Modal>
-            <Navbar style={{ height: '5rem'}} bg="light" variant="light" fixed="top">
+            <Navbar style={{ height: '4rem'}} bg="light" variant="light" fixed="top">
                 <Navbar.Brand className="ml-3" href="/">Blog</Navbar.Brand>
                 <Nav>
                     <Nav.Link href="/post">Post</Nav.Link>
                     <Nav.Link href="/study">Study</Nav.Link>
+                    <Nav.Link
+                            onClick={() => setIsShowSearchMdal(true)}>
+                            Search
+                    </Nav.Link>
                 </Nav>
                 <Navbar.Collapse className="justify-content-end mr-3">
                     <Nav>
-                        <Button
-                            variant="Dark"
-                            onClick={() => setIsShowSearchMdal(true)}>
-                            Search
-                        </Button>
                         {
                             isAuthenticated ? (
                                 <Navbar.Text>
