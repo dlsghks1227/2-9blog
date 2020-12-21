@@ -52,9 +52,10 @@ class UserLoginSerializer(serializers.Serializer):
             raise serializers.ValidationError(
             'User with given email and password does not exists'
             )
-        
+            
         return {
             'email': user.email,
+            'username': user.username,
             'token': jwt_token
         }
 

@@ -1,10 +1,19 @@
 import React from 'react';
+import {
+  connect
+} from 'react-redux';
 
 import {
   BrowserRouter as Router,
   Switch,
   Route,
 } from "react-router-dom";
+
+import {
+  Container,
+  Row,
+  Col,
+} from 'react-bootstrap';
 
 import AuthRoute from './Auth/AuthRouter';
 
@@ -22,14 +31,14 @@ import './App.scss';
 import StudyMeetingPage from 'components/views/StudyMeetingPage/StudyMeetingPage';
 import StudyPostPage from './components/views/StudyPostPage/StudyPostPage';
 
+import Header from './components/views/Header/Header'
+import './components/views/Container/Container.scss';
+
 function App() {
   const style = {
     height: "100%",
     width: "100%"
   }
-  
-  const [init, setInit] = React.useState(false);
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   // React.useEffect(()=>{
   //   authService.onAuthStateChanged((user) => {
   //     if(user){
@@ -42,25 +51,44 @@ function App() {
   // },[]);
   return (
     <Router>
-      {/* {init ? <AppRouter isLoggedIn={isLoggedIn}/>:"Init"} */}
-      <div style={style}>
-        <Switch>
-          <Route exact path="/" component={LandingPage} />
-          <Route exact path="/write" component={WritePage} />
-          <Route exact path="/post" component={PostPage} />
-          {/* <Route exact path="/mypage" component={MyPage} /> */}
-          <Route path="/post/:doc" component={PostPage} />
-          <Route path="/study" component={StudyMeetingPage} />
-          <Route path="/users/:username" component={UserPage} />
-          <AuthRoute exact path="/mypage" component={MyPage} />
-          <Route exact path="/login" component={LoginPage} />
-          <Route exact path="/aim" component={BoardPage} />
-          <Route exact path="/signUp" component={SignUpPage} />
-          <Route exact path="/board/:id" component={ListPage} />
-        </Switch>
-      </div>
+      <Header />
+      <Container fluid>
+        <Row style={{height:'5rem'}}/>
+        <Row style={{height: '10rem'}}>
+          <Col>
+            <Switch>
+              <Route exact path="/" component={LandingPage} />
+              <AuthRoute exact path="/write" component={WritePage} />
+              <Route exact path="/post" component={PostPage} />
+              {/* <Route exact path="/mypage" component={MyPage} /> */}
+              <Route path="/post/:doc" component={PostPage} />
+              <Route path="/study" component={StudyMeetingPage} />
+              <Route path="/users/:username" component={UserPage} />
+              <AuthRoute exact path="/mypage" component={MyPage} />
+              <Route exact path="/login" component={LoginPage} />
+              <Route exact path="/aim" component={BoardPage} />
+              <Route exact path="/signUp" component={SignUpPage} />
+              <Route exact path="/board/:id" component={ListPage} />
+            </Switch>
+          </Col>
+        </Row>
+        {/* {init ? <AppRouter isLoggedIn={isLoggedIn}/>:"Init"} */}
+      </Container>
     </Router>
   );
 }
 
 export default App;
+
+// const mapStateToProps = state => ({
+//   isAuthenticated: state.login.isAuthenticated
+// });
+
+// const mapDispatchToProps = dispatch => ({
+//   onLogoutUser: () => dispatch(logoutUser())
+// });
+
+// export default connect(
+//   mapStateToProps,
+//   mapDispatchToProps
+// )(App);

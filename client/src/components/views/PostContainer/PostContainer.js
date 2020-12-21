@@ -43,6 +43,7 @@ function PostContainer({ doc }) {
                 }
             } catch (err) {
                 setError(err);
+                console.log(err);
             } finally {
                 setLoding(false);
             }

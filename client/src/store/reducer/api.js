@@ -29,8 +29,6 @@ export function validateUser() {
     return async (dispatch, getState) => {
         const { login } = getState();
 
-        console.log(login);
-
         if (!login.isAuthenticated || !login.token || !login.email) {
             return { message: 'fail' };
         }
@@ -56,6 +54,7 @@ export function validateUser() {
             dispatch(receiveAPI());
         } else {
             dispatch(errorAPI());
+            throw new Error()
         }
 
         return data;
@@ -115,6 +114,35 @@ export function getPost(page) {
         }
 
         return data;
+    }
+}
+
+export function createPost() {
+    return async (dispatch, getState) => {
+        const { login } = getState();
+
+        console.log(login);
+
+        if (!login.isAuthenticated || !login.token || !login.email) {
+            return { message: 'fail' };
+        }
+
+        const url = '/posts/create/';
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'JWT ' + login.token
+            },
+            body: JSON.stringify({
+
+            })
+        }
+
+        dispatch(requestAPI());
+
+        const res = await fetch(url, options);
+        const data = await res.json();
     }
 }
 // --------게시글 관련-------- 
