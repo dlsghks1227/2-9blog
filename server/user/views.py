@@ -37,7 +37,8 @@ def login(request):
 
         response = {
             "message" : "ok",
-            "token": serializers.data["token"]
+            "username": serializers.validated_data["username"],
+            "token": serializers.validated_data["token"]
         }
 
         return Response(response, status=status.HTTP_200_OK)

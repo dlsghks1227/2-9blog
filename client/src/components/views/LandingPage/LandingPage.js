@@ -16,7 +16,6 @@ function LandingPage() {
 
     return (
         <div className="landing-page" style={style}>
-            <Header onClicked={navBtnClicked}/>
             <Nav navState={isClicked}/>
             <LandingContainer />
             <Footer />
