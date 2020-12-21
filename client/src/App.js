@@ -53,8 +53,8 @@ function App() {
   return (
     <Router>
       <Header />
-      <Container style={{ minHeight: '100%' }} fluid>
-        <Row>
+      <Container style={{ minHeight: '100%' , maxWidth:'1800px'}} fluid>
+        <Row style={{ margin: '6rem 4rem 4rem', display: 'block' }}>
           <Col>
             <Switch>
               <Route exact path="/" component={LandingPage} />

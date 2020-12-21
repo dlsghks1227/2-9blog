@@ -16,9 +16,7 @@ function LandingPage() {
 
     return (
         <div className="landing-page" style={style}>
-            <Nav navState={isClicked}/>
             <LandingContainer />
-            <Footer />
         </div>
     )
 }

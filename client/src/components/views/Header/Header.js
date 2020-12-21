@@ -76,7 +76,7 @@ function Header(props) {
                             ) : (
                                     <Button
                                         variant="Dark"
-                                        href="/login">login</Button>
+                                        href="/login">Login</Button>
                                 )
                         }
                     </Nav>
