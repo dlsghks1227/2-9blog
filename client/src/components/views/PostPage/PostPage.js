@@ -7,7 +7,6 @@ function PostPage({ match }) {
     return (
         <div>
             <Nav />
-            <Header />
             <PostContainer doc={
                 match.params.doc ? match.params.doc : 1
                 }/>

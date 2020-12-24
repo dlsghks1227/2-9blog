@@ -21,10 +21,8 @@ function UserPage() {
 
     return (
         <div>
-            <Header onClicked={navBtnClicked}/>
             <Nav navState={isClicked}/>
             <UserContainer username={username}/>
-            <Footer />
         </div>
     )
 }

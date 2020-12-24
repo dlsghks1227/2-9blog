@@ -5,6 +5,8 @@
     }
 }
 
+$animationPosX: 50px;
+
 .slick-slider {
     overflow: hidden;
     width: 100%;
@@ -15,19 +17,16 @@
 .photo {
     img {
         width: 100%;
-        z-index: -999;
-
     }
     p {
         position: relative;
         float: right;
+        padding: 0.2rem 2rem;
         color: white;
         font-size: 35px;
-        right: 10px;
-        bottom: 200px;
+        bottom: $animationPosX;
         background-color: wheat;
         font-weight: 100;
-    
     }
 }
 
@@ -140,8 +139,7 @@
         bottom: 500px; 
     } 
     100% { 
-        bottom: 200px; 
+        bottom: $animationPosX; 
     }
-
 }
 
