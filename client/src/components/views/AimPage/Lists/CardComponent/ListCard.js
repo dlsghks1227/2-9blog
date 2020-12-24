@@ -13,10 +13,9 @@ function ListCard({ card }) {
 
   const makeCard = (e) => {
     const value = e.currentTarget.value;
-    console.log("value ,",value);
+    
     if (e.key === "enter" && value != "") {
       const action = updateCard(card.id, e.currentTarget.value);
-      console.log("action :", action);
       dispatch(action);
       e.currentTarget.blur();
     }

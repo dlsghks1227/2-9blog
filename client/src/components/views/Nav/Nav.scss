@@ -14,6 +14,18 @@ html, body {
 .nav {
     width: 331px / 1920px * 100%;
     .nav-inner {
+        animation-duration: 1s;
+        animation-name : slide;
+        @keyframes slide {
+            from{
+                margin-left : -300px
+            }
+            to{
+                margin-left: 0px;
+            }
+        }
+
+        border-radius: 4px;
         display: none;
         min-height: 100%;
         width: 331px / 1920px * 100%;
@@ -31,6 +43,11 @@ html, body {
 .profile {
     position: relative;
     margin: 10% 0% 10% 0%;
+    display: flex;
+    flex-direction: column;
+    
+    align-items: center;
+    flex-wrap : wrap;
     .profile-image {
         width: 70%;
         position: relative;

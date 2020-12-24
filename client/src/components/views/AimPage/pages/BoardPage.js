@@ -1,36 +1,73 @@
-import React, { Fragment } from 'react';
-import { useSelector } from 'react-redux';
+import React, { Fragment, useState, useRef, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 //import uuid from 'uuid/v4';
 import CreateBoardCard from '../Boards/CreateBoardCard';
 import BoardCard from '../Boards/BoardCard';
 import { BoardType } from '../../../../store/reducer/boards';
 import './BoardStyle.scss'
 import AimHeader from '../Header';
+import Header from '../../Header/Header'
+import Footer from '../../Footer/Footer'
+import { Card, Button, Accordion, Modal, ButtonGroup, Pagination, PageItem } from 'react-bootstrap'
+import { createBoard } from '../../../../store/reducer/boards';
 
 function BoardPage() {
-    const boardState = useSelector(state => state.board.boards.id);
+
     const check = useSelector((state) => {
-        return state.board.boards.filter((board) => board.id !== undefined)
+        return state.board.boards.filter((board,index) => board.id !== undefined)
     });
 
-   // console.log("v", boardState.boards);
-    console.log("c", check);
+    const [open, setOpen] = useState(false);
+    const pageRef = useRef();
 
-    //useSelector은 redux-store 상태 조회 시 상태가 바뀌지 않았으면 리렌더링 x
+    const handleClose = () => {
+        //pageRef.current.classList.remove("modal");
+        setOpen(false);
+    }
+    const handleShow = () => {
+        setOpen(true)
+    };
+
+    const isClosed = (result) => {
+        handleClose();
+    }
+
+
+    let pageItem = [];
+    let pageCard = [];
+
+    const [activeValue, setActiveValue] = useState(1);
+
+    const pageClick = (e) => {
+        setActiveValue(e.currentTarget.innerText);
+    }
+
+    for (let num = 1; num <= Math.ceil(check.length / 5); num++) { //
+        pageItem.push(
+            <Pagination.Item key={num} active={num == activeValue} onClick={(e) => pageClick(e)}>
+                {num}
+            </Pagination.Item>
+        )
+    }
+
+    pageCard = check.filter((board, index) =>{
+        return 5 * activeValue - 4 <= index && index <= 5 * activeValue
+    });
+
     return (
-        <div className="BoardPage">
-            <div className="Header">
-                <AimHeader />
-            </div>
+        <div className="BoardPage" ref={pageRef}>
+            <Button onClick={handleShow} size="30px" size="sm">CreateBoard</Button>
             <div className="BoardStyle">
-                {check.map((board) =>
-                    <BoardCard key={board.id} board={board} />)}
-                <CreateBoardCard />
+                {pageCard.map((board) =>
+                        <BoardCard key={board.id} board={board} />
+                )}
+                {open ? <CreateBoardCard closed={isClosed} /> : ''}
             </div>
-
+                <Pagination size="md">{pageItem}</Pagination>
         </div>
     );
     //BoardType == action
 }
+
 
 export default BoardPage;
