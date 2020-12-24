@@ -3,8 +3,8 @@ import { createAction, createReducer } from '@reduxjs/toolkit';
 import { v4 as uuid } from 'uuid';
 
 
-export const CREATE_CARD = "CREATE_CARD";
-export const UPDATE_CARD = "UPDATE_CARD";
+export const CREATE_CARD = "todo/CREATE_CARD";
+export const UPDATE_CARD = "todo/UPDATE_CARD";
 
 export const createCard = createAction(CREATE_CARD, function prepare(listId, cardName) {
     return {

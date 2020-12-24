@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useRef} from 'react';
 //import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import boards from 'store/reducer/boards';
@@ -15,6 +15,13 @@ const cardStyle={
 function BoardCard({ board }) {
     console.log("tenter")
  
+    const dispatch = useDispatch();
+
+    const delete_button = () => {
+        const action = deleteBoard(board.id);
+        dispatch(action);    
+    }
+
     return (
         // <div className="allBoard">
         //     <div className="LinkStyle">

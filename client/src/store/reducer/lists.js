@@ -2,8 +2,8 @@ import produce from 'immer';
 import { createAction, createReducer } from '@reduxjs/toolkit'
 import { v4 as uuid } from 'uuid';
 
-export const CREATE_LISTS = "CREATE_LISTS";
-export const UPDATE_LISTS_TITLE = "UPDATE_LISTS_TITLE";
+export const CREATE_LISTS = "todo/CREATE_LISTS";
+export const UPDATE_LISTS_TITLE = "todo/UPDATE_LISTS_TITLE";
 
 export const createLists = createAction(CREATE_LISTS, function prepare(title, boardId) {
     return {
