@@ -38,7 +38,6 @@ import TableToolbar from "@ckeditor/ckeditor5-table/src/tabletoolbar.js";
 import TextTransformation from "@ckeditor/ckeditor5-typing/src/texttransformation.js";
 import Underline from "@ckeditor/ckeditor5-basic-styles/src/underline.js";
 
-import './WriteContainer.scss'
 // import { db } from '../../../fbase';
 
 const installedPlugins = [
@@ -113,14 +112,9 @@ function WriteContainer() {
  
   return (
     <div className="WriteContainer">
-      <p className="write-title">기록하기</p>
       <form onSubmit={writeSubmitHandler}>
 
         <input placeholder="제목" className="title-input" type="text" value={title} onChange={titleChangeHandler} />
-        <select value={noticeSelect} className="drop-select" onChange={noticeSelectChange}>
-          <option value="example">예시 1</option>
-          <option value="example">예시 2</option>
-        </select>
         <hr></hr>
         <CKEditor
           editor={ClassicEditor}
