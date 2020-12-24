@@ -4,13 +4,18 @@ import {
     Redirect,
     useHistory,
 } from 'react-router-dom';
-import { 
+import {
     useSelector,
     useDispatch,
- } from 'react-redux';
- import {
+} from 'react-redux';
+import {
     loginUser,
 } from '../../../store/reducer/login';
+import {
+    Form,
+    Button,
+    Modal,
+} from 'react-bootstrap';
 import './login.scss';
 
 function LoginScreen() {
@@ -22,7 +27,7 @@ function LoginScreen() {
 
     const location = useLocation();
     const history = useHistory();
-    
+
     const userEmail = useRef(null);
     const userPassword = useRef(null);
 
@@ -42,23 +47,32 @@ function LoginScreen() {
         history.push('/signUp');
     }
 
-    const { from } = location.state || { from: { pathname: '/'}};
-    if (isAuthenticated) return <Redirect to={from}/>
+    const { from } = location.state || { from: { pathname: '/' } };
+    if (isAuthenticated) return <Redirect to={from} />
 
     return (
-        <div className="LoginPage">
-            <div className="LoginPart">
-                <h1 className="LoginTitle">Welcome</h1>
-                <div className="LoginInput">
-                    <input ref={userEmail} type="text" size="30" placeholder="아이디를 입력해주세요"></input><br></br>
-                    <input ref={userPassword} type="password" size="30" placeholder="패스워드를 입력해주세요"
-                        onKeyDown={(e)=>{if(e.key === 'Enter'){onLoginClick(e)}}}></input><br></br><br></br>
-                </div>
-                <div className="LoginButton">
-                    <button onClick={onLoginClick}>로그인</button><br></br>
-                    <button onClick={onSignUpClick}>회원가입</button>
-                </div>
-            </div>
+        <div className="login-dialog">
+            <Modal.Dialog style={{ width: '50%'}}>
+                <Modal.Header>
+                    <Modal.Title>Login</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form className="login-container">
+                        <Form.Group>
+                            <Form.Label>Email address</Form.Label>
+                            <Form.Control type="email" placeholder="Enter email"></Form.Control>
+                        </Form.Group>
+
+                        <Form.Group>
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control type="password" placeholder="Password"></Form.Control>
+                        </Form.Group>
+                        <Button className="login-button">Login</Button>
+                        <Button className="login-button">Sign Up</Button>
+
+                    </Form>
+                </Modal.Body>
+            </Modal.Dialog>
         </div>
     )
 }

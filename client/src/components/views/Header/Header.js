@@ -41,7 +41,7 @@ function Header(props) {
     }
 
     return (
-        <div>
+        <div style={{ height: '4rem'}}>
             <Modal
                 show={isShowSearchModal}
                 onHide={() => setIsShowSearchMdal(false)}>

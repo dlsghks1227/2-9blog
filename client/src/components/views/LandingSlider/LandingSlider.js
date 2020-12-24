@@ -35,13 +35,6 @@ const images = [
 
 export default class SimpleSlider extends Component {
   render() {
-    const settings = {
-      dots: true,
-      infinite: true,
-      speed: 500,
-      slidesToShow: 1,
-      slidesToScroll: 1
-    };
     return (
       <Carousel touch>
         {
@@ -49,10 +42,8 @@ export default class SimpleSlider extends Component {
             return (
                 <Carousel.Item key={index}>
                   <div className="photo">
-                    <img src={item.image} alt={index}/>
-                    <Carousel.Caption>
-                      <p className="slider-text">{item.text}</p>
-                    </Carousel.Caption>
+                    <img className="d-block w-100" src={item.image} alt={index}/>
+                    <p className="d-block slider-text">{item.text}</p>
                   </div>
                 </Carousel.Item>
             )
