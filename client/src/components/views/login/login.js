@@ -52,24 +52,23 @@ function LoginScreen() {
 
     return (
         <div className="login-dialog">
-            <Modal.Dialog style={{ width: '50%'}}>
+            <Modal.Dialog style={{ width: '100%' }}>
                 <Modal.Header>
                     <Modal.Title>Login</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form className="login-container">
-                        <Form.Group>
+                        <Form.Group className="my-4">
                             <Form.Label>Email address</Form.Label>
-                            <Form.Control type="email" placeholder="Enter email"></Form.Control>
+                            <Form.Control ref={userEmail} type="email" placeholder="Enter email"></Form.Control>
                         </Form.Group>
 
-                        <Form.Group>
+                        <Form.Group className="my-4">
                             <Form.Label>Password</Form.Label>
-                            <Form.Control type="password" placeholder="Password"></Form.Control>
+                            <Form.Control ref={userPassword} type="password" placeholder="Password"></Form.Control>
                         </Form.Group>
-                        <Button className="login-button">Login</Button>
-                        <Button className="login-button">Sign Up</Button>
-
+                        <Button onClick={onLoginClick} variant="outline-secondary" className="login-button">Login</Button>
+                        <Button onClick={onSignUpClick} variant="outline-secondary" className="login-button">Sign Up</Button>
                     </Form>
                 </Modal.Body>
             </Modal.Dialog>
