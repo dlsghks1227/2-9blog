@@ -3,15 +3,20 @@ import './LandingContainer.scss';
 import graph from './graph.PNG';
 import { NavLink } from "react-router-dom";
 import LandingSlider from "../LandingSlider/LandingSlider"
+import { 
+    Container,
+    Row,
+    Carousel
+ } from 'react-bootstrap';
 
 function LandingContainer() {
     return (
-        <div id="landing-container">
-            <LandingSlider />
+        <div className="landing-container">
+            <LandingSlider/>
             <section className="Ebbinghaus-part">
                 <p className="ebbinghaus-title">에빙하우스의 망각 곡선에 따르면</p>
                 <div className="graph-inner">
-                    <img src={graph} />
+                    <img src={graph} alt="graph"/>
                 </div>
                 <div>
                     <p>사람은 하루가 지나갈수록 기억을 잊어버리지만,</p>

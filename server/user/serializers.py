@@ -52,9 +52,10 @@ class UserLoginSerializer(serializers.Serializer):
             raise serializers.ValidationError(
             'User with given email and password does not exists'
             )
-        
+            
         return {
             'email': user.email,
+            'username': user.username,
             'token': jwt_token
         }
 
@@ -62,5 +63,4 @@ class UserProfileSerializer(serializers.Serializer):
     email = serializers.EmailField(max_length=64)
     username = serializers.CharField(max_length=30)
     photo = serializers.ImageField()
-
-    
+    introduce = serializers.CharField()

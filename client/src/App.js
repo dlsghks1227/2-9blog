@@ -1,4 +1,7 @@
 import React from 'react';
+import {
+  connect
+} from 'react-redux';
 
 import {
   BrowserRouter as Router,
@@ -6,12 +9,19 @@ import {
   Route,
 } from "react-router-dom";
 
+import {
+  Container,
+  Row,
+  Col,
+} from 'react-bootstrap';
+
 import AuthRoute from './Auth/AuthRouter';
 
 import LandingPage from "./components/views/LandingPage/LandingPage";
 import WritePage from "./components/views/WritePage/WritePage";
 import PostPage from './components/views/PostPage/PostPage';
 import MyPage from './components/views/MyPage/MyPage';
+import UserPage from './components/views/UserPage/UserPage';
 import ListPage from './components/views/AimPage/pages/ListPage'
 import BoardPage from './components/views/AimPage/pages/BoardPage'
 import LoginPage from './components/views/login/login';
@@ -22,14 +32,15 @@ import StudyMeetingPage from 'components/views/StudyMeetingPage/StudyMeetingPage
 import StudyPostPage from './components/views/StudyPostPage/StudyPostPage';
 import StudyWritePage from 'components/views/StudyWritePage/StudyWritePage';
 
+import Header from './components/views/Header/Header'
+import './components/views/Container/Container.scss';
+import Footer from 'components/views/Footer/Footer';
+
 function App() {
   const style = {
     height: "100%",
     width: "100%"
   }
-  
-  const [init, setInit] = React.useState(false);
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   // React.useEffect(()=>{
   //   authService.onAuthStateChanged((user) => {
   //     if(user){
@@ -42,26 +53,44 @@ function App() {
   // },[]);
   return (
     <Router>
-      {/* {init ? <AppRouter isLoggedIn={isLoggedIn}/>:"Init"} */}
-      <div style={style}>
-        <Switch>
-          <Route exact path="/" component={LandingPage} />
-          <Route exact path="/write" component={WritePage} />
-          <Route exact path="/post" component={PostPage} />
-          {/* <Route exact path="/mypage" component={MyPage} /> */}
-          <Route path="/post/:doc" component={PostPage} />
-          <Route path="/study" component={StudyMeetingPage} />
-          <Route exact path="/studypage" component={StudyPostPage} />
-          <AuthRoute exact path="/mypage" component={MyPage} />
-          <Route exact path="/login" component={LoginPage} />
-          <Route exact path="/aim" component={BoardPage} />
-          <Route exact path="/signUp" component={SignUpPage} />
-          <Route exact path="/board/:id" component={ListPage} />
-          <Route exact path="/studywrite" component={StudyWritePage} />
-        </Switch>
-      </div>
+      <Header />
+      <Container style={{ minHeight: '100%' , maxWidth:'1800px'}} fluid>
+        <Row style={{ margin: '6rem 4rem 4rem', display: 'block' }}>
+          <Col>
+            <Switch>
+              <Route exact path="/" component={LandingPage} />
+              <AuthRoute exact path="/write" component={WritePage} />
+              <Route exact path="/post" component={PostPage} />
+              {/* <Route exact path="/mypage" component={MyPage} /> */}
+              <Route path="/post/:doc" component={PostPage} />
+              <Route path="/study" component={StudyMeetingPage} />
+              <Route path="/users/:username" component={UserPage} />
+              <AuthRoute exact path="/mypage" component={MyPage} />
+              <Route exact path="/login" component={LoginPage} />
+              <Route exact path="/aim" component={BoardPage} />
+              <Route exact path="/signUp" component={SignUpPage} />
+              <Route exact path="/board/:id" component={ListPage} />
+            </Switch>
+          </Col>
+        </Row>
+        {/* {init ? <AppRouter isLoggedIn={isLoggedIn}/>:"Init"} */}
+      </Container>
+      <Footer />
     </Router>
   );
 }
 
 export default App;
+
+// const mapStateToProps = state => ({
+//   isAuthenticated: state.login.isAuthenticated
+// });
+
+// const mapDispatchToProps = dispatch => ({
+//   onLogoutUser: () => dispatch(logoutUser())
+// });
+
+// export default connect(
+//   mapStateToProps,
+//   mapDispatchToProps
+// )(App);

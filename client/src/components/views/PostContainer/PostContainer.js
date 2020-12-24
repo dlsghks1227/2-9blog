@@ -9,7 +9,7 @@ import {
 } from 'react-redux';
 import {
     getPost,
-} from '../../../store/reducer/post';
+} from '../../../store/reducer/api';
 import './PostContainer.scss';
 
 // const docRef = db.collection("notice").doc("written").collection("React").doc("d259p3ONutczP5N0glmU");
@@ -39,10 +39,11 @@ function PostContainer({ doc }) {
                 if (data && data['results']) {
                     setPosts(data);
                 } else {
-                    throw new Error("err");
+                    throw new Error(data);
                 }
             } catch (err) {
                 setError(err);
+                console.log(err);
             } finally {
                 setLoding(false);
             }

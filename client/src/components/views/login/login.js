@@ -51,7 +51,8 @@ function LoginScreen() {
                 <h1 className="LoginTitle">Welcome</h1>
                 <div className="LoginInput">
                     <input ref={userEmail} type="text" size="30" placeholder="아이디를 입력해주세요"></input><br></br>
-                    <input ref={userPassword} type="password" size="30" placeholder="패스워드를 입력해주세요"></input><br></br><br></br>
+                    <input ref={userPassword} type="password" size="30" placeholder="패스워드를 입력해주세요"
+                        onKeyDown={(e)=>{if(e.key === 'Enter'){onLoginClick(e)}}}></input><br></br><br></br>
                 </div>
                 <div className="LoginButton">
                     <button onClick={onLoginClick}>로그인</button><br></br>

@@ -12,13 +12,13 @@ const requestLogin = creds => ({
     type: LOGIN_REQUEST,
     isFetching: true,
     isAuthenticated: false,
-    creds
 });
 
 const receiveLogin = user => ({
     type: LOGIN_SUCCESS,
     isFetching: false,
     isAuthenticated: true,
+    username: user.username,
     token: user.token
 });
 
@@ -79,7 +79,6 @@ export function loginUser(creds) {
 export function logoutUser() {
     return dispatch => {
         dispatch(requestLogout());
-        localStorage.removeItem('token');
         dispatch(receiveLogout());
     }
 }
@@ -100,12 +99,12 @@ export default function login(state = initialState, action) {
             return Object.assign({}, state, {
                 isFetching: true,
                 isAuthenticated: false,
-                email: action.creds.email
             });
         case LOGIN_SUCCESS:
             return Object.assign({}, state, {
                 isFetching: false,
                 isAuthenticated: true,
+                username: action.username,
                 token: action.token,
                 errorMessage: '',
             });
@@ -119,8 +118,8 @@ export default function login(state = initialState, action) {
             return Object.assign({}, state, {
                 isFetching: false,
                 isAuthenticated: false,
+                username: '',
                 token: '',
-                email: '',
             });
         default:
             return state;
