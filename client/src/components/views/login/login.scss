@@ -1,63 +1,18 @@
-
-.LoginPart{
-    position : absolute;
-    top : 50%;
-    left : 50%;
-    width: 40%;
-    height: 60%;
-    transform: translate(-50%,-50%);
-    z-index: 1;
-    text-align: center;
-    border-radius: 4px;
-    background-color: white;
-    box-shadow: 0 1px 0 rgba(9, 30, 66, 0.25);
-    display :flex;
-    flex-direction: column;
-    justify-items: center;
-
-    .LoginInput{
-        margin-top: 10px;
-  
-        input{
-            margin : 10px;
-            border:none;
-            box-shadow: 0 1px 0 rgba(9, 30, 66, 0.25);
-            &:hover{
-                transform: scale(1.05);
-                box-shadow: 0 2px 0 rgb(203, 178, 243);
-            }
-        }
-    }
-    .LoginButton{
-        margin-top : 20px; 
-        button{    
-            color: white;
-            background-color: rgb(203, 178, 243);
-            display : inline-block;
-            border: none;
-            border-radius: 4px;
-            text-align: center;
-            width: 30%;
-            margin-top: 3px;
-        &:hover{
-            transform: scale(1.05);
-        }
-        &:focus{
-            //border : none;
-            outline: 0;
-        }
-    }
-}
-}
-.LoginTitle{
-    margin-top: 90px;
-    text-align: center;
-    color : rgb(203, 178, 243);
-    margin-bottom : 20px;
-}
-
-.LoginPage{
-    width: 100%;
+.login-dialog {
+    display: flex;
     height: 100%;
+    justify-content: center;
+    align-items: center;
+
     background: linear-gradient(to bottom,rgb(93, 61, 209), rgb(147, 127, 180));
+}
+
+.login-container {
+    width: 70%;
+    margin: auto;
+}
+
+.login-button {
+    width: 100%;
+    margin: 0.5rem 0rem;
 }

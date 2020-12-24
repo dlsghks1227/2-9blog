@@ -6,18 +6,8 @@ import Footer from '../Footer/Footer';
 
 function LandingPage() {
 
-    const [isClicked, ClickOrNot] = useState(false);
-    const style = {
-        height: "100%"
-    }
-    const navBtnClicked = ()=>{
-        ClickOrNot(!isClicked);
-    }
-
     return (
-        <div className="landing-page" style={style}>
-            <LandingContainer />
-        </div>
+        <LandingContainer />
     )
 }
 

@@ -19,7 +19,7 @@ import {
 
 function Footer() {
     return (
-        <Container style={{ marginTop: "-4rem" }} fluid>
+        <Container fluid>
             <Row style={{ height: "4rem" }} className="bg-light">
                 <Col className="text-left m-auto">
                     <p className="m-auto">여기 뭘 넣으면 좋을까?</p>
