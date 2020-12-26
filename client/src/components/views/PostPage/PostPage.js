@@ -7,7 +7,7 @@ function PostPage({ match }) {
     return (
         <div>
             <PostContainer doc={
-                match.params.doc ? match.params.doc : 1
+                match.params.doc ? match.params.doc : "1"
                 }/>
         </div>
     )
