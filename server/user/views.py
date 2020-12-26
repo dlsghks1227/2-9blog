@@ -51,8 +51,9 @@ def validateJWT(request):
         try:
             token = request.META['HTTP_AUTHORIZATION']
             data = {'token' : token.split()[1]}
+            print(request.data['username'])
             user = VerifyJSONWebTokenSerializer().validate(data)
-            if str(user['user']) != request.data['email']:
+            if str(user['user']) != request.data['username']:
                 return Response({"message" : "Invalid token"}, status=status.HTTP_409_CONFLICT)
         except KeyError as e:
             return Response({"message" : "fail"}, status=status.HTTP_409_CONFLICT)

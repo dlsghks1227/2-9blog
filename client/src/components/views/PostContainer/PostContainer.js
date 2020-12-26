@@ -4,6 +4,7 @@ import React, {
 } from 'react';
 //simport { db } from '../../../fbase';
 import {
+    NavLink,
     Redirect
 } from 'react-router-dom'
 import {
@@ -69,7 +70,7 @@ function PostContainer({ doc }) {
                 <Pagination.First href="/post/1" />
                 <Pagination.Prev href={posts.previous ? `/post/${(parseInt(currentPage) - 1)}` : `/post/${currentPage}`} />
                 {
-                    (parseInt(currentPage)) >= 5 ? (<Pagination.Ellipsis disabled></Pagination.Ellipsis>) : (<div/>)
+                    (parseInt(currentPage)) >= 5 ? (<Pagination.Ellipsis disabled></Pagination.Ellipsis>) : (<div />)
                 }
                 {
                     maxPage < 10 ?
@@ -83,8 +84,7 @@ function PostContainer({ doc }) {
                             Array.apply(0, Array(7)).map((x, i) => {
                                 const count = (parseInt(currentPage)) + (i - 4);
                                 const isActivated = ((parseInt(currentPage) - 1) === count);
-                                if (count >= 0 && count < maxPage)
-                                {
+                                if (count >= 0 && count < maxPage) {
                                     return (<Pagination.Item key={i} active={isActivated} href={`/post/${count + 1}`} >{count + 1}</Pagination.Item>);
                                 }
                             })
@@ -100,7 +100,7 @@ function PostContainer({ doc }) {
                     // })
                 }
                 {
-                    (parseInt(currentPage)) <= maxPage - 4 ? (<Pagination.Ellipsis disabled></Pagination.Ellipsis>) : (<div/>)
+                    (parseInt(currentPage)) <= maxPage - 4 ? (<Pagination.Ellipsis disabled></Pagination.Ellipsis>) : (<div />)
                 }
                 <Pagination.Next href={posts.next ? `/post/${(parseInt(currentPage) + 1)}` : `/post/${currentPage}`} />
 
@@ -148,21 +148,17 @@ function PostContainer({ doc }) {
                         const createdDate = new Date(post.created_at).toISOString().split('T');
                         const createdTime = createdDate[1].split('.')[0];
 
-                        console.log(post)
                         return (
-                            <ListGroup.Item key={post.id} action>
+                            <NavLink className="list-group-item list-group-item-action" key={post.id} to={`/post/read/${post.id}`}>
                                 <Media>
                                     <Media.Body>
-                                        <h1 className="d-inline-block text-truncate" style={{maxWidth: "20rem", margin:'auto'}}>{post.title}</h1>
+                                        <h1 className="d-inline-block text-truncate" style={{ maxWidth: "20rem", margin: 'auto' }}>{post.title}</h1>
                                         <hr></hr>
                                         <p className="post-time">{createdDate[0] + ' ' + createdTime}</p>
                                         <p>{post.username}</p>
                                     </Media.Body>
                                 </Media>
-                                {/* <h1>{post.title}</h1>
-                                <p>{createdDate[0] + ' ' + createdTime}</p>
-                                <p></p> */}
-                            </ListGroup.Item>
+                            </NavLink>
                         )
                     })
                 }

@@ -21,7 +21,6 @@ function UserPage() {
 
     return (
         <div>
-            <Nav navState={isClicked}/>
             <UserContainer username={username}/>
         </div>
     )

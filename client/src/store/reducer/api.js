@@ -29,10 +29,7 @@ export function validateUser() {
     return async (dispatch, getState) => {
         const { login } = getState();
 
-        console.log(login)
-
         if (!login.token || !login.username || !login.email) {
-            console.log(login);
             return { message: 'fail' };
         }
 
@@ -44,7 +41,7 @@ export function validateUser() {
                 'Authorization': 'JWT ' + login.token
             },
             body: JSON.stringify({
-                email: login.email
+                username: login.username
             }),
         };
 
@@ -98,7 +95,34 @@ export function getUserProfile(username) {
 export function getPost(page) {
     return async (dispatch) => {
 
-        const url = '/posts/?page=' + page;
+        const url = 'http://112.185.119.106:8000/posts/?page=' + page;
+        const options = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        }
+
+        dispatch(requestAPI());
+
+        const res = await fetch(url, options);
+        const data = await res.json();
+
+        if (res.ok && res.status === 200) {
+            dispatch(receiveAPI());
+        } else {
+            dispatch(errorAPI());
+            throw new Error(data);
+        }
+
+        return data;
+    }
+}
+
+export function getReadPost(id) {
+    return async (dispatch) => {
+
+        const url = '/posts/' + id;
         const options = {
             method: 'GET',
             headers: {

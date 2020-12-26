@@ -11,17 +11,14 @@ import {
 import './Header.scss'
 import {
     NavLink,
-    useHistory,
 } from "react-router-dom";
 
 import {
     Navbar,
     Nav,
     Button,
-    Form,
     FormControl,
     Modal,
-    Row
 } from 'react-bootstrap';
 
 function Header(props) {
@@ -32,14 +29,13 @@ function Header(props) {
     }));
     const dispatch = useDispatch();
     const onLogoutUser = () => dispatch(logoutUser());
-    const history = useHistory();
 
     const onSearchClick = () => {
         onLogoutUser();
     }
 
     return (
-        <div style={{ height: '4rem'}}>
+        <div style={{ height: '4rem' }}>
             <Modal
                 show={isShowSearchModal}
                 onHide={() => setIsShowSearchMdal(false)}>
@@ -53,14 +49,14 @@ function Header(props) {
                     <Button onClick={() => onSearchClick()}>Submit</Button>
                 </Modal.Footer>
             </Modal>
-            <Navbar style={{ height: '4rem'}} bg="light" variant="light" fixed="top">
-                <Navbar.Brand className="ml-3" href="/">Blog</Navbar.Brand>
+            <Navbar style={{ height: '4rem' }} bg="light" variant="light" fixed="top">
+                <NavLink className="navbar-brand ml-3" to={`/`}>Blog</NavLink>
                 <Nav>
-                    <Nav.Link href="/post">Post</Nav.Link>
-                    <Nav.Link href="/study">Study</Nav.Link>
+                    <Nav.Item><NavLink className="nav-link" to="/post">Post</NavLink></Nav.Item>
+                    <Nav.Item><NavLink className="nav-link" to="/study">Study</NavLink></Nav.Item>
                     <Nav.Link
-                            onClick={() => setIsShowSearchMdal(true)}>
-                            Search
+                        onClick={() => setIsShowSearchMdal(true)}>
+                        Search
                     </Nav.Link>
                 </Nav>
                 <Navbar.Collapse className="justify-content-end mr-3">
@@ -68,13 +64,16 @@ function Header(props) {
                         {
                             isAuthenticated ? (
                                 <Navbar.Text>
-                                    Signed in as: <a href={`/users/${username}`}>{username}</a>
+                                    Signed in as: <NavLink to={`/users/${username}`}>{username}</NavLink>
                                 </Navbar.Text>
 
                             ) : (
-                                    <Button
-                                        variant="Dark"
-                                        href="/login">Login</Button>
+                                    <NavLink to="/login">
+                                        <Button
+                                            variant="Dark">
+                                                Login
+                                        </Button>
+                                    </NavLink>
                                 )
                         }
                     </Nav>

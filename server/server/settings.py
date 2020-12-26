@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'e!4xdyc_@tckmocjj2u!hb6pjq0roed!!ojn&t=58y%ebfm#n0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://dlsghks1227.github.io', '112.185.119.106']
 
 
 # Application definition
