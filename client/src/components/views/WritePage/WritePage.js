@@ -1,12 +1,13 @@
 import React from 'react';
 import Nav from '../Nav/Nav';
 import Header from '../Header/Header';
-import WriteContainer from '../WriteContainer/WriteContainer';
+import MarkdownContainer from '../MarkdownContainer/MarkdownContainer';
 
 function WritePage() {
     return (
-        <div>
-            <WriteContainer />
+        <div className="study-container">
+            <p className="study-title">글 작성하기</p>
+            <MarkdownContainer />
         </div>
     )
 }

@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactDOM from "react-dom";
 import MEDitor from "@uiw/react-md-editor";
 import './MarkdownContainer.scss'
 
@@ -18,7 +17,5 @@ function MarkdownContainer() {
         </div>
     );
 }
-
-ReactDOM.render(<MarkdownContainer />, document.getElementById("root"));
 
 export default MarkdownContainer;
