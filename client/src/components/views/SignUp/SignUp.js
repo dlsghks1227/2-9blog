@@ -63,8 +63,8 @@ const SignUp = () => {
         else {
             onSignUpUser({
                 email: email,
-                password: username,
-                username: password,
+                password: password,
+                username: username,
             })
                 .then(data => {
                     if (data.message === 'ok') {
