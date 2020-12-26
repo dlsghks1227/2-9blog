@@ -52,32 +52,33 @@ function App() {
   //   });
   // },[]);
   return (
-    <Router>
-      <Header />
-      <Container style={{ minHeight: '100%' , maxWidth:'1800px'}} fluid>
-        <Row style={{ margin: '6rem 4rem 4rem', display: 'block' }}>
-          <Col>
-            <Switch>
-              <Route exact path="/" component={LandingPage} />
-              <AuthRoute exact path="/write" component={WritePage} />
-              <Route exact path="/post" component={PostPage} />
-              {/* <Route exact path="/mypage" component={MyPage} /> */}
-              <Route path="/post/:doc" component={PostPage} />
-              <AuthRoute path="/study/write" component={StudyWriteContainer}/>
-              <Route path="/study" component={StudyMeetingPage} />
-              <Route path="/users/:username" component={UserPage} />
-              <AuthRoute exact path="/mypage" component={MyPage} />
-              <Route exact path="/login" component={LoginPage} />
-              <Route exact path="/aim" component={BoardPage} />
-              <Route exact path="/signUp" component={SignUpPage} />
-              <Route exact path="/board/:id" component={ListPage} />
-            </Switch>
-          </Col>
-        </Row>
-        {/* {init ? <AppRouter isLoggedIn={isLoggedIn}/>:"Init"} */}
-      </Container>
-      <Footer />
-    </Router>
+    <div>
+      <Router>
+        <Header/>
+        <Container fluid>
+          <Row>
+            <Col style={{ minHeight: 'calc(100vh - 8rem)', padding: '0' }}>
+              <Switch>
+                <Route exact path="/" component={LandingPage} />
+                <AuthRoute exact path="/write" component={WritePage} />
+                <Route exact path="/post" component={PostPage} />
+                {/* <Route exact path="/mypage" component={MyPage} /> */}
+                <Route path="/post/:doc" component={PostPage} />
+                <Route path="/study" component={StudyMeetingPage} />
+                <Route path="/users/:username" component={UserPage} />
+                <AuthRoute exact path="/mypage" component={MyPage} />
+                <Route exact path="/login" component={LoginPage} />
+                <Route exact path="/aim" component={BoardPage} />
+                <Route exact path="/signUp" component={SignUpPage} />
+                <Route exact path="/board/:id" component={ListPage} />
+              </Switch>
+            </Col>
+          </Row>
+          {/* {init ? <AppRouter isLoggedIn={isLoggedIn}/>:"Init"} */}
+        </Container>
+        <Footer />
+      </Router>
+    </div>
   );
 }
 

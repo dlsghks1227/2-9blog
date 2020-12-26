@@ -1,29 +1,29 @@
 
-.allBoard{
-    width : 15%;
-    background-color: rgb(203, 178, 243);
-    height : 30%;
-    margin : 10px;
-    border-radius: 5px;
-    color : #fff;
-    font-weight: 700;
-    transition : 0.2s;
-    &:hover{
-        transform: scale(1.05);
-    }
-}
 
 .BoardStyle{
-    top : 20px;
-    width:100%;
-    height : 75%;
     position: relative;
+    width: 100%;
+    height : 100%;
     overflow-y: auto;
     display : flex;
     flex-wrap : wrap;   
-    flex-direction: row;
-    justify-content: flex-start;
+    justify-content: space-evenly;;
     align-content: flex-start; 
+
+        .allBoard{
+            width : 70%;
+            background-color: rgb(203, 178, 243);
+            height : 10%;
+            margin : 10px;
+            border-radius: 5px;
+            color : #fff;
+            font-weight: 700;
+            transition : 0.2s;
+            right: 5px;
+            &:hover{
+                transform: scale(1.05);
+            }
+        }
 }
 
 .BoardPage{
@@ -32,8 +32,33 @@
     display :flex;
     flex : 0 0 20px;
     flex-direction: column;
+    
+    Button{
+        right: 0px;
+        background-color: white;
+        color: black;
+        border: none;
+        &:hover{
+            background-color: lavender;
+        }
+        &:focus{
+            background-color: lavender;
+        }
+    }
 }
 
 a{
     color: white;
+}
+
+.pagination{
+    justify-content: center;
+
+    .page-link.active{
+        .page-link{
+            &:focus{
+                background-color: lavenderblush;
+            }
+        }
+    }
 }

@@ -121,6 +121,7 @@ function Nav(props) {
 
     useEffect(() => {
         props.navState === true ? navRef.current.style.display = "inline"
+
             : navRef.current.style.display = "none"
     }, [props.navState])
 
@@ -139,8 +140,17 @@ function Nav(props) {
                                 )
                         }
                     </div>
-                    <NavLink exact to="/mypage">마이페이지</NavLink>
-                    <NavLink exact to="/study">스터디 모집</NavLink>
+                    <ul>
+                        <li>
+                            <NavLink exact to="/mypage">마이페이지</NavLink>
+                        </li>
+                        <li>
+                            <NavLink exact to="/study">스터디 모집</NavLink>
+                        </li>
+                        <li>
+                            <NavLink exact to="/aim">목표 세우기</NavLink>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>

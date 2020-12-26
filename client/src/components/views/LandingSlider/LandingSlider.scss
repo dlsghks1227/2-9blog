@@ -1,3 +1,4 @@
+$animationPosX: 50px;
 
 * {
     &:focus {
@@ -5,25 +6,13 @@
     }
 }
 
-$animationPosX: 50px;
-
-.slick-slider {
-    overflow: hidden;
-    width: 100%;
-    margin: auto;
-    z-index: -999;
-}
 
 .photo {
-    img {
-        width: 100%;
-    }
     p {
-        position: relative;
-        float: right;
+        position: absolute;
         padding: 0.2rem 2rem;
         color: white;
-        font-size: 35px;
+        font-size: 2rem;
         bottom: $animationPosX;
         background-color: wheat;
         font-weight: 100;
@@ -38,98 +27,15 @@ $animationPosX: 50px;
     width: 600px;
 }
 
-.slick-prev {
-    position: relative;
-    background-color: transparent;
-    border: none;
-    font-size: 0px;
-    width: 50px;
-    height: 50px;
-    top: 220px;
-
-    &:after {
-        content: "";
-        display: block;
-        width: 30px;
-        height: 30px;
-        border-bottom: 7px solid #555555;
-        border-left: 7px solid #555555;
-        transform: rotate(45deg);
-        position: absolute;
-        right: 10px;
-        top: 50%;
-        margin-top: -7px;
-        border-radius: 5px;
-        z-index: 19;
-
-    }
-}
-
-.slick-next {
-    position: relative;
-    bottom: 360px;
-    float: right;
-    background-color: transparent;
-    border: none;
-    font-size: 0px;
-    width: 50px;
-    height: 50px;
-    margin: 10px;
-    &:after {
-        content: "";
-        display: block;
-        width: 30px;
-        height: 30px;
-        border-top: 7px solid #555555;
-        border-right: 7px solid #555555;
-        transform: rotate(45deg);
-        position: absolute;
-        right: 10px;
-        top: 50%;
-        margin-top: -7px;
-        border-radius: 5px;
-        z-index: 19;
-
-    }
-}
-
-.slick-dots {
-    display: flex !important;
-    list-style: none;
-    width: 200px;
-    margin: auto;
-
-    li {
-        margin: 10px;
-
-        button {
-            background: lavender;
-            width: 10px;
-            height: 12px;
-            border: none;
-            border-radius: 10px;
-            font-size: 0;
-        }
-    }
-}
-
-.slick-active {
-    button {
-        background: rgb(192, 123, 248) !important;
-    }
-}
-
 .portfolio-photo {
     display: block;
     width: 500px;
     margin: 0 auto;
 }
 
-
-
 .slider-text {
     animation-name: text;
-    animation-duration: 3s;
+    animation-duration: 4s;
 }
 
 

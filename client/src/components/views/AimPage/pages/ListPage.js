@@ -8,8 +8,8 @@ import './ListPage.scss'
 
 function ListPage() {
     const {id} = useParams();
-    // const listsState = useSelector((state) => state.lists) 
-    // //console.log("listsState : ", listsState.lists);
+    const listsState = useSelector((state) => state.lists) 
+    console.log("listsState : ", listsState.lists);
 
     const boardList = useSelector((state)=>{
         return state.lists.lists.filter((list)=> list.boardId === id)
