@@ -113,14 +113,13 @@ function WriteContainer() {
  
   return (
     <div className="WriteContainer">
+      <p className="write-title">기록하기</p>
       <form onSubmit={writeSubmitHandler}>
 
         <input placeholder="제목" className="title-input" type="text" value={title} onChange={titleChangeHandler} />
-        <select value={noticeSelect} onChange={noticeSelectChange}>
-          <option value="grapefruit">Grapefruit</option>
-          <option value="lime">Lime</option>
-          <option value="coconut">Coconut</option>
-          <option value="mango">Mango</option>
+        <select value={noticeSelect} className="drop-select" onChange={noticeSelectChange}>
+          <option value="example">예시 1</option>
+          <option value="example">예시 2</option>
         </select>
         <hr></hr>
         <CKEditor

@@ -29,11 +29,14 @@ import SignUpPage from './components/views/SignUp/SignUp';
 
 import './App.scss';
 import StudyMeetingPage from 'components/views/StudyMeetingPage/StudyMeetingPage';
-import StudyPostPage from './components/views/StudyPostPage/StudyPostPage';
+import StudyPostContainer from './components/views/StudyPostPage/StudyPostContainer';
+import StudyWriteContainer from './components/views/StudyWritePage/StudyWriteContainer';
 
 import Header from './components/views/Header/Header'
 import './components/views/Container/Container.scss';
 import Footer from 'components/views/Footer/Footer';
+
+import MarkdownContainer from 'components/views/MarkdownContainer/MarkdownContainer';
 
 function App() {
   const style = {
@@ -63,6 +66,8 @@ function App() {
                 <Route exact path="/post" component={PostPage} />
                 {/* <Route exact path="/mypage" component={MyPage} /> */}
                 <Route path="/post/:doc" component={PostPage} />
+                <Route path="/study/post" component={StudyPostContainer} />
+                <Route path="/study/write" component={StudyWriteContainer} />
                 <Route path="/study" component={StudyMeetingPage} />
                 <Route path="/users/:username" component={UserPage} />
                 <AuthRoute exact path="/mypage" component={MyPage} />
@@ -70,6 +75,7 @@ function App() {
                 <Route exact path="/aim" component={BoardPage} />
                 <Route exact path="/signUp" component={SignUpPage} />
                 <Route exact path="/board/:id" component={ListPage} />
+                <Route exact path="/test" component={MarkdownContainer} />
               </Switch>
             </Col>
           </Row>

@@ -30,6 +30,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     )
     introduce = models.TextField(
         verbose_name='introduce',
+        null = True,
+        default = ''
     )
     is_staff = models.BooleanField(
         verbose_name='staff status',

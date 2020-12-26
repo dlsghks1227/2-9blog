@@ -1,7 +1,4 @@
-.WriteContainer {
-    width: 1580px / 1920px * 100%;
-    float: right;
-}
+
 
 .ck-editor__editable:not(.ck-editor__nested-editable) {
     min-height: 400px;
@@ -23,26 +20,13 @@
     width: 99.8%;
 }
 
-
-.title-input {
-    border: none; 
-    background: transparent;
-    width: 95%;
-    height: 75px;
-    font-size: 40px;
-    margin: 20px 0px 0px 20px;
-    :focus {
-        outline: none;
-        
-    }
-}
-
 .submit-button {
     border: none; 
     background: transparent;
     font-size: 170%;
     margin: 30px;
     float: right;
+    margin-bottom: 100px;
 }
 
 .dropdown {
@@ -53,4 +37,19 @@
     width: 7%;
     height: 40px;
     text-align: center;
+}
+
+.drop-select {
+    margin: 10px;
+    width: 90px;
+    height: 30px;
+    font-size: 18px;
+}
+
+.write-title {
+    border-bottom: 0.3px solid #d5d5d5;
+    width: 200px;
+    margin: auto;
+    font-size: 35px;
+    font-weight: 100;
 }

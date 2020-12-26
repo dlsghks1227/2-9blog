@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
+import { Route } from "react-router-dom";
 import './StudyMeetingPage.scss';
 import StudyMeetingContainer from './StudyMeetingContainer';
-import Header from '../Header/Header';
-import Nav from '../Nav/Nav';
-import Footer from '../Footer/Footer';
+import StudyWritePage from '../StudyWritePage/StudyWritePage';
 
 function StudyMeetingPage() {
     const [isClicked, ClickOrNot] = useState(false);
@@ -12,11 +11,8 @@ function StudyMeetingPage() {
     }
 
     return (
-        <div>
-            <Header onClicked={navBtnClicked}/>
-            <Nav navState={isClicked}/>
+        <div className="study-container">
            <StudyMeetingContainer /> 
-           <Footer />
         </div>
     )
 }
