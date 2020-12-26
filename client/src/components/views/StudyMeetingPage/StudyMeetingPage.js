@@ -11,7 +11,7 @@ function StudyMeetingPage() {
     }
 
     return (
-        <div>
+        <div className="study-container">
            <StudyMeetingContainer /> 
         </div>
     )

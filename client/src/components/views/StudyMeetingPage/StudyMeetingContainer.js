@@ -7,7 +7,7 @@ function StudyMeetingContainer({ match }) {
         <section>
             <p className="study-title">스터디 모집</p>
             <article className="study-article">
-                <NavLink exact to="/studypost"><p>React 스터디 모집</p></NavLink>
+                <NavLink exact to="/study/post"><p>React 스터디 모집</p></NavLink>
                 <p>django 스터디 모집</p>
                 <NavLink exact to="/study/write"><button className="study-write">글 쓰기</button></NavLink>
                 <div className="search-box">

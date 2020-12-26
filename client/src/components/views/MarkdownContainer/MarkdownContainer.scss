@@ -1,0 +1,17 @@
+.container {
+    margin-top: 50px;
+}
+
+.title-input {
+    border: none; 
+    background: transparent;
+    border-bottom: 0.5px solid #d5d5d5;
+    width: 95%;
+    height: 75px;
+    font-size: 40px;
+    margin: 0px 0px 50px 20px;
+    :focus {
+        outline: none;
+        
+    }
+}

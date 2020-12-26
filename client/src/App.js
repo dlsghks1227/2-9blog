@@ -29,7 +29,7 @@ import SignUpPage from './components/views/SignUp/SignUp';
 
 import './App.scss';
 import StudyMeetingPage from 'components/views/StudyMeetingPage/StudyMeetingPage';
-import StudyPostPage from './components/views/StudyPostPage/StudyPostPage';
+import StudyPostContainer from './components/views/StudyPostPage/StudyPostContainer';
 import StudyWriteContainer from './components/views/StudyWritePage/StudyWriteContainer';
 
 import Header from './components/views/Header/Header'
@@ -66,6 +66,8 @@ function App() {
                 <Route exact path="/post" component={PostPage} />
                 {/* <Route exact path="/mypage" component={MyPage} /> */}
                 <Route path="/post/:doc" component={PostPage} />
+                <Route path="/study/post" component={StudyPostContainer} />
+                <Route path="/study/write" component={StudyWriteContainer} />
                 <Route path="/study" component={StudyMeetingPage} />
                 <Route path="/users/:username" component={UserPage} />
                 <AuthRoute exact path="/mypage" component={MyPage} />
