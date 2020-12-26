@@ -126,13 +126,11 @@ export function createPost(postData) {
     return async (dispatch, getState) => {
         const { login } = getState();
 
-        console.log(login);
-
         if (!postData.title || !postData.body || !login.token || !login.username) {
             return { message: 'fail' };
         }
 
-        const url = '/posts/create/';
+        const url = '/posts/';
         const options = {
             method: 'POST',
             headers: {
@@ -156,7 +154,6 @@ export function createPost(postData) {
             dispatch(receiveAPI());
         } else {
             dispatch(errorAPI());
-            throw new Error(data);
         }
 
         return data;

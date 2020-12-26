@@ -4,6 +4,9 @@ import React, {
 } from 'react';
 //simport { db } from '../../../fbase';
 import {
+    Redirect
+} from 'react-router-dom'
+import {
     useSelector,
     useDispatch,
 } from 'react-redux';
@@ -79,9 +82,7 @@ function PostContainer({ doc }) {
 
     if (!posts || error) return (
         <div className="post-container">
-            <h1>
-                Error
-            </h1>
+            {/* <Redirect to="/404"/> */}
         </div>
     );
 

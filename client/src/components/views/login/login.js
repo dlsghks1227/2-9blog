@@ -36,7 +36,7 @@ function LoginScreen() {
 
     const onLoginClick = async (event) => {
         event.preventDefault();
-        const test = await onLoginUser({
+        await onLoginUser({
             email: userEmail.current.value,
             password: userPassword.current.value,
         });
