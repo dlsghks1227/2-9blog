@@ -1,4 +1,3 @@
-import re
 from rest_framework import generics, viewsets, filters, status
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticatedOrReadOnly

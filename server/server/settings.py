@@ -39,9 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # 필터 사용
-    'django_filters',
-
     # Django Allauth는 사용자 등록 및 소셜 인증에 사용
     # Django REST Auth는 회원가입, 로그인/로그아웃에 사용
     'rest_framework',
