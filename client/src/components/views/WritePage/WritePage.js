@@ -1,10 +1,12 @@
 import React from 'react';
-import MarkdownContainer from '../MarkdownContainer/MarkdownContainer';
+import Nav from '../Nav/Nav';
+import Header from '../Header/Header';
+import WriteContainer from '../WriteContainer/WriteContainer';
 
 function WritePage() {
     return (
         <div>
-            <MarkdownContainer />
+            <WriteContainer />
         </div>
     )
 }

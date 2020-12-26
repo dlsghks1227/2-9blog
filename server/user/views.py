@@ -37,6 +37,7 @@ def login(request):
 
         response = {
             "message" : "ok",
+            "email": serializers.validated_data["email"],
             "username": serializers.validated_data["username"],
             "token": serializers.validated_data["token"]
         }

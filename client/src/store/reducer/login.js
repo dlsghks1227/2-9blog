@@ -18,6 +18,7 @@ const receiveLogin = user => ({
     type: LOGIN_SUCCESS,
     isFetching: false,
     isAuthenticated: true,
+    email: user.email,
     username: user.username,
     token: user.token
 });
@@ -88,7 +89,7 @@ export function logoutUser() {
 // ----- 리듀서 선언 -----
 const initialState = {
     isFetching: false,
-    isAuthenticated: localStorage.getItem('token') ? true : false,
+    isAuthenticated: false,
 }
 
 // Redux는 변경되지 않은 객체를 반환해야하므로
@@ -104,6 +105,7 @@ export default function login(state = initialState, action) {
             return Object.assign({}, state, {
                 isFetching: false,
                 isAuthenticated: true,
+                email: action.email,
                 username: action.username,
                 token: action.token,
                 errorMessage: '',

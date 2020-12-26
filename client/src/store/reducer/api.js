@@ -29,7 +29,10 @@ export function validateUser() {
     return async (dispatch, getState) => {
         const { login } = getState();
 
-        if (!login.isAuthenticated || !login.token || !login.email) {
+        console.log(login)
+
+        if (!login.token || !login.username || !login.email) {
+            console.log(login);
             return { message: 'fail' };
         }
 
@@ -54,7 +57,7 @@ export function validateUser() {
             dispatch(receiveAPI());
         } else {
             dispatch(errorAPI());
-            throw new Error()
+            throw new Error(data);
         }
 
         return data;
@@ -82,6 +85,7 @@ export function getUserProfile(username) {
             dispatch(receiveAPI());
         } else {
             dispatch(errorAPI());
+            throw new Error(data);
         }
 
         return data;
@@ -111,19 +115,20 @@ export function getPost(page) {
             dispatch(receiveAPI());
         } else {
             dispatch(errorAPI());
+            throw new Error(data);
         }
 
         return data;
     }
 }
 
-export function createPost() {
+export function createPost(postData) {
     return async (dispatch, getState) => {
         const { login } = getState();
 
         console.log(login);
 
-        if (!login.isAuthenticated || !login.token || !login.email) {
+        if (!postData.title || !postData.body || !login.token || !login.username) {
             return { message: 'fail' };
         }
 
@@ -135,7 +140,10 @@ export function createPost() {
                 'Authorization': 'JWT ' + login.token
             },
             body: JSON.stringify({
-
+                title: postData.title,
+                body: postData.body,
+                category: postData.category,
+                username: login.username,
             })
         }
 
@@ -143,6 +151,15 @@ export function createPost() {
 
         const res = await fetch(url, options);
         const data = await res.json();
+
+        if (res.ok && res.status === 200) {
+            dispatch(receiveAPI());
+        } else {
+            dispatch(errorAPI());
+            throw new Error(data);
+        }
+
+        return data;
     }
 }
 // --------게시글 관련-------- 

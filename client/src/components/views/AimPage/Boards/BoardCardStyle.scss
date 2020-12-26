@@ -1,114 +1,114 @@
 
 
-.card{
-    position: relative;
-    text-decoration :none;
-    background : lavender;
-    width : 15%;
-    height : 60%;
-    display : flex;
-    align-items : center;
-    justify-content: space-around;
-    margin: 20px;    
+// .card{
+//     position: relative;
+//     text-decoration :none;
+//     background : lavender;
+//     width : 15%;
+//     height : 60%;
+//     display : flex;
+//     align-items : center;
+//     justify-content: space-around;
+//     margin: 20px;    
 
 
-    .card-title{
-        font-size: 1.5rem;
-        a{
-            color : rgb(215, 173, 230);  
-            text-align: center;
-        }
-    }
+//     .card-title{
+//         font-size: 1.5rem;
+//         a{
+//             color : rgb(215, 173, 230);  
+//             text-align: center;
+//         }
+//     }
 
 
-}
+// }
 
-.modal-dialog{
-    top: 40px;
-    right: 0;
-    bottom: 0;
-    left: 0;  ///배경에 픽스를 주고 투명도를 준다.
-    display:inline;
-    text-align : left;
-    vertical-align: middle;
-    z-index: 1000;
+// // .modal-dialog{
+// //     top: 40px;
+// //     right: 0;
+// //     bottom: 0;
+// //     left: 0;  ///배경에 픽스를 주고 투명도를 준다.
+// //     display:inline;
+// //     text-align : left;
+// //     vertical-align: middle;
+// //     z-index: 1000;
 
-    .modal-content{
-        height : 40%;
-        .modal-header{
-            background-color: lavender;
-            color: white;
-        }
-        .modal-body{
-            input{
-                border :none;
-            }
-        }
-        .modal-footer{
-            Button{
-                background-color: lavender;
-                color: white;
-            }
-        }
-    }
-}
+// //     .modal-content{
+// //         height : 40%;
+// //         .modal-header{
+// //             background-color: lavender;
+// //             color: white;
+// //         }
+// //         .modal-body{
+// //             input{
+// //                 border :none;
+// //             }
+// //         }
+// //         .modal-footer{
+// //             Button{
+// //                 background-color: lavender;
+// //                 color: white;
+// //             }
+// //         }
+// //     }
+// // }
 
-.CreateBoardCardStyle{
-    border :none;
-    background-color: rgba(9,30,66,.04);
-    color: #333;
-    width: 15%;
-    font-weight: normal;
-    border-radius: 4px;
-    margin : 10px;
-    &:hover{
-        background-color: rgba(9,30,66,.1);
-    }
-}
+// .CreateBoardCardStyle{
+//     border :none;
+//     background-color: rgba(9,30,66,.04);
+//     color: #333;
+//     width: 15%;
+//     font-weight: normal;
+//     border-radius: 4px;
+//     margin : 10px;
+//     &:hover{
+//         background-color: rgba(9,30,66,.1);
+//     }
+// }
 
-.CreateBoardCard {
-    margin : 70px;
+// .CreateBoardCard {
+//     margin : 70px;
     
-    input{
-        background-color: rgba(0,0,0,0);
-        border: none;
-        font-size: 14px;
-        outline: none;
-        text-align: center;
-    }
-}
+//     input{
+//         background-color: rgba(0,0,0,0);
+//         border: none;
+//         font-size: 14px;
+//         outline: none;
+//         text-align: center;
+//     }
+// }
 
 
-    // .loginModal {
-    //   width: 480px;
-    //   height: 621px;
-    //   background-color: white;
-    //   position: relative;
-    //   box-sizing: border-box;
-    //   margin: 50px auto;
-    //   padding: 20px;
-    //   background: #fff;      //로그인 배경이다 
-    // }
-    //   .close {
-    //     float: right;
-    //     font-size: 25px;
-    //   }
-    //   .modalContents {
-    //     margin: 0 auto;
-    //     width: 100%;
-    //     position: relative;
-    //     padding: 0 20px 32px;
-    //     box-sizing: border-box;
-    //     display: flex;
-    //     justify-content: center;
-    //     flex-direction: column;
-    //   }
+//     // .loginModal {
+//     //   width: 480px;
+//     //   height: 621px;
+//     //   background-color: white;
+//     //   position: relative;
+//     //   box-sizing: border-box;
+//     //   margin: 50px auto;
+//     //   padding: 20px;
+//     //   background: #fff;      //로그인 배경이다 
+//     // }
+//     //   .close {
+//     //     float: right;
+//     //     font-size: 25px;
+//     //   }
+//     //   .modalContents {
+//     //     margin: 0 auto;
+//     //     width: 100%;
+//     //     position: relative;
+//     //     padding: 0 20px 32px;
+//     //     box-sizing: border-box;
+//     //     display: flex;
+//     //     justify-content: center;
+//     //     flex-direction: column;
+//     //   }
 
-@media screen and (min-width: 768px) { 
-    .modal:before {
-            display: inline-block;
-            vertical-align: middle;
-            content: " ";
-            height: 100%;
-    }
-}
+// @media screen and (min-width: 768px) { 
+//     .modal:before {
+//             display: inline-block;
+//             vertical-align: middle;
+//             content: " ";
+//             height: 100%;
+//     }
+// }

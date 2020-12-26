@@ -1,14 +1,6 @@
 from django.db import models
 from django.db.models.deletion import CASCADE
 
-CATEGORT_CHOICES = [
-    ('default','default'), 
-    ('python', 'python'), 
-    ('c++', 'c++'), 
-    ('csharp', 'csharp'), 
-    ('javascript', 'javascript')
-]
-
 class Post(models.Model):
     title = models.CharField(
         verbose_name='title',
@@ -28,8 +20,7 @@ class Post(models.Model):
     category = models.CharField(
         verbose_name='category',
         max_length=100,
-        default='default',
-        choices=CATEGORT_CHOICES
+        default='default'
     )
     created_at = models.DateTimeField(
         verbose_name='created time',
