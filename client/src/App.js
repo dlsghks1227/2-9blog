@@ -36,6 +36,8 @@ import Header from './components/views/Header/Header'
 import './components/views/Container/Container.scss';
 import Footer from 'components/views/Footer/Footer';
 
+import MarkdownContainer from 'components/views/MarkdownContainer/MarkdownContainer';
+
 function App() {
   const style = {
     height: "100%",
@@ -71,6 +73,7 @@ function App() {
                 <Route exact path="/aim" component={BoardPage} />
                 <Route exact path="/signUp" component={SignUpPage} />
                 <Route exact path="/board/:id" component={ListPage} />
+                <Route exact path="/test" component={MarkdownContainer} />
               </Switch>
             </Col>
           </Row>

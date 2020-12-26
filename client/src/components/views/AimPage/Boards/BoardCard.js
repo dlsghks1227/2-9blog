@@ -1,4 +1,4 @@
-import React,{useRef} from 'react';
+import React,{useRef, useDispatch} from 'react';
 //import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import boards from 'store/reducer/boards';
@@ -17,10 +17,10 @@ function BoardCard({ board }) {
  
     const dispatch = useDispatch();
 
-    const delete_button = () => {
-        const action = deleteBoard(board.id);
-        dispatch(action);    
-    }
+    // const delete_button = () => {
+    //     const action = deleteBoard(board.id);
+    //     dispatch(action);    
+    // }
 
     return (
         // <div className="allBoard">
