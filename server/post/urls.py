@@ -10,5 +10,5 @@ urlpatterns = [
         'get': 'retrieve',
         'delete': 'destroy',
     })),
-    path('tag/search/', views.PostSearchWithCategoryViewSet.as_view()),
+    path('category/search/', views.PostSearchWithCategoryViewSet.as_view()),
 ]

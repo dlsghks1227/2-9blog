@@ -6,8 +6,6 @@ import WriteContainer from '../WriteContainer/WriteContainer';
 function WritePage() {
     return (
         <div>
-            <Nav />
-            <Header />
             <WriteContainer />
         </div>
     )

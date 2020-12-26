@@ -5,9 +5,6 @@ import CreateBoardCard from '../Boards/CreateBoardCard';
 import BoardCard from '../Boards/BoardCard';
 import { BoardType } from '../../../../store/reducer/boards';
 import './BoardStyle.scss'
-import AimHeader from '../Header';
-import Header from '../../Header/Header'
-import Footer from '../../Footer/Footer'
 import { Card, Button, Accordion, Modal, ButtonGroup, Pagination, PageItem } from 'react-bootstrap'
 import { createBoard } from '../../../../store/reducer/boards';
 

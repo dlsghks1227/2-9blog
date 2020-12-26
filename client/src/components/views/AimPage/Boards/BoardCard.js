@@ -1,4 +1,4 @@
-import React,{useRef} from 'react';
+import React, { useRef } from 'react';
 //import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import boards from 'store/reducer/boards';
@@ -6,26 +6,28 @@ import './BoardCardStyle.scss';
 import '../pages/BoardStyle.scss';
 import { Card, Button } from 'react-bootstrap'
 import note2 from './img/note2.jpg';
+import { useDispatch } from 'react-redux';
+import { deleteBoard } from '../../../../store/reducer/boards'
 
-const cardStyle={
-    width : "100%",
-    height : "100%"
+const cardStyle = {
+    width: "100%",
+    height: "100%"
 }
 
 function BoardCard({ board }) {
     console.log("tenter")
- 
+
     const dispatch = useDispatch();
 
     const delete_button = () => {
         const action = deleteBoard(board.id);
-        dispatch(action);    
+        dispatch(action);
     }
 
     return (
         // <div className="allBoard">
         //     <div className="LinkStyle">
-        <Card size="lg" style={{cardStyle}}>
+        <Card size="lg" style={{ cardStyle }}>
             <Card.Img variant="top" src={note2} />
             <Card.Body>
                 <Card.Title>
