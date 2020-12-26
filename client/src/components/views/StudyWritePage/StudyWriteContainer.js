@@ -112,6 +112,7 @@ function WriteContainer() {
  
   return (
     <div className="WriteContainer">
+      <p className="study-title">스터디 모집</p>
       <form onSubmit={writeSubmitHandler}>
 
         <input placeholder="제목" className="title-input" type="text" value={title} onChange={titleChangeHandler} />
@@ -157,9 +158,7 @@ function WriteContainer() {
           data=""
           onChange={bodyChangeHandler}
         />
-        <button className="submit-button" type="submit">글 작성하기
-        <hr></hr>
-        </button>
+        <button className="submit-button" type="submit">글 작성하기</button>
       </form>
     </div>
   )

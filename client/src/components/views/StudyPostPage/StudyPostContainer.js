@@ -1,5 +1,6 @@
-import React from 'react'
-import './StudyPostPage.scss'
+import React from 'react';
+import './StudyPostPage.scss';
+
 function StudyPostContainer() {
     return (
         <div className="study-post-area">
