@@ -1,8 +1,8 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import './CreateCardStyle.scss';
 import { createCard } from '../../../../../store/reducer/card';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 const CreateCard = ({ listId }) => {
@@ -27,6 +27,7 @@ const CreateCard = ({ listId }) => {
                     onKeyDown={(e) => {
                         if (e.key == "Enter" && cardName !== "") {create()}
                     }} />
+                
             </div>
             <FontAwesomeIcon icon={faPlus} onClick={() =>{ 
                 if(cardName !== "") create()}} />

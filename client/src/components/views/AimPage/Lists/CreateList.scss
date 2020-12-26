@@ -1,8 +1,9 @@
 //CreateLists 파일
 
 .ListsWrapper{
-    width : 272px;
-    margin : 0 4px;
+    width : 20%;
+    margin : 2rem;
+    padding : 0.3rem;
     height : 100%;
     box-sizing : border-box;
     display : inline-block;
@@ -10,15 +11,29 @@
     white-space:nowrap;
     background-color: lavender;
     border-radius: 4px;
-    padding-left: 10px;
+    padding-left: 1rem;
 
-    .ListContent{
-        border-radius : 3px;
+    .ListsContent{
         display :flex;
         flex-direction:column;
-        max-height:100%;
-        position :relative;
+
         white-space : normal;
+        max-height:100%;
+        border-radius : 3px;
+        position :relative;
+
+        .ListHeaderWrapper{
+            top : 0.5rem;
+            display : flex;
+            align-items:center;
+
+            svg{
+                position: absolute;
+                right: 1rem;
+                top : 0rem;
+                color : lightsteelblue;    
+            }
+        }
     }
 }
 
@@ -42,10 +57,3 @@
     outline :none;
 }
 
-.ListHeaderWrapper{
-    height:40px;
-    display : flex;
-    align-items:center;
-}
-
-.ListHeader{}

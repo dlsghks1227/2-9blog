@@ -1,39 +1,52 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useRef } from 'react';
 import ListCard from './CardComponent/ListCard';
 import CreateCard from './CardComponent/CreateCard';
 import { useParams } from 'react-router-dom';
-import { updateListsTitle } from '../../../../store/reducer/lists';
+import { updateListsTitle,deleteLists } from '../../../../store/reducer/lists';
 import { useSelector, useDispatch } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMinus } from "@fortawesome/free-solid-svg-icons";
 import './CreateList.scss';
 
 const Lists = ({ list }) => {
 
     const { id } = useParams();
     const dispatch = useDispatch();
+    const InputRef = useRef();
+
     const cards = useSelector((state) => {
         return state.card.cards.filter((card) => card.listsId === list.id && card.cardName !== "");
     });
 
     const boardLists = useSelector((state) => {
         if (id !== undefined)
-            return state.lists.lists.filter((list) => list.boardId === id); //return을 붙여야 하나요..?
+            return state.lists.lists.filter((list) => list.boardId === id); 
     });
-
-   
+    
+    const listDelete=(e)=>{
+        const deleteAction = deleteLists(list.id);
+        console.log(deleteAction);
+        dispatch(deleteAction);
+    }
 
     return (
         <div className="ListsWrapper">
             <div className="ListsContent">
-                <div className="ListHeaderWrapper">
-                    <input type="text" defaultValue={list.title} //list 출력이긴 한데요
+                <div className="ListHeaderWrapper" >
+                    <input type="text" ref={InputRef} defaultValue={list.title} 
                         onKeyDown={(e) => {
                             const value = e.currentTarget.value;
-                            if (e.key == 'enter' && value) {
+                            if (e.key == 'enter' && value!=="") {
                                 dispatch(updateListsTitle(list.id, e.currentTarget.value));
                                 e.currentTarget.blur();
                             }
+                            else if(value === ""){
+                                alert("리스트명을 입력해주세요.")
+                            }
+
                         }}
                     />
+                      <FontAwesomeIcon icon={faMinus} onClick={listDelete} />
                 </div>
                 <ul>
                     {boardLists.map((lists, i) => {

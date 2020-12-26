@@ -4,7 +4,7 @@ const LOGIN_FAILURE = 'login/FAILURE';
 
 const LOGOUT_REQUEST = 'Logout/REQUEST';
 const LOGOUT_SUCCESS = 'Logout/SUCCESS';
-// const LOGOUT_FAILURE = 'Logout/FAILURE';
+const LOGOUT_FAILURE = 'Logout/FAILURE';
 
 
 // ----- 로그인 액션 -----

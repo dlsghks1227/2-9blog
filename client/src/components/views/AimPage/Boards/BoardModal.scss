@@ -1,0 +1,17 @@
+
+
+.modal-header-css{
+    background-color:  rgb(238, 218, 252);
+    color : white;
+}
+
+.modalFooter .boardModalButton{
+    background-color: lavender;
+    color: white;
+    border: none;
+
+    &:hover{
+        background-color: lavenderblush;
+        
+    }
+}

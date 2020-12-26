@@ -7,13 +7,27 @@
     overflow-y: auto;
     position: relative;
     
-    //@import url(https://fonts.googleapis.com.com/earlyaccess/nanumgothic.css);
+  
     h2{
         margin-top : 20px;
         margin-bottom: 20px;
-        color : rgb(203, 178, 243);
-        border-bottom: 5px solid rgb(203, 178, 243);  
-        font-family: "Helvetica Neue"
+        text-align: center;
+        color : rgb(203, 178, 243); 
+    }
+
+    Button{
+        display : block;
+        width : 100%;
+        border-radius: 4px;
+        border: none;
+        color: black;
+        background-color: white;
+        &:hover{
+            background-color: lavender;
+        }
+        &:focus{
+            background-color: lavender;
+        }
     }
 
 }

@@ -1,57 +1,80 @@
 
 
-// .card{
-//     position: relative;
-//     text-decoration :none;
-//     background : lavender;
-//     width : 15%;
-//     height : 60%;
-//     display : flex;
-//     align-items : center;
-//     justify-content: space-around;
-//     margin: 20px;    
+.BoardCardPage{
+    position : relative;
+    top : 2rem;
+    display : flex;
+    width : 15%;
+
+    .card{
+        text-decoration :none;
+        display : flex;
+        align-items : center;
+        justify-content: space-around;
+    
+        .card-title{
+            font-size: 1.25rem;
+            a{
+                color : rgb(215, 173, 230);  
+                text-align: center;
+            }
+        }
+
+        .card-img-top{
+            height: 50%;
+        }
+
+        .card-body{
+            overflow: auto;
+
+            .boardIcon{
+                svg{
+                    margin : 5px;
+                    color: rgb(253, 191, 222);
+                }
+                position: absolute;
+                right : 0.3rem;
+                bottom : 0rem;
+            }
+        }
+    }
+}
 
 
-//     .card-title{
-//         font-size: 1.5rem;
-//         a{
-//             color : rgb(215, 173, 230);  
-//             text-align: center;
+// .CreateBoardCardPage{    
+//     width: 100%;
+//     .modal{
+      
+//         .modal-dialog-css{
+//             background-color: lavender;
+//             top: 40px;
+//             right: 0;
+//             bottom: 0;
+//             left: 0;  ///배경에 픽스를 주고 투명도를 준다.
+//             display:inline;
+//             text-align : left;
+//             vertical-align: middle;
+//             z-index: 1000;
+
+//                 .modal-header-css{
+//                     background-color: lavender;
+//                     color: white;
+//                 }
+//                 .modal-body{
+//                     input{
+//                         border :none;
+//                     }
+//                 }
+//                 .modal-footer{
+//                     Button{
+//                         background-color: lavender;
+//                         color: white;
+//                     }
+//                 }
 //         }
-//     }
-
-
+//     }      
 // }
 
-// // .modal-dialog{
-// //     top: 40px;
-// //     right: 0;
-// //     bottom: 0;
-// //     left: 0;  ///배경에 픽스를 주고 투명도를 준다.
-// //     display:inline;
-// //     text-align : left;
-// //     vertical-align: middle;
-// //     z-index: 1000;
-
-// //     .modal-content{
-// //         height : 40%;
-// //         .modal-header{
-// //             background-color: lavender;
-// //             color: white;
-// //         }
-// //         .modal-body{
-// //             input{
-// //                 border :none;
-// //             }
-// //         }
-// //         .modal-footer{
-// //             Button{
-// //                 background-color: lavender;
-// //                 color: white;
-// //             }
-// //         }
-// //     }
-// // }
 
 // .CreateBoardCardStyle{
 //     border :none;

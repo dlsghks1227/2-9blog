@@ -4,21 +4,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import CreateBoardCard from '../Boards/CreateBoardCard';
 import BoardCard from '../Boards/BoardCard';
 import { BoardType } from '../../../../store/reducer/boards';
-import './BoardStyle.scss'
+import './BoardStyle.scss';
 import { Card, Button, Accordion, Modal, ButtonGroup, Pagination, PageItem } from 'react-bootstrap'
 import { createBoard } from '../../../../store/reducer/boards';
 
 function BoardPage() {
 
     const check = useSelector((state) => {
-        return state.board.boards.filter((board,index) => board.id !== undefined)
+        return state.board.boards.filter((board,index) => board.id !== "")
     });
 
     const [open, setOpen] = useState(false);
     const pageRef = useRef();
 
     const handleClose = () => {
-        //pageRef.current.classList.remove("modal");
         setOpen(false);
     }
     const handleShow = () => {
@@ -29,14 +28,16 @@ function BoardPage() {
         handleClose();
     }
 
-
     let pageItem = [];
     let pageCard = [];
 
+    console.log(check)
     const [activeValue, setActiveValue] = useState(1);
 
+
     const pageClick = (e) => {
-        setActiveValue(e.currentTarget.innerText);
+        if(e.currentTarget.innerText.indexOf('current') == -1) //지금 현재 클릭한 버튼이 활성화되지 않으면
+            setActiveValue(e.currentTarget.innerText);
     }
 
     for (let num = 1; num <= Math.ceil(check.length / 5); num++) { //
@@ -48,7 +49,7 @@ function BoardPage() {
     }
 
     pageCard = check.filter((board, index) =>{
-        return 5 * activeValue - 4 <= index && index <= 5 * activeValue
+        return 5 * activeValue - 5 <= index && index <= 5 * activeValue-1 
     });
 
     return (
@@ -58,12 +59,13 @@ function BoardPage() {
                 {pageCard.map((board) =>
                         <BoardCard key={board.id} board={board} />
                 )}
-                {open ? <CreateBoardCard closed={isClosed} /> : ''}
             </div>
+            {open ? <CreateBoardCard closed={isClosed} /> : ''}
+            <div className="paging">
                 <Pagination size="md">{pageItem}</Pagination>
+            </div>
         </div>
     );
-    //BoardType == action
 }
 
 
