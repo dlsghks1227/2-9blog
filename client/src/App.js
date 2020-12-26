@@ -56,7 +56,7 @@ function App() {
   return (
     <div>
       <Router>
-        <Header/>
+        <Header />
         <Container fluid>
           <Row>
             <Col style={{ minHeight: 'calc(100vh - 8rem)', padding: '0' }}>
@@ -74,6 +74,8 @@ function App() {
                 <Route exact path="/aim" component={BoardPage} />
                 <Route exact path="/signUp" component={SignUpPage} />
                 <Route exact path="/board/:id" component={ListPage} />
+                <Route render={() => (<div className="d-flex flex-column h-100 justify-content-center align-items-center"><h1>404</h1><p>다나가 혼자있고싶어..</p></div>)} />
+
               </Switch>
             </Col>
           </Row>
