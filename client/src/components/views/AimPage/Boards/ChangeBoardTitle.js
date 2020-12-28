@@ -5,19 +5,19 @@ import { updateBoard } from '../../../../store/reducer/boards'
 import './BoardModal.scss';
 import './BoardCardStyle.scss';
 
-const ChangeBoardTitle = ({board,update}) => {
+const ChangeBoardTitle = ({ board, update }) => {
 
     const [boardTitle, setBoardTitle] = useState('');
     const [show, setShow] = useState(true);
     const dispatch = useDispatch();
-    const titleRef= useRef();
+    const titleRef = useRef();
 
-    const modalClose=()=>{
+    const modalClose = () => {
         setShow(false);
         update()
     }
 
-    const BoardTitleUpdate = (e)=>{
+    const BoardTitleUpdate = (e) => {
         const updateTitle = titleRef.current.value;
 
         if (updateTitle == "")
@@ -31,29 +31,31 @@ const ChangeBoardTitle = ({board,update}) => {
 
     return (
         <div>
-                <Modal className="BoardModal"
-                    show= {show}
-                    onHide={modalClose}
-                    backdrop="static"
-                    keyboard={false} >
+            <Modal className="BoardModal"
+                show={show}
+                onHide={modalClose}
+                backdrop="static"
+                keyboard={false} >
+                <div class="modalContent">
+                    <Modal.Dialog>
 
-                        <Modal.Dialog style={{ position: "fixed" }}>
-                           
-                                <Modal.Header closeButton onClick={modalClose}  className="modal-header-css">
-                                    <Modal.Title>수정할 제목을 입력하세요.</Modal.Title>
-                                </Modal.Header>
-                           
-                            <Modal.Body>
-                                <input type="text" size="40" placeholder="입력" ref={titleRef}
-                                    onKeyPress={(e) => { if (e.key == "Enter") BoardTitleUpdate() }} />
-                            </Modal.Body>
+                        <Modal.Header closeButton onClick={modalClose} className="modal-header-css">
+                            <Modal.Title>수정할 제목을 입력하세요.</Modal.Title>
+                        </Modal.Header>
 
-                            <Modal.Footer className="modalFooter">
-                                <Button variant="primary" className ="boardModalButton" onClick={BoardTitleUpdate}>저장</Button>
-                            </Modal.Footer>
-                        </Modal.Dialog>
-                </Modal >
+                        <Modal.Body>
+                            <input type="text" size="40" placeholder="입력" ref={titleRef}
+                                onKeyPress={(e) => { if (e.key == "Enter") BoardTitleUpdate() }} />
+                        </Modal.Body>
+
+                        <Modal.Footer className="modalFooter">
+                            <Button className="boardModalButton" onClick={BoardTitleUpdate}>저장</Button>
+                        </Modal.Footer>
+                    </Modal.Dialog>
+                    </div>
+            </Modal >
         </div>
+        
     )
 }
 

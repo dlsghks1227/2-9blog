@@ -54,6 +54,7 @@ function Header(props) {
                 <Nav>
                     <Nav.Item><NavLink className="nav-link" to="/post">Post</NavLink></Nav.Item>
                     <Nav.Item><NavLink className="nav-link" to="/study">Study</NavLink></Nav.Item>
+                    <Nav.Item><NavLink className="nav-link" to="/aim">Aim</NavLink></Nav.Item>
                     <Nav.Link
                         onClick={() => setIsShowSearchMdal(true)}>
                         Search

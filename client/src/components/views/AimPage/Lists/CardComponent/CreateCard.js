@@ -11,8 +11,10 @@ const CreateCard = ({ listId }) => {
     const [cardName, setCardName] = useState('');
 
     const create = () => {
-        console.log("createEncter");
+       
         const action = createCard(listId, cardName);
+        console.log("createCard", action);
+        
         dispatch(action);
 
         setCardName('');
@@ -27,7 +29,6 @@ const CreateCard = ({ listId }) => {
                     onKeyDown={(e) => {
                         if (e.key == "Enter" && cardName !== "") {create()}
                     }} />
-                
             </div>
             <FontAwesomeIcon icon={faPlus} onClick={() =>{ 
                 if(cardName !== "") create()}} />
