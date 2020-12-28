@@ -10,7 +10,7 @@ import axios from 'axios';
 
 const { persistor, store } = Store();
 
-axios.defaults.baseURL = process.env.NODE_ENV === 'development' ? '' : 'http://112.185.119.106:8000'
+axios.defaults.baseURL = process.env.NODE_ENV === 'development' ? '' : 'http://localhost:8000'
 // axios.defaults.baseURL = 'http://112.185.119.106:8000/';
 
 ReactDOM.render(

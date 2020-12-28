@@ -59,8 +59,11 @@ class UserLoginSerializer(serializers.Serializer):
             'token': jwt_token
         }
 
-class UserProfileSerializer(serializers.Serializer):
-    email = serializers.EmailField(max_length=64)
-    username = serializers.CharField(max_length=30)
-    photo = serializers.ImageField()
-    introduce = serializers.CharField()
+class UserProfileSerializer(serializers.ModelSerializer):
+    # email = serializers.EmailField(max_length=64)
+    # username = serializers.CharField(max_length=30)
+    # photo = serializers.ImageField()
+    # introduce = serializers.CharField()
+    class Meta:
+        model = User
+        fields = ['email', 'username', 'photo', 'introduce']
