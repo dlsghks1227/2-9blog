@@ -20,9 +20,7 @@ function UserPage() {
     const { username } = useParams()
 
     return (
-        <div>
-            <UserContainer username={username}/>
-        </div>
+        <UserContainer username={username}/>
     )
 }
 

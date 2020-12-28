@@ -9,22 +9,51 @@ import {
 } from 'react-router-dom'
 import {
     Media,
-    ListGroup
+    ListGroup,
+    Button,
+    Form
 } from 'react-bootstrap'
 import {
     getUserProfile,
     getUserPost,
 } from '../../../store/reducer/api';
 import '../MyPage/MyPageContainer.scss';
+import { faEdit } from '@fortawesome/free-solid-svg-icons'
 
-function UserContainer({ username }) {
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+
+function UpdateUserPage() {
     const dispatch = useDispatch();
+    const { username } = useSelector(state => ({
+        username: state.login.username,
+    }));
 
     const [error, setError] = useState(null);
     const [loading, setLoding] = useState(false);
 
     const [profile, setProfile] = useState(null);
     const [userPost, setUserPost] = useState(null);
+
+    const [imageEdit, setImageEdit] = useState('');
+    const [previewURL, setPreviewURL] = useState('');
+
+    const [imageBtn, setImageBtn] = useState(false);
+    const [nameBtn, setNameBtn] = useState(false);
+    const [introduceBtn, setIntroduceBtn] = useState(false);
+
+    const imgRef = useRef();
+
+    const onImageChangeHandler = (e) => {
+        e.preventDefault();
+        let reader = new FileReader();
+        let file = e.target.files[0];
+        reader.onloadend = () => {
+            setImageEdit(file);
+            setPreviewURL(reader.result)
+        }
+        reader.readAsDataURL(file);
+    }
 
     useEffect(() => {
         const onGetUserProfile = (name) => dispatch(getUserProfile(name));
@@ -55,7 +84,7 @@ function UserContainer({ username }) {
         }
 
         fetchProfile();
-    }, [dispatch, username]);
+    }, [dispatch, username, imageBtn, nameBtn, introduceBtn]);
 
     if (loading) return (
         <div className="userpage-section">
@@ -124,5 +153,4 @@ function UserContainer({ username }) {
     )
 }
 
-export default UserContainer
-
+export default UpdateUserPage

@@ -195,6 +195,43 @@ export function createPost(postData) {
         return data;
     }
 }
+
+export function getUserPost(username) {
+    return async (dispatch, getState) => {
+        const { login } = getState();
+
+        if (!username) {
+            return { message: 'fail' };
+        }
+
+        const url = '/posts/search/username/';
+        const options = {
+            method: 'POST',
+            url: url,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: {
+                username: username,
+            }
+        }
+
+        dispatch(requestAPI());
+
+        const res = await axios(options);
+        const data = res.data;
+
+        if (res.statusText === "OK" && res.status === 200) {
+            dispatch(receiveAPI());
+        } else {
+            dispatch(errorAPI());
+            throw new Error(data);
+        }
+
+        return data;
+    }
+}
+
 // --------게시글 관련-------- 
 
 export default function api(state = initialState, action) {

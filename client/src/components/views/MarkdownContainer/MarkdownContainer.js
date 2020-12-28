@@ -1,11 +1,9 @@
-
-
 import React, {
     useState
 } from 'react'
 import {
-
-} from 'react-dom'
+    useHistory,
+} from 'react-router-dom'
 import {
     useSelector,
     useDispatch,
@@ -20,9 +18,10 @@ import {
 } from 'react-bootstrap'
 
 function MarkdownContainer() {
+    const history = useHistory();
 
     // 제목
-    const [title, setTitle] = useState(`title`);
+    const [title, setTitle] = useState('');
     // 본문
     const [body, setBody] = useState(``);
     const dispatch = useDispatch();
@@ -30,19 +29,27 @@ function MarkdownContainer() {
 
     const onSubmitClick = async (event) => {
         event.preventDefault();
-        await onSubmit({
+        const data = await onSubmit({
             title: title,
             body: body,
             category: 'study'
         });
+        if (data.message !== "fail") {
+            history.push(`/post/read/${data.id}`)
+        }
+    }
+
+    const onTitleChange = (event) => {
+        setTitle(event.target.value)
     }
 
     return (
         <div className="container">
-            <input className="title-input" placeholder="제목" />
-            <MEDitor height={600} value={body} onChange={setBody} />
-            <div style={{ padding: "50px 0 0 0" }} />
-            <Button onClick={onSubmitClick}>Test</Button>
+            <input value={title} onChange={(e) => setTitle(e.target.value)} className="title-input" placeholder="제목"/>
+
+            <MEDitor height={600} value={body} onChange={setBody}/>
+            
+            <Button className="md-submit-button" size="lg" onClick={onSubmitClick}>Write</Button>
             {/* <MEDitor.Markdown source={value} /> */}
         </div>
     );

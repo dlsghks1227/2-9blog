@@ -64,7 +64,7 @@ function Header(props) {
                         {
                             isAuthenticated ? (
                                 <Navbar.Text>
-                                    Signed in as: <NavLink to={`/users/${username}`}>{username}</NavLink>
+                                    Signed in as: <NavLink to={`/mypage`}>{username}</NavLink>
                                 </Navbar.Text>
 
                             ) : (
