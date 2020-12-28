@@ -27,6 +27,7 @@ import BoardPage from './components/views/AimPage/pages/BoardPage'
 import LoginPage from './components/views/login/login';
 import SignUpPage from './components/views/SignUp/SignUp';
 import ReadPage from './components/views/ReadPage/ReadPage';
+import UpdateUserPage from './components/views/UpdateUserPage/UpdateUserPage' 
 
 import './App.scss';
 import StudyMeetingPage from 'components/views/StudyMeetingPage/StudyMeetingPage';
@@ -73,7 +74,8 @@ function App() {
                 <Route path="/study/post" component={StudyPostContainer} />
                 <Route path="/study" component={StudyMeetingPage} />
                 <Route path="/users/:username" component={UserPage} />
-                <AuthRoute exact path="/mypage" component={MyPage} />
+
+                <AuthRoute exact path="/mypage" component={UpdateUserPage} />
                 <Route exact path="/login" component={LoginPage} />
                 <Route exact path="/aim" component={BoardPage} />
                 <Route exact path="/signUp" component={SignUpPage} />

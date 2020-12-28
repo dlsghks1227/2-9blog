@@ -73,7 +73,7 @@ function ReadPage() {
             <h1>{postData.title}</h1>
             <p className="post-time">{createdDate[0] + ' ' + createdTime}</p>
             <p>author: <NavLink to={`/users/${postData.username}`}>{postData.username}</NavLink></p>
-            <hr/>
+            <hr style={{ height: '1px', backgroundColor : "#cccccc", marginBottom:'3rem'}}/>
             <MEDitor.Markdown source={postData.body}/>
         </div>
     )
