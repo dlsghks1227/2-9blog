@@ -6,13 +6,17 @@ import * as serviceWorker from './serviceWorker';
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import Store from 'store/index';
+import axios from 'axios';
 
-const {persistor, store} = Store();
+const { persistor, store } = Store();
+
+axios.defaults.baseURL = process.env.NODE_ENV === 'development' ? '' : 'http://112.185.119.106:8000'
+// axios.defaults.baseURL = 'http://112.185.119.106:8000/';
 
 ReactDOM.render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
-      <App/>
+      <App />
     </PersistGate>
   </Provider>,
   document.getElementById('root')

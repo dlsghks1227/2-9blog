@@ -9,6 +9,8 @@ urlpatterns = [
     path('<int:pk>/', views.PostViewSet.as_view({
         'get': 'retrieve',
         'delete': 'destroy',
+        'patch': 'update'
     })),
-    path('category/search/', views.PostSearchWithCategoryViewSet.as_view()),
+    path('search/category/', views.PostSearchByCategoryViewSet.as_view()),
+    path('search/username/', views.PostSearchByUsernameViewSet.as_view()),
 ]

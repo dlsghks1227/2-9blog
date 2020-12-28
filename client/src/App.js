@@ -26,6 +26,7 @@ import ListPage from './components/views/AimPage/pages/ListPage'
 import BoardPage from './components/views/AimPage/pages/BoardPage'
 import LoginPage from './components/views/login/login';
 import SignUpPage from './components/views/SignUp/SignUp';
+import ReadPage from './components/views/ReadPage/ReadPage';
 
 import './App.scss';
 import StudyMeetingPage from 'components/views/StudyMeetingPage/StudyMeetingPage';
@@ -65,7 +66,10 @@ function App() {
                 <AuthRoute exact path="/write" component={WritePage} />
                 <Route exact path="/post" component={PostPage} />
                 {/* <Route exact path="/mypage" component={MyPage} /> */}
-                <Route path="/post/:doc" component={PostPage} />
+
+                <Route exact path="/post/:doc" component={PostPage} />
+                <Route exact path="/post/read/:id" component={ReadPage} />
+
                 <Route path="/study/post" component={StudyPostContainer} />
                 <Route path="/study" component={StudyMeetingPage} />
                 <Route path="/users/:username" component={UserPage} />

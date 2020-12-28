@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const SIGNUP_REQUEST = 'signup/REQUEST';
 const SIGNUP_SUCCESS = 'signup/REQUEST';
 const SIGNUP_FAILURE = 'signup/REQUEST';
@@ -24,25 +26,27 @@ export function SignupUser(creds) {
         const url = '/users/create/';
         const options = {
             method: 'POST',
+            url: url,
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({
+            data: {
                 email: creds.email,
                 username: creds.username,
                 password: creds.password,
-            })
+            }
         }
         
         dispatch(requestSignup(creds));
 
-        const res = await fetch(url, options);
-        const data = await res.json();
+        const res = await axios(options);
+        const data = res.data;
 
-        if (res.ok && res.status === 201 && data.message === "ok") {
+        if (res.statusText === "Created" && res.status === 201 && data.message === "ok") {
             dispatch(receiveSignup());
         } else {
             dispatch(SignupError(data.message));
+            throw new Error(data);
         }
 
         return data;

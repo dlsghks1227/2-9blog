@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const API_REQUEST = 'api/REQUEST';
 const API_SUCCESS = 'api/SUCCESS';
 const API_FAILURE = 'api/FAILURE';
@@ -29,31 +31,29 @@ export function validateUser() {
     return async (dispatch, getState) => {
         const { login } = getState();
 
-        console.log(login)
-
         if (!login.token || !login.username || !login.email) {
-            console.log(login);
             return { message: 'fail' };
         }
 
         const url = '/users/validate/';
         const options = {
             method: 'POST',
+            url: url,
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'JWT ' + login.token
             },
-            body: JSON.stringify({
-                email: login.email
-            }),
+            data: {
+                username: login.username
+            },
         };
 
         dispatch(requestAPI());
 
-        const res = await fetch(url, options);
-        const data = await res.json();
+        const res = await axios(options);
+        const data = res.data;
 
-        if (res.ok && res.status === 200 && data.message === "ok") {
+        if (res.statusText === "OK" && res.status === 200 && data.message === "ok") {
             dispatch(receiveAPI());
         } else {
             dispatch(errorAPI());
@@ -71,6 +71,7 @@ export function getUserProfile(username) {
         const url = '/users/profile/?username=' + username;
         const options = {
             method: 'GET',
+            url: url,
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -78,10 +79,10 @@ export function getUserProfile(username) {
 
         dispatch(requestAPI());
         
-        const res = await fetch(url, options);
-        const data = await res.json();
+        const res = await axios(options);
+        const data = res.data;
 
-        if (res.ok && res.status === 200) {
+        if (res.statusText === "OK" && res.status === 200) {
             dispatch(receiveAPI());
         } else {
             dispatch(errorAPI());
@@ -101,6 +102,7 @@ export function getPost(page) {
         const url = '/posts/?page=' + page;
         const options = {
             method: 'GET',
+            url: url,
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -108,10 +110,38 @@ export function getPost(page) {
 
         dispatch(requestAPI());
 
-        const res = await fetch(url, options);
-        const data = await res.json();
+        const res = await axios(options);
+        const data = res.data;
 
-        if (res.ok && res.status === 200) {
+        if (res.statusText === "OK" && res.status === 200) {
+            dispatch(receiveAPI());
+        } else {
+            dispatch(errorAPI());
+            throw new Error(data);
+        }
+
+        return data;
+    }
+}
+
+export function getReadPost(id) {
+    return async (dispatch) => {
+
+        const url = '/posts/' + id + '/';
+        const options = {
+            method: 'GET',
+            url: url,
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        }
+
+        dispatch(requestAPI());
+
+        const res = await axios(options);
+        const data = res.data;
+
+        if (res.statusText === "OK" && res.status === 200) {
             dispatch(receiveAPI());
         } else {
             dispatch(errorAPI());
@@ -126,6 +156,8 @@ export function createPost(postData) {
     return async (dispatch, getState) => {
         const { login } = getState();
 
+        console.log(login);
+
         if (!postData.title || !postData.body || !login.token || !login.username) {
             return { message: 'fail' };
         }
@@ -133,27 +165,31 @@ export function createPost(postData) {
         const url = '/posts/';
         const options = {
             method: 'POST',
+            url: url,
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'JWT ' + login.token
             },
-            body: JSON.stringify({
+            data: {
                 title: postData.title,
                 body: postData.body,
                 category: postData.category,
                 username: login.username,
-            })
+            }
         }
 
         dispatch(requestAPI());
 
-        const res = await fetch(url, options);
-        const data = await res.json();
+        const res = await axios(options);
+        const data = res.data;
 
-        if (res.ok && res.status === 200) {
+        console.log(res);
+
+        if (res.statusText === "Created" && res.status === 201) {
             dispatch(receiveAPI());
         } else {
             dispatch(errorAPI());
+            throw new Error(data);
         }
 
         return data;
