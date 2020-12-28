@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useRef } from 'react';
+import React, { useState, useEffect,useRef, useMemo } from 'react';
 import ListCard from './CardComponent/ListCard';
 import CreateCard from './CardComponent/CreateCard';
 import { useParams } from 'react-router-dom';
@@ -14,9 +14,13 @@ const Lists = ({ list }) => {
     const dispatch = useDispatch();
     const InputRef = useRef();
 
+    const [cardState, setCardState] = useState(false);
+
     const cards = useSelector((state) => {
         return state.card.cards.filter((card) => card.listsId === list.id && card.cardName !== "");
     });
+
+    console.log("card확인 : ",cards);
 
     const boardLists = useSelector((state) => {
         if (id !== undefined)
@@ -36,14 +40,15 @@ const Lists = ({ list }) => {
                     <input type="text" ref={InputRef} defaultValue={list.title} 
                         onKeyDown={(e) => {
                             const value = e.currentTarget.value;
-                            if (e.key == 'enter' && value!=="") {
-                                dispatch(updateListsTitle(list.id, e.currentTarget.value));
-                                e.currentTarget.blur();
+                            if (e.key == "Enter") {
+                                if(value!==""){
+                                    dispatch(updateListsTitle(list.id, e.currentTarget.value));
+                                    e.currentTarget.blur();
+                                }
+                                else{
+                                    alert("리스트명을 입력해주세요.");
+                                }
                             }
-                            else if(value === ""){
-                                alert("리스트명을 입력해주세요.")
-                            }
-
                         }}
                     />
                       <FontAwesomeIcon icon={faMinus} onClick={listDelete} />
@@ -52,7 +57,7 @@ const Lists = ({ list }) => {
                     {boardLists.map((lists, i) => {
                         <div key={i}>{lists}</div>
                     })}
-                    {cards.map((card, i) => <ListCard key={i} card={card} />)}
+                    {cards.map((card) => <ListCard key={card.id} card={card} />)}
                 </ul>
                 <CreateCard listId={list.id} />
             </div>

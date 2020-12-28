@@ -36,31 +36,29 @@ const CreateBoardCard = ({ closed }) => {
     }
     console.log(showing)
     return (
-        <div className="BoardModal">
+        <div>
             {showing ? (
                 <Modal
                     show={showing}
                     onHide={handleClose}
                     backdrop="static"
                     keyboard={false} >
-
-                    <div className=".modal-dialog-css">
-                        <Modal.Dialog style={{ position: "fixed" }}>
-                            <div className=".modal-header-css">
-                                <Modal.Header closeButton onClick={(e) => handleClose(e)}>
-                                    <Modal.Title>Write your Aim</Modal.Title>
+                    <div class="modalContent">
+                        <Modal.Dialog>
+                                <Modal.Header closeButton onClick={(e) => handleClose(e)} className="modal-dialog-css">
+                                    <Modal.Title>목표 주제가 무엇인가요?</Modal.Title>
                                 </Modal.Header>
-                            </div>
+                        
                             <Modal.Body>
                                 <input type="text" ref={AimRef} size="40" placeholder="목표 주제를 적어주세요"
                                     onKeyPress={(e) => { if (e.key == "Enter") BoardConstruct(e) }} />
                             </Modal.Body>
 
-                            <Modal.Footer>
-                                <Button variant="primary" onClick={(e) => BoardConstruct(e)}>저장</Button>
+                            <Modal.Footer className="modalFooter">
+                                <Button variant="primary" className ="boardModalButton" onClick={(e) => BoardConstruct(e)}>저장</Button>
                             </Modal.Footer>
                         </Modal.Dialog>
-                    </div>
+                        </div>
                 </Modal >
             ) : ''}
         </div>

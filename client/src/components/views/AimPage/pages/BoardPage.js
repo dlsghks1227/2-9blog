@@ -31,7 +31,6 @@ function BoardPage() {
     let pageItem = [];
     let pageCard = [];
 
-    console.log(check)
     const [activeValue, setActiveValue] = useState(1);
 
 

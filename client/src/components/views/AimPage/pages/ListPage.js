@@ -13,7 +13,6 @@ function ListPage() {
     const [mkList, setMkList] = useState(false);
 
     const listsState = useSelector((state) => state.lists) 
-    console.log("listsState : ", listsState.lists);
 
     const boardList = useSelector((state)=>{
         return state.lists.lists.filter((list)=> list.boardId === id)

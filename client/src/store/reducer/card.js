@@ -5,6 +5,7 @@ import { v4 as uuid } from 'uuid';
 
 export const CREATE_CARD = "todo/CREATE_CARD";
 export const UPDATE_CARD = "todo/UPDATE_CARD";
+export const DELETE_CARD = "todo/DELETE_CARD";
 
 export const createCard = createAction(CREATE_CARD, function prepare(listId, cardName) {
     return {
@@ -26,6 +27,14 @@ export const updateCard = createAction(UPDATE_CARD, function prepare(cardId, car
     }
 });
 
+export const deleteCard = createAction(DELETE_CARD, function prepare(cardId){
+    return{
+        payload: {
+            cardId : cardId
+        }
+    }
+})
+
 
 const initialState = {
     cards :[]
@@ -33,7 +42,8 @@ const initialState = {
 
 export const actions={
     CREATE_CARD,
-    UPDATE_CARD
+    UPDATE_CARD,
+    DELETE_CARD
 };
 
 export default createReducer(initialState, {
@@ -51,6 +61,13 @@ export default createReducer(initialState, {
                 }
                 return card;
             })
+        })
+    },
+    [DELETE_CARD] : (state,action)=>{
+        console.log("action : ",action.payload.cardId)
+        console.log(state.cards);
+        return produce(state, draft => {
+            draft.cards = state.cards.filter((card)=> card.id !== action.payload.cardId);
         })
     }
 });
