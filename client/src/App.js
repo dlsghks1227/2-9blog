@@ -56,7 +56,7 @@ function App() {
   // },[]);
   return (
     <div>
-      <Router basename={process.env.PUBLIC_URL}>
+      <Router>
         <Header />
         <Container fluid>
           <Row>

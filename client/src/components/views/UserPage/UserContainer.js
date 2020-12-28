@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState, useEffect, useRef } from 'react';
 import {
     useSelector,
@@ -61,9 +62,9 @@ function UserContainer({ username }) {
     return (
         <section className="mypage-section">
             <article className="my-information">
-                <p className="mypage-title">{ profile.username}</p>
+                <p className="mypage-title">{ profile.username }</p>
                 <div className="profileimg-inner">
-                    <img className="profile-preview" src={"" + profile.photo} alt='profile'></img>
+                    <img className="profile-preview" src={axios.defaults.baseURL + profile.photo} alt='profile'></img>
                 </div>
                 <div className="infomation-inner">
                     <p>{profile.email}</p>

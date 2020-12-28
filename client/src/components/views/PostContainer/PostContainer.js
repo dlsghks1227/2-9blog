@@ -5,6 +5,7 @@ import React, {
 //simport { db } from '../../../fbase';
 import {
     NavLink,
+    Link,
     Redirect
 } from 'react-router-dom'
 import {
@@ -30,7 +31,6 @@ function PostContainer({ doc }) {
     }));
     const dispatch = useDispatch();
 
-    const [currentPage, setCurrentPage] = useState(doc);
     const [maxPage, setMaxPage] = useState(null);
     const [error, setError] = useState(null);
     const [loading, setLoding] = useState(false);
@@ -46,7 +46,8 @@ function PostContainer({ doc }) {
 
                 setPosts(null);
 
-                const data = await onGetPost(currentPage);
+                const data = await onGetPost(doc);
+                console.log(data);
                 if (data && data['results']) {
                     setMaxPage(Math.round(data.count / 10));
                     setPosts(data);
@@ -62,28 +63,32 @@ function PostContainer({ doc }) {
         }
 
         fetchPosts();
-    }, [dispatch, currentPage]);
+    }, [dispatch, doc]);
 
     const PageContainer = () => {
         return (
             <Pagination className="m-5">
-                <Pagination.First href="/post/1" />
-                <Pagination.Prev href={posts.previous ? `/post/${(parseInt(currentPage) - 1)}` : `/post/${currentPage}`} />
+                <NavLink className="page-link" to={"/post/1"}>&lt;&lt;</NavLink>
+                <NavLink className="page-link" to={posts.previous ? `/post/${(parseInt(doc) - 1)}` : `/post/${doc}`}>&lt;</NavLink>
                 {
-                    (parseInt(currentPage)) >= 5 ? (<Pagination.Ellipsis disabled></Pagination.Ellipsis>) : (<div />)
+                    (parseInt(doc)) >= 5 ? (<Pagination.Ellipsis disabled></Pagination.Ellipsis>) : (<div />)
                 }
                 {
                     maxPage < 10 ?
                         (
                             Array.apply(0, Array(maxPage)).map((x, i) => {
-                                const isActivated = ((parseInt(currentPage) - 1) === i);
-                                return <Pagination.Item key={i} active={isActivated} href={`/post/${i + 1}`} >{i + 1}</Pagination.Item>
+                                const isActivated = ((parseInt(doc) - 1) === i);
+                                return (
+                                    // <NavLink className="page-link active" to={`/post/${i + 1}`} key={i}>
+                                    <div className={`page-item ${isActivated ? "active" : ""}`} key={i}><NavLink className="page-link" to={`/post/${i + 1}`}>{i + 1}</NavLink></div>
+                                    // </NavLink>
+                                    );
                             })
                         ) : (
                             // 페이지가 10개 이상일 때
                             Array.apply(0, Array(7)).map((x, i) => {
-                                const count = (parseInt(currentPage)) + (i - 4);
-                                const isActivated = ((parseInt(currentPage) - 1) === count);
+                                const count = (parseInt(doc)) + (i - 4);
+                                const isActivated = ((parseInt(doc) - 1) === count);
                                 if (count >= 0 && count < maxPage) {
                                     return (<Pagination.Item key={i} active={isActivated} href={`/post/${count + 1}`} >{count + 1}</Pagination.Item>);
                                 }
@@ -100,11 +105,10 @@ function PostContainer({ doc }) {
                     // })
                 }
                 {
-                    (parseInt(currentPage)) <= maxPage - 4 ? (<Pagination.Ellipsis disabled></Pagination.Ellipsis>) : (<div />)
+                    (parseInt(doc)) <= maxPage - 4 ? (<Pagination.Ellipsis disabled></Pagination.Ellipsis>) : (<div />)
                 }
-                <Pagination.Next href={posts.next ? `/post/${(parseInt(currentPage) + 1)}` : `/post/${currentPage}`} />
-
-                <Pagination.Last href={`/post/${maxPage}`} />
+                <NavLink className="page-link" to={posts.next ? `/post/${(parseInt(doc) + 1)}` : `/post/${doc}`}>&gt;</NavLink>
+                <NavLink className="page-link" to={`/post/${maxPage}`}>&gt;&gt;</NavLink>
             </Pagination>
         );
     }
@@ -145,7 +149,7 @@ function PostContainer({ doc }) {
             <ListGroup>
                 {
                     posts['results'].map(post => {
-                        const createdDate = new Date(post.created_at).toISOString().split('T');
+                        const createdDate = post.created_at.split('T');
                         const createdTime = createdDate[1].split('.')[0];
 
                         return (

@@ -65,7 +65,7 @@ function ReadPage() {
         </div>
     );
 
-    const createdDate = new Date(postData.created_at).toISOString().split('T');
+    const createdDate = postData.created_at.split('T');
     const createdTime = createdDate[1].split('.')[0];
 
     return (

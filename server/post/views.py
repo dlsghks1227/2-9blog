@@ -1,6 +1,6 @@
 from rest_framework import generics, viewsets, filters, status
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.permissions import AllowAny, IsAuthenticatedOrReadOnly
 
 from .serializers import PostSerializer
 from .models import Post
@@ -22,16 +22,36 @@ class PostViewSet(viewsets.ModelViewSet):
         # print(post.pop('tags'))
         return super().create(request, *args, **kwargs)
 
-class PostSearchWithCategoryViewSet(generics.ListAPIView):
+class PostSearchByCategoryViewSet(generics.ListAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [AllowAny]
 
     def post(self, request):
         try:
             if not request.data.get('category'):
                 return Response({"message" : "Invalid category"}, status=status.HTTP_409_CONFLICT)
             post = self.get_queryset().filter(category=request.data['category'])
+            queryset = self.filter_queryset(post)
+            page = self.paginate_queryset(queryset)
+            if page is not None:
+                serializers = self.get_serializer(page, many=True)
+                return self.get_paginated_response(serializers.data)
+            serializers = self.get_serializer(queryset, many=True)
+            return Response(serializers.data)
+        except Post.DoesNotExist:
+            return Response({"message" : "Invalid category"}, status=status.HTTP_409_CONFLICT)
+
+class PostSearchByUsernameViewSet(generics.ListAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+    permission_classes = [AllowAny]
+
+    def post(self, request):
+        try:
+            if not request.data.get('username'):
+                return Response({"message" : "Invalid category"}, status=status.HTTP_409_CONFLICT)
+            post = self.get_queryset().filter(username=request.data['username'])
             queryset = self.filter_queryset(post)
             page = self.paginate_queryset(queryset)
             if page is not None:

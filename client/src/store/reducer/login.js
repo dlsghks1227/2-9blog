@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const LOGIN_REQUEST = 'login/REQUEST';
 const LOGIN_SUCCESS = 'login/SUCCESS';
 const LOGIN_FAILURE = 'login/FAILURE';
@@ -8,7 +10,7 @@ const LOGOUT_SUCCESS = 'Logout/SUCCESS';
 
 
 // ----- 로그인 액션 -----
-const requestLogin = creds => ({
+const requestLogin = () => ({
     type: LOGIN_REQUEST,
     isFetching: true,
     isAuthenticated: false,
@@ -53,24 +55,26 @@ export function loginUser(creds) {
         const url = '/users/login/';
         const options = {
             method: 'POST',
+            url: url,
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({
+            data: {
                 email: creds.email,
                 password: creds.password,
-            })
+            }
         }
 
         dispatch(requestLogin(creds));
 
-        const res = await fetch(url, options);
-        const data = await res.json();
+        const res = await axios(options);
+        const data = res.data;
 
-        if (res.ok && res.status === 200 && data.message === "ok") {
+        if (res.statusText === "OK" && res.status === 200 && data.message === "ok") {
             dispatch(receiveLogin(data));
         } else {
             dispatch(loginError(data.message));
+            throw new Error(data);
         }
 
         return data;

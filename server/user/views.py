@@ -1,4 +1,4 @@
-from rest_framework import status, viewsets
+from rest_framework import generics, status, viewsets
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny, IsAuthenticated
@@ -59,8 +59,10 @@ def validateJWT(request):
             return Response({"message" : "fail"}, status=status.HTTP_409_CONFLICT)
         return Response({"message": "ok"}, status=status.HTTP_200_OK)
 
-class UserProfileViewSet(viewsets.ModelViewSet):
-    pass
+class UserProfileViewSet(generics.UpdateAPIView):
+    lookup_field = "username"
+    queryset = User.objects.all()
+    serializer_class = UserProfileSerializer
 
 # 유저 정보 읽기 가능
 @api_view(['GET'])
