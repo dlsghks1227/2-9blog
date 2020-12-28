@@ -59,10 +59,11 @@ def validateJWT(request):
             return Response({"message" : "fail"}, status=status.HTTP_409_CONFLICT)
         return Response({"message": "ok"}, status=status.HTTP_200_OK)
 
-class UserProfileViewSet(generics.UpdateAPIView):
-    lookup_field = "username"
+class UserProfileViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserProfileSerializer
+    permission_classes = [IsAuthenticated]
+    lookup_field = "username"
 
 # 유저 정보 읽기 가능
 @api_view(['GET'])

@@ -22,6 +22,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(
         verbose_name='name',
         max_length=30,
+        unique=True
     )
     photo = models.ImageField(
         verbose_name='profile image',
