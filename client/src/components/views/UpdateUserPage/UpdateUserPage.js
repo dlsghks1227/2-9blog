@@ -109,7 +109,7 @@ function UpdateUserPage() {
                     <p>{profile.username}</p>
                 </div>
                 <div className="profileimg-inner">
-                    <img className="profile-preview" src={profile.photo} alt='profile'></img>
+                    <img className="profile-preview" src={axios.defaults.baseURL + profile.photo} alt='profile'></img>
                 </div>
                 <div className="infomation-inner">
                     <h3>{profile.email}</h3>

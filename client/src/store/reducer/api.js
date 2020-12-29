@@ -156,8 +156,6 @@ export function createPost(postData) {
     return async (dispatch, getState) => {
         const { login } = getState();
 
-        console.log(login);
-
         if (!postData.title || !postData.body || !login.token || !login.username) {
             return { message: 'fail' };
         }
@@ -183,8 +181,6 @@ export function createPost(postData) {
         const res = await axios(options);
         const data = res.data;
 
-        console.log(res);
-
         if (res.statusText === "Created" && res.status === 201) {
             dispatch(receiveAPI());
         } else {
@@ -196,10 +192,80 @@ export function createPost(postData) {
     }
 }
 
-export function getUserPost(username) {
+export function updatePost(postData) {
     return async (dispatch, getState) => {
         const { login } = getState();
 
+        if (!postData.title || !postData.body || !postData.id || !login.token || !login.username) {
+            return { message: 'fail' };
+        }
+
+        const url = '/posts/' + postData.id + '/';
+        const options = {
+            method: 'PATCH',
+            url: url,
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'JWT ' + login.token
+            },
+            data: {
+                title: postData.title,
+                body: postData.body,
+            }
+        }
+
+        dispatch(requestAPI());
+
+        const res = await axios(options);
+        const data = res.data;
+
+        if (res.statusText === "OK" && res.status === 200) {
+            dispatch(receiveAPI());
+        } else {
+            dispatch(errorAPI());
+            throw new Error(data);
+        }
+
+        return data;
+    }
+}
+
+export function deletePost(postData) {
+    return async (dispatch, getState) => {
+        const { login } = getState();
+
+        if (!postData.id || !login.token || !login.username) {
+            return { message: 'fail' };
+        }
+
+        const url = '/posts/' + postData.id + '/';
+        const options = {
+            method: 'DELETE',
+            url: url,
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'JWT ' + login.token
+            }
+        }
+
+        dispatch(requestAPI());
+
+        const res = await axios(options);
+        const data = res.data;
+
+        if (res.statusText === "No Content" && res.status === 204) {
+            dispatch(receiveAPI());
+        } else {
+            dispatch(errorAPI());
+            throw new Error(data);
+        }
+
+        return data;
+    }
+}
+
+export function getUserPost(username) {
+    return async (dispatch) => {
         if (!username) {
             return { message: 'fail' };
         }
