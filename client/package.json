@@ -232,5 +232,5 @@
       "react-app"
     ]
   },
-  "proxy":"http://nani1738.pythonanywhere.com/"
+  "proxy": "http://nani1738.pythonanywhere.com/"
 }
