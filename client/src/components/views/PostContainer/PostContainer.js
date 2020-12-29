@@ -5,11 +5,8 @@ import React, {
 //simport { db } from '../../../fbase';
 import {
     NavLink,
-    Link,
-    Redirect
 } from 'react-router-dom'
 import {
-    useSelector,
     useDispatch,
 } from 'react-redux';
 import {
@@ -27,9 +24,6 @@ import './PostContainer.scss';
 
 
 function PostContainer({ doc }) {
-    const { isAuthenticated } = useSelector(state => ({
-        isAuthenticated: state.login.isAuthenticated,
-    }));
     const dispatch = useDispatch();
 
     const [maxPage, setMaxPage] = useState(null);
@@ -48,7 +42,6 @@ function PostContainer({ doc }) {
                 setPosts(null);
 
                 const data = await onGetPost(doc);
-                console.log(data);
                 if (data && data['results']) {
                     setMaxPage(Math.round(data.count / 10) ? Math.round(data.count / 10) : 1);
                     setPosts(data);
@@ -94,6 +87,7 @@ function PostContainer({ doc }) {
                                     if (count >= 0 && count < maxPage) {
                                         return (<Pagination.Item key={i} active={isActivated} href={`/post/${count + 1}`} >{count + 1}</Pagination.Item>);
                                     }
+                                    return <div></div>
                                 })
                                 // Array.apply(0, Array(maxPage)).map((x, i) => {
                                 //     const isActivated = ((parseInt(currentPage) - 1) === i);

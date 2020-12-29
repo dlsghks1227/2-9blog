@@ -27,6 +27,7 @@ import BoardPage from './components/views/AimPage/pages/BoardPage'
 import LoginPage from './components/views/login/login';
 import SignUpPage from './components/views/SignUp/SignUp';
 import ReadPage from './components/views/ReadPage/ReadPage';
+import UpdatePage from './components/views/UpdatePage/UpdatePage';
 import UpdateUserPage from './components/views/UpdateUserPage/UpdateUserPage' 
 
 import './App.scss';
@@ -76,6 +77,8 @@ function App() {
                 <Route path="/users/:username" component={UserPage} />
 
                 <AuthRoute exact path="/mypage" component={UpdateUserPage} />
+                <AuthRoute exact path="/post/update/:id" component={UpdatePage} />
+                
                 <Route exact path="/login" component={LoginPage} />
                 <Route exact path="/aim" component={BoardPage} />
                 <Route exact path="/signUp" component={SignUpPage} />
